@@ -16,7 +16,6 @@ class SoundcloudCommentsInfoItemExtractor(private val json: JsonObject, override
             return Objects.toString(json.getLong("id"), null)
         }
 
-    @get:Nonnull
     override val commentText: Description
         get() {
             return Description(json.getString("body"), Description.Companion.PLAIN_TEXT)
@@ -26,7 +25,6 @@ class SoundcloudCommentsInfoItemExtractor(private val json: JsonObject, override
             return json.getObject("user").getString("username")
         }
 
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return SoundcloudParsingHelper.getAllImagesFromArtworkOrAvatarUrl(json.getObject("user").getString("avatar_url"))
@@ -62,7 +60,6 @@ class SoundcloudCommentsInfoItemExtractor(private val json: JsonObject, override
             return json.getObject("user").getString("permalink")
         }
 
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return SoundcloudParsingHelper.getAllImagesFromArtworkOrAvatarUrl(json.getObject("user").getString("avatar_url"))

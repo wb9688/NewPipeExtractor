@@ -52,14 +52,12 @@ open class BandcampStreamExtractor(service: StreamingService, linkHandler: LinkH
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return current!!.getString("title")
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderUrl: String?
         get() {
             val parts: Array<String> = url!!.split("/".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
@@ -68,14 +66,12 @@ open class BandcampStreamExtractor(service: StreamingService, linkHandler: LinkH
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val url: String?
         get() {
             return Utils.replaceHttpWithHttps(albumJson!!.getString("url"))
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderName: String?
         get() {
             return albumJson!!.getString("artist")
@@ -92,7 +88,6 @@ open class BandcampStreamExtractor(service: StreamingService, linkHandler: LinkH
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             if (albumJson!!.isNull("art_id")) {
@@ -101,7 +96,6 @@ open class BandcampStreamExtractor(service: StreamingService, linkHandler: LinkH
             return BandcampExtractorHelper.getImagesFromImageId(albumJson!!.getLong("art_id"), true)
         }
 
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return BandcampExtractorHelper.getImagesFromImageUrl(document!!.getElementsByClass("band-photo")
@@ -111,7 +105,6 @@ open class BandcampStreamExtractor(service: StreamingService, linkHandler: LinkH
                     .orElse(""))
         }
 
-    @get:Nonnull
     override val description: Description
         get() {
             val s: String? = Utils.nonEmptyAndNullJoin("\n\n", current!!.getString("about"),
@@ -159,7 +152,6 @@ open class BandcampStreamExtractor(service: StreamingService, linkHandler: LinkH
             return collector
         }
 
-    @get:Nonnull
     override val category: String?
         get() {
             // Get first tag from html, which is the artist's Genre
@@ -170,7 +162,6 @@ open class BandcampStreamExtractor(service: StreamingService, linkHandler: LinkH
                     .orElse("")
         }
 
-    @get:Nonnull
     override val licence: String?
         get() {
             /*
@@ -190,7 +181,6 @@ open class BandcampStreamExtractor(service: StreamingService, linkHandler: LinkH
             }
         }
 
-    @get:Nonnull
     override val tags: List<String?>?
         get() {
             return document!!.getElementsByAttributeValue("itemprop", "keywords")

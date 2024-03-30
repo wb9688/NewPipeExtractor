@@ -11,7 +11,6 @@ import org.schabi.newpipe.extractor.utils.Utils
 
 open class YoutubePlaylistInfoItemExtractor(private val playlistInfoItem: JsonObject) : PlaylistInfoItemExtractor {
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             try {

@@ -17,7 +17,6 @@ import java.io.IOException
 
 class SoundcloudChannelExtractor(service: StreamingService,
                                  linkHandler: ListLinkHandler?) : ChannelExtractor(service, linkHandler) {
-    @get:Nonnull
     override var id: String? = null
         private set
     private var user: JsonObject? = null
@@ -34,19 +33,16 @@ class SoundcloudChannelExtractor(service: StreamingService,
         }
     }
 
-    @get:Nonnull
     override val name: String?
         get() {
             return user!!.getString("username")
         }
 
-    @get:Nonnull
     override val avatars: List<Image?>?
         get() {
             return SoundcloudParsingHelper.getAllImagesFromArtworkOrAvatarUrl(user!!.getString("avatar_url"))
         }
 
-    @get:Nonnull
     override val banners: List<Image?>?
         get() {
             return SoundcloudParsingHelper.getAllImagesFromVisualUrl(user!!.getObject("visuals")
@@ -75,7 +71,6 @@ class SoundcloudChannelExtractor(service: StreamingService,
             return ""
         }
 
-    @get:Nonnull
     override val parentChannelAvatars: List<Image?>?
         get() {
             return listOf<Image>()
@@ -88,7 +83,6 @@ class SoundcloudChannelExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val tabs: List<ListLinkHandler>
         get() {
             val url: String? = getUrl()

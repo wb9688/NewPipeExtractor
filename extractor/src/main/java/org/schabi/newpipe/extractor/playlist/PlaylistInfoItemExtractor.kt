@@ -19,7 +19,6 @@ open interface PlaylistInfoItemExtractor : InfoItemExtractor {
     val streamCount: Long
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     val description: Description
         /**
          * Get the description of the playlist if there is any.
@@ -31,7 +30,6 @@ open interface PlaylistInfoItemExtractor : InfoItemExtractor {
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     val playlistType: PlaylistType?
         /**
          * @return the type of this playlist, see [PlaylistInfo.PlaylistType] for a description

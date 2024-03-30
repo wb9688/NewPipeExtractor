@@ -1444,7 +1444,6 @@ object YoutubeParsingHelper {
                 + ")")
     }
 
-    @get:Nonnull
     val youtubeMusicHeaders: Map<String?, List<String?>?>
         /**
          * Returns a [Map] containing the required YouTube Music headers.

@@ -27,7 +27,6 @@ class BandcampDiscographStreamInfoItemExtractor(private val discograph: JsonObje
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return BandcampExtractorHelper.getImagesFromImageId(discograph.getLong("art_id"), true)

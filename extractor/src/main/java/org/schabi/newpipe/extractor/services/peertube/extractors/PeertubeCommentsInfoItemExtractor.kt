@@ -43,7 +43,6 @@ class PeertubeCommentsInfoItemExtractor(@field:Nonnull @param:Nonnull private va
         return url + "/" + commentId
     }
 
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return uploaderAvatars
@@ -69,7 +68,6 @@ class PeertubeCommentsInfoItemExtractor(@field:Nonnull @param:Nonnull private va
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val commentText: Description
         get() {
             val htmlText: String? = JsonUtils.getString(item, "text")
@@ -87,7 +85,6 @@ class PeertubeCommentsInfoItemExtractor(@field:Nonnull @param:Nonnull private va
             return Objects.toString(item.getLong("id"), null)
         }
 
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return PeertubeParsingHelper.getAvatarsFromOwnerAccountOrVideoChannelObject(baseUrl, item.getObject("account"))

@@ -87,7 +87,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
     private var androidStreamingData: JsonObject? = null
     private var iosStreamingData: JsonObject? = null
 
-    @get:Nonnull
     private var videoPrimaryInfoRenderer: JsonObject? = null
         /*//////////////////////////////////////////////////////////////////////////
     // Utils
@@ -112,7 +111,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
     private var iosCpn: String? = null
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         /*//////////////////////////////////////////////////////////////////////////
     // Impl
@@ -199,7 +197,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             assertPageFetched()
@@ -213,7 +210,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val description: Description
         get() {
             assertPageFetched()
@@ -366,7 +362,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderUrl: String?
         get() {
             assertPageFetched()
@@ -382,7 +377,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderName: String?
         get() {
             assertPageFetched()
@@ -408,7 +402,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             assertPageFetched()
@@ -440,7 +433,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val dashMpdUrl: String
         get() {
             assertPageFetched()
@@ -453,7 +445,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val hlsUrl: String
         get() {
             assertPageFetched()
@@ -514,7 +505,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val subtitlesDefault: List<SubtitlesStream?>
         get() {
             return getSubtitles(MediaFormat.TTML)
@@ -920,7 +910,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
     }
 
-    @get:Nonnull
     private val audioStreamBuilderHelper: Function<ItagInfo?, AudioStream?>
         /**
          * Get the stream builder helper which will be used to build [AudioStream]s in
@@ -1147,7 +1136,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
     }
 
     @get:Throws(ExtractionException::class)
-    @get:Nonnull
     override val frames: List<Frameset>
         get() {
             try {
@@ -1198,20 +1186,17 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
             }
         }
 
-    @get:Nonnull
     override val privacy: Privacy?
         get() {
             return if (playerMicroFormatRenderer!!.getBoolean("isUnlisted")) Privacy.UNLISTED else Privacy.PUBLIC
         }
 
-    @get:Nonnull
     override val category: String?
         get() {
             return playerMicroFormatRenderer!!.getString("category", "")
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val licence: String?
         get() {
             val metadataRowRenderer: JsonObject = getVideoSecondaryInfoRenderer()
@@ -1230,7 +1215,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
             return null
         }
 
-    @get:Nonnull
     override val tags: List<String?>?
         get() {
             return JsonUtils.getStringListFromJsonArray(playerResponse!!.getObject("videoDetails")
@@ -1238,7 +1222,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val streamSegments: List<StreamSegment>
         get() {
             if (!nextResponse!!.has("engagementPanels")) {
@@ -1307,7 +1290,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val metaInfo: List<MetaInfo?>?
         get() {
             return YoutubeMetaInfoHelper.getMetaInfo(nextResponse

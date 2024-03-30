@@ -63,7 +63,6 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     private val channelTabsParameters: String
         private get() {
             val name: String? = getName()
@@ -91,7 +90,6 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val url: String?
         get() {
             try {
@@ -103,7 +101,6 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val id: String?
         get() {
             val id: String = jsonResponse!!.getObject("header")
@@ -160,7 +157,6 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
         }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val collector: MultiInfoItemsCollector = MultiInfoItemsCollector(getServiceId())

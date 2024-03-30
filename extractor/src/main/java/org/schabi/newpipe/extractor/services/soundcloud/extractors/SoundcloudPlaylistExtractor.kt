@@ -26,7 +26,6 @@ import java.util.function.Predicate
 
 class SoundcloudPlaylistExtractor(service: StreamingService,
                                   linkHandler: ListLinkHandler?) : PlaylistExtractor(service, linkHandler) {
-    @get:Nonnull
     override var id: String? = null
         private set
     private var playlist: JsonObject? = null
@@ -43,13 +42,11 @@ class SoundcloudPlaylistExtractor(service: StreamingService,
         }
     }
 
-    @get:Nonnull
     override val name: String?
         get() {
             return playlist!!.getString("title")
         }
 
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             val artworkUrl: String = playlist!!.getString("artwork_url")
@@ -80,7 +77,6 @@ class SoundcloudPlaylistExtractor(service: StreamingService,
             return SoundcloudParsingHelper.getUploaderName(playlist)
         }
 
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return SoundcloudParsingHelper.getAllImagesFromArtworkOrAvatarUrl(SoundcloudParsingHelper.getAvatarUrl(playlist))
@@ -97,7 +93,6 @@ class SoundcloudPlaylistExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val description: Description
         get() {
             val description: String = playlist!!.getString("description")
@@ -107,7 +102,6 @@ class SoundcloudPlaylistExtractor(service: StreamingService,
             return Description(description, Description.Companion.PLAIN_TEXT)
         }
 
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val streamInfoItemsCollector: StreamInfoItemsCollector = StreamInfoItemsCollector(getServiceId())

@@ -17,14 +17,12 @@ abstract class Extractor protected constructor(service: StreamingService, linkHa
      * cleaning/accepting/get id from urls).
      */
     @JvmField
-    @get:Nonnull
     val service: StreamingService
 
     /**
      * @return The [LinkHandler] of the current extractor object (e.g. a ChannelExtractor
      * should return a channel url handler).
      */
-    @get:Nonnull
     open val linkHandler: LinkHandler?
     private var forcedLocalization: Localization? = null
     private var forcedContentCountry: ContentCountry? = null
@@ -72,7 +70,6 @@ abstract class Extractor protected constructor(service: StreamingService, linkHa
     abstract fun onFetchPage(downloader: Downloader?)
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val id: String?
         get() {
             return linkHandler.getId()
@@ -80,25 +77,21 @@ abstract class Extractor protected constructor(service: StreamingService, linkHa
 
     @JvmField
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val name: String?
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val originalUrl: String?
         get() {
             return linkHandler.getOriginalUrl()
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val url: String?
         get() {
             return linkHandler.getUrl()
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     val baseUrl: String?
         get() {
             return linkHandler.getBaseUrl()
@@ -119,19 +112,16 @@ abstract class Extractor protected constructor(service: StreamingService, linkHa
         forcedContentCountry = contentCountry
     }
 
-    @get:Nonnull
     val extractorLocalization: Localization?
         get() {
             return if (forcedLocalization == null) service.getLocalization() else forcedLocalization
         }
 
-    @get:Nonnull
     val extractorContentCountry: ContentCountry?
         get() {
             return if (forcedContentCountry == null) service.getContentCountry() else forcedContentCountry
         }
 
-    @get:Nonnull
     val timeAgoParser: TimeAgoParser?
         get() {
             return service.getTimeAgoParser(extractorLocalization)

@@ -19,7 +19,6 @@ class SoundcloudChartsExtractor(service: StreamingService,
                                 kioskId: String) : KioskExtractor<StreamInfoItem?>(service, linkHandler, kioskId) {
     public override fun onFetchPage(downloader: Downloader?) {}
 
-    @get:Nonnull
     override val name: String?
         get() {
             return getId()
@@ -37,7 +36,6 @@ class SoundcloudChartsExtractor(service: StreamingService,
     }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val collector: StreamInfoItemsCollector = StreamInfoItemsCollector(getServiceId())

@@ -20,13 +20,11 @@ class MediaCCCConferenceExtractor(service: StreamingService,
                                   linkHandler: ListLinkHandler?) : ChannelExtractor(service, linkHandler) {
     private var conferenceData: JsonObject? = null
 
-    @get:Nonnull
     override val avatars: List<Image?>?
         get() {
             return MediaCCCParsingHelper.getImageListFromLogoImageUrl(conferenceData!!.getString("logo_url"))
         }
 
-    @get:Nonnull
     override val banners: List<Image?>?
         get() {
             return emptyList<Image>()
@@ -52,7 +50,6 @@ class MediaCCCConferenceExtractor(service: StreamingService,
             return ""
         }
 
-    @get:Nonnull
     override val parentChannelAvatars: List<Image?>?
         get() {
             return emptyList<Image>()
@@ -63,7 +60,6 @@ class MediaCCCConferenceExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val tabs: List<ListLinkHandler>
         get() {
             // avoid keeping a reference to MediaCCCConferenceExtractor inside the lambda
@@ -78,7 +74,6 @@ class MediaCCCConferenceExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return conferenceData!!.getString("title")

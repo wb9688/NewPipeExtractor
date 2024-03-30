@@ -23,7 +23,6 @@ import java.util.stream.Stream
 
 class BandcampSearchExtractor(service: StreamingService,
                               linkHandler: SearchQueryHandler?) : SearchExtractor(service, linkHandler) {
-    @get:Nonnull
     override val searchSuggestion: String?
         get() {
             return ""
@@ -34,7 +33,6 @@ class BandcampSearchExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val metaInfo: List<MetaInfo?>?
         get() {
             return emptyList<MetaInfo>()
@@ -86,7 +84,6 @@ class BandcampSearchExtractor(service: StreamingService,
     }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             return getPage(Page(getUrl()))

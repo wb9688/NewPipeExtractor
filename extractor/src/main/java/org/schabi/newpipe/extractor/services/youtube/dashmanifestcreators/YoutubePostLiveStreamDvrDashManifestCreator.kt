@@ -22,7 +22,6 @@ object YoutubePostLiveStreamDvrDashManifestCreator {
     /**
      * Cache of DASH manifests generated for post-live-DVR streams.
      */
-    @get:Nonnull
     val cache: ManifestCreatorCache<String, String> = ManifestCreatorCache()
 
     /**

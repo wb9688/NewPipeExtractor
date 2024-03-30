@@ -47,7 +47,6 @@ class YoutubeSearchQueryHandlerFactory() : SearchQueryHandlerFactory() {
         }
 
     companion object {
-        @get:Nonnull
         val instance: YoutubeSearchQueryHandlerFactory = YoutubeSearchQueryHandlerFactory()
         val ALL: String = "all"
         @JvmField

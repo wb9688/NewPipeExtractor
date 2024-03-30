@@ -25,7 +25,6 @@ class BandcampAlbumInfoItemExtractor(private val albumInfoItem: JsonObject,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return BandcampExtractorHelper.getImagesFromImageId(albumInfoItem.getLong("art_id"), true)

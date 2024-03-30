@@ -37,7 +37,6 @@ class YoutubeCommentsExtractor(
     private var ajaxJson: JsonObject? = null
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             if (isCommentsDisabled) {
@@ -101,7 +100,6 @@ class YoutubeCommentsExtractor(
         }
     }
 
-    @get:Nonnull
     private val infoItemsPageForDisabledComments: InfoItemsPage<CommentsInfoItem?>
         private get() {
             return InfoItemsPage(emptyList(), null, emptyList())

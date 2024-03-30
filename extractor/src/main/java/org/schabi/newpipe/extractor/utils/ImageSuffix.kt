@@ -27,7 +27,6 @@ class ImageSuffix(@field:Nonnull
                   /**
                    * @return the suffix which needs to be appended to get the full image URL
                    */
-                  @get:Nonnull
                   @param:Nonnull val suffix: String,
                   /**
                    * @return the height corresponding to the image suffix, which may be unknown
@@ -42,7 +41,6 @@ class ImageSuffix(@field:Nonnull
     /**
      * @return the estimated [ResolutionLevel] of the suffix, which is never null.
      */
-    @get:Nonnull
     @Nonnull
     val resolutionLevel: ResolutionLevel
 

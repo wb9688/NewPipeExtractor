@@ -35,7 +35,6 @@ class MediaCCCRecentKiosk(streamingService: StreamingService,
     }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val events: JsonArray = doc!!.getArray("events")
@@ -63,7 +62,6 @@ class MediaCCCRecentKiosk(streamingService: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return KIOSK_ID

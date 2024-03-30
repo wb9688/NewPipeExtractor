@@ -27,7 +27,6 @@ abstract class CommentsExtractor(service: StreamingService, uiHandler: ListLinkH
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return "Comments"

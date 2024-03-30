@@ -30,7 +30,6 @@ internal class ItagInfo
      *
      * @return the content stored in this `ItagInfo` instance
      */
-    @get:Nonnull
     @param:Nonnull val content: String?,
     @field:Nonnull
     /**
@@ -39,7 +38,6 @@ internal class ItagInfo
      * @return the [ItagItem] associated with this `ItagInfo` instance, which is not
      * null
      */
-    @get:Nonnull
     @param:Nonnull val itagItem: ItagItem) : Serializable {
 
     /**

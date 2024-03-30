@@ -21,7 +21,6 @@ class PeertubeSearchExtractor @JvmOverloads constructor(service: StreamingServic
                                                         linkHandler: SearchQueryHandler?,
         // if we should use PeertubeSepiaStreamInfoItemExtractor
                                                         private val sepia: Boolean = false) : SearchExtractor(service, linkHandler) {
-    @get:Nonnull
     override val searchSuggestion: String?
         get() {
             return ""
@@ -31,14 +30,12 @@ class PeertubeSearchExtractor @JvmOverloads constructor(service: StreamingServic
             return false
         }
 
-    @get:Nonnull
     override val metaInfo: List<MetaInfo?>?
         get() {
             return emptyList<MetaInfo>()
         }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             return getPage(Page((getUrl() + "&" + PeertubeParsingHelper.START_KEY + "=0&"

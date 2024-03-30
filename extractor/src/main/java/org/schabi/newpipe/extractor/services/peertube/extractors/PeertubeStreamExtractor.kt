@@ -71,14 +71,12 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return PeertubeParsingHelper.getThumbnailsFromPlaylistOrVideoItem(baseUrl, json)
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val description: Description
         get() {
             var text: String?
@@ -146,7 +144,6 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderUrl: String?
         get() {
             val name: String? = JsonUtils.getString(json, ACCOUNT_NAME)
@@ -156,39 +153,33 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderName: String?
         get() {
             return JsonUtils.getString(json, "account.displayName")
         }
 
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return PeertubeParsingHelper.getAvatarsFromOwnerAccountOrVideoChannelObject(baseUrl, json!!.getObject("account"))
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val subChannelUrl: String?
         get() {
             return JsonUtils.getString(json, "channel.url")
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val subChannelName: String?
         get() {
             return JsonUtils.getString(json, "channel.displayName")
         }
 
-    @get:Nonnull
     override val subChannelAvatars: List<Image?>?
         get() {
             return PeertubeParsingHelper.getAvatarsFromOwnerAccountOrVideoChannelObject(baseUrl, json!!.getObject("channel"))
         }
 
-    @get:Nonnull
     override val hlsUrl: String
         get() {
             assertPageFetched()
@@ -235,7 +226,6 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val subtitlesDefault: List<SubtitlesStream?>
         get() {
             if (subtitlesException != null) {
@@ -282,13 +272,11 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
             }
         }
 
-    @get:Nonnull
     override val tags: List<String?>?
         get() {
             return JsonUtils.getStringListFromJsonArray(json!!.getArray("tags"))
         }
 
-    @get:Nonnull
     override val supportInfo: String?
         get() {
             try {
@@ -299,7 +287,6 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val streamSegments: List<StreamSegment>
         get() {
             val segments: MutableList<StreamSegment> = ArrayList()
@@ -324,7 +311,6 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
         }
 
     @get:Throws(ExtractionException::class)
-    @get:Nonnull
     override val frames: List<Frameset>
         get() {
             val framesets: MutableList<Frameset> = ArrayList()
@@ -710,20 +696,17 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return JsonUtils.getString(json, "name")
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val host: String?
         get() {
             return JsonUtils.getString(json, ACCOUNT_HOST)
         }
 
-    @get:Nonnull
     override val privacy: Privacy?
         get() {
             when (json!!.getObject("privacy").getInt("id")) {
@@ -736,14 +719,12 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val category: String?
         get() {
             return JsonUtils.getString(json, "category.label")
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val licence: String?
         get() {
             return JsonUtils.getString(json, "licence.label")

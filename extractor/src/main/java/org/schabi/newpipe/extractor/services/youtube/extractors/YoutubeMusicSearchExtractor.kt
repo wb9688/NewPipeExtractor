@@ -106,7 +106,6 @@ class YoutubeMusicSearchExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val searchSuggestion: String?
         get() {
             for (obj: JsonObject in itemSectionRendererContents) {
@@ -132,14 +131,12 @@ class YoutubeMusicSearchExtractor(service: StreamingService,
                     .anyMatch(Predicate({ obj: JsonObject -> obj.has("showingResultsForRenderer") }))
         }
 
-    @get:Nonnull
     override val metaInfo: List<MetaInfo?>?
         get() {
             return emptyList<MetaInfo>()
         }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val collector: MultiInfoItemsCollector = MultiInfoItemsCollector(getServiceId())

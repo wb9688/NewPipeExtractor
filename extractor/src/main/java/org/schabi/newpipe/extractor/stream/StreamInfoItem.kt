@@ -46,7 +46,6 @@ class StreamInfoItem(serviceId: Int,
     var uploaderUrl: String? = null
 
     @JvmField
-    @get:Nonnull
     @Nonnull
     var uploaderAvatars: List<Image?>? = listOf<Image>()
     var isUploaderVerified: Boolean = false

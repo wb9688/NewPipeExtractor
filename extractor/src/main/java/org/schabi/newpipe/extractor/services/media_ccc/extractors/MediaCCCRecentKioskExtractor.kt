@@ -24,7 +24,6 @@ class MediaCCCRecentKioskExtractor(private val event: JsonObject) : StreamInfoIt
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return MediaCCCParsingHelper.getImageListFromLogoImageUrl(event.getString("poster_url"))

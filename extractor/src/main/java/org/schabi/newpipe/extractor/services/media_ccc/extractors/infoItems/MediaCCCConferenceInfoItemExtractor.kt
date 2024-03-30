@@ -39,7 +39,6 @@ class MediaCCCConferenceInfoItemExtractor(private val conference: JsonObject) : 
             return conference.getString("url")
         }
 
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return MediaCCCParsingHelper.getImageListFromLogoImageUrl(conference.getString("logo_url"))

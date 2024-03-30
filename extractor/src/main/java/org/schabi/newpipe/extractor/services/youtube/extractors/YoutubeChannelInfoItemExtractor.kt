@@ -47,7 +47,6 @@ class YoutubeChannelInfoItemExtractor(private val channelInfoItem: JsonObject) :
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             try {

@@ -19,16 +19,13 @@ abstract class SearchExtractor(service: StreamingService, linkHandler: SearchQue
 
     @JvmField
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val searchSuggestion: String?
 
-    @get:Nonnull
     override val linkHandler: LinkHandler?
         get() {
             return super.getLinkHandler() as SearchQueryHandler?
         }
 
-    @get:Nonnull
     override val name: String?
         get() {
             return this.linkHandler.getSearchString()
@@ -40,6 +37,5 @@ abstract class SearchExtractor(service: StreamingService, linkHandler: SearchQue
 
     @JvmField
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val metaInfo: List<MetaInfo?>?
 }

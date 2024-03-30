@@ -22,7 +22,6 @@ class PeertubeChannelInfoItemExtractor(@param:Nonnull private val item: JsonObje
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return PeertubeParsingHelper.getAvatarsFromOwnerAccountOrVideoChannelObject(baseUrl, item)

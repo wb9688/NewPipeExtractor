@@ -57,7 +57,6 @@ class StreamInfo(serviceId: Int,
      *
      * @return the thumbnail url as a string
      */
-    @get:Nonnull
     @Nonnull
     var thumbnails: List<Image?>? = listOf<Image>()
     var textualUploadDate: String? = null
@@ -88,7 +87,6 @@ class StreamInfo(serviceId: Int,
     var uploaderName: String? = ""
     var uploaderUrl: String? = ""
 
-    @get:Nonnull
     @Nonnull
     var uploaderAvatars: List<Image?>? = listOf<Image>()
     var isUploaderVerified: Boolean = false
@@ -96,7 +94,6 @@ class StreamInfo(serviceId: Int,
     var subChannelName: String? = ""
     var subChannelUrl: String? = ""
 
-    @get:Nonnull
     @Nonnull
     var subChannelAvatars: List<Image?>? = listOf<Image>()
     var videoStreams: List<VideoStream?>? = listOf<VideoStream>()
@@ -116,7 +113,6 @@ class StreamInfo(serviceId: Int,
     var tags: List<String?>? = listOf<String>()
     var streamSegments: List<StreamSegment?>? = listOf<StreamSegment>()
 
-    @get:Nonnull
     var metaInfo: List<MetaInfo?>? = listOf<MetaInfo>()
     var isShortFormContent: Boolean = false
 

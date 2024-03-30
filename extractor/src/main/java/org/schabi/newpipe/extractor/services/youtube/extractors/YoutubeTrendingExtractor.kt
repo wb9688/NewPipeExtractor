@@ -63,7 +63,6 @@ class YoutubeTrendingExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             val header: JsonObject = initialData!!.getObject("header")
@@ -82,7 +81,6 @@ class YoutubeTrendingExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val collector: StreamInfoItemsCollector = StreamInfoItemsCollector(getServiceId())

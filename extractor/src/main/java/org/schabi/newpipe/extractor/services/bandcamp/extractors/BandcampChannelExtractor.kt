@@ -32,14 +32,12 @@ class BandcampChannelExtractor(service: StreamingService,
                                linkHandler: ListLinkHandler?) : ChannelExtractor(service, linkHandler) {
     private var channelInfo: JsonObject? = null
 
-    @get:Nonnull
     override val avatars: List<Image?>?
         get() {
             return BandcampExtractorHelper.getImagesFromImageId(channelInfo!!.getLong("bio_image_id"), false)
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val banners: List<Image?>?
         get() {
             /*
@@ -91,7 +89,6 @@ class BandcampChannelExtractor(service: StreamingService,
             return null
         }
 
-    @get:Nonnull
     override val parentChannelAvatars: List<Image?>?
         get() {
             return listOf<Image>()
@@ -104,7 +101,6 @@ class BandcampChannelExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val tabs: List<ListLinkHandler>
         get() {
             val discography: JsonArray = channelInfo!!.getArray("discography")
@@ -145,7 +141,6 @@ class BandcampChannelExtractor(service: StreamingService,
         channelInfo = BandcampExtractorHelper.getArtistDetails(getId())
     }
 
-    @get:Nonnull
     override val name: String?
         get() {
             return channelInfo!!.getString("name")

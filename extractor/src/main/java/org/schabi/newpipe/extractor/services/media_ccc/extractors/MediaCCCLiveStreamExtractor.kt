@@ -53,21 +53,18 @@ class MediaCCCLiveStreamExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return room!!.getString("display")
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return MediaCCCParsingHelper.getThumbnailsFromLiveStreamItem(room)
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val description: Description
         get() {
             return Description((conference!!.getString("description")
@@ -79,21 +76,18 @@ class MediaCCCLiveStreamExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderUrl: String?
         get() {
             return "https://streaming.media.ccc.de/" + conference!!.getString("slug")
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderName: String?
         get() {
             return conference!!.getString("conference")
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val dashMpdUrl: String
         /**
          * Get the URL of the first DASH stream found.
@@ -113,7 +107,6 @@ class MediaCCCLiveStreamExtractor(service: StreamingService,
             return getManifestOfDeliveryMethodWanted("dash")
         }
 
-    @get:Nonnull
     override val hlsUrl: String
         /**
          * Get the URL of the first HLS stream found.
@@ -234,7 +227,6 @@ class MediaCCCLiveStreamExtractor(service: StreamingService,
             return StreamType.LIVE_STREAM
         }
 
-    @get:Nonnull
     override val category: String?
         get() {
             return group

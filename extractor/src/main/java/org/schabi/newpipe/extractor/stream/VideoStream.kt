@@ -45,7 +45,6 @@ class VideoStream private constructor(id: String,
      * @return the video resolution or [.RESOLUTION_UNKNOWN]
      */
     @JvmField
-    @get:Nonnull
     @Deprecated("Use {@link #getResolution()} instead. ")
     val resolution: String
 

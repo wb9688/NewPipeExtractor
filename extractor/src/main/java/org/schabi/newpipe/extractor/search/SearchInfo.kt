@@ -18,7 +18,6 @@ class SearchInfo(serviceId: Int,
     var searchSuggestion: String? = null
     var isCorrectedSearch: Boolean = false
 
-    @get:Nonnull
     var metaInfo: List<MetaInfo?>? = listOf<MetaInfo>()
 
     companion object {

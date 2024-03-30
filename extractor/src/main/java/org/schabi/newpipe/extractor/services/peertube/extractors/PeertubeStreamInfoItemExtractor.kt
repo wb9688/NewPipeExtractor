@@ -19,7 +19,6 @@ open class PeertubeStreamInfoItemExtractor(protected val item: JsonObject, priva
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return PeertubeParsingHelper.getThumbnailsFromPlaylistOrVideoItem(baseUrl, item)
@@ -48,7 +47,6 @@ open class PeertubeStreamInfoItemExtractor(protected val item: JsonObject, priva
                     .fromId("accounts/" + name + "@" + host, baseUrl).getUrl()
         }
 
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return PeertubeParsingHelper.getAvatarsFromOwnerAccountOrVideoChannelObject(baseUrl, item.getObject("account"))

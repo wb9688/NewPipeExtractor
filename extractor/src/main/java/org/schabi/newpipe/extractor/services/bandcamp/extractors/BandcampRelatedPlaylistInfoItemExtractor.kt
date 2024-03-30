@@ -23,7 +23,6 @@ class BandcampRelatedPlaylistInfoItemExtractor(@param:Nonnull private val relate
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return BandcampExtractorHelper.getImagesFromImageUrl(relatedAlbum.getElementsByClass("album-art").attr("src"))

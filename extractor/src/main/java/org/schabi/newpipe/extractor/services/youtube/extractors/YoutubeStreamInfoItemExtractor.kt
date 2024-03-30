@@ -188,7 +188,6 @@ open class YoutubeStreamInfoItemExtractor
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             if (videoInfo.has("channelThumbnailSupportedRenderers")) {
@@ -333,7 +332,6 @@ open class YoutubeStreamInfoItemExtractor
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return YoutubeParsingHelper.getThumbnailsFromInfoItem(videoInfo)

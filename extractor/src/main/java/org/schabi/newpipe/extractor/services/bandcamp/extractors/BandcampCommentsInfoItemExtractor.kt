@@ -15,14 +15,12 @@ class BandcampCommentsInfoItemExtractor(private val review: JsonObject, override
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return uploaderAvatars
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val commentText: Description
         get() {
             return Description(review.getString("why"), Description.Companion.PLAIN_TEXT)
@@ -34,7 +32,6 @@ class BandcampCommentsInfoItemExtractor(private val review: JsonObject, override
             return review.getString("name")
         }
 
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return BandcampExtractorHelper.getImagesFromImageId(review.getLong("image_id"), false)

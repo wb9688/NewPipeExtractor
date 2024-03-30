@@ -21,7 +21,6 @@ class MediaCCCConferenceKiosk(streamingService: StreamingService,
                               kioskId: String) : KioskExtractor<ChannelInfoItem?>(streamingService, linkHandler, kioskId) {
     private var doc: JsonObject? = null
 
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val conferences: JsonArray = doc!!.getArray("conferences")
@@ -48,7 +47,6 @@ class MediaCCCConferenceKiosk(streamingService: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return doc!!.getString("Conferences")

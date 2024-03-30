@@ -79,14 +79,12 @@ class YoutubeSearchExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val url: String?
         get() {
             return super.getUrl() + "&gl=" + getExtractorContentCountry().getCountryCode()
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val searchSuggestion: String?
         get() {
             val itemSectionRenderer: JsonObject = initialData!!.getObject("contents")
@@ -120,7 +118,6 @@ class YoutubeSearchExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val metaInfo: List<MetaInfo?>?
         get() {
             return YoutubeMetaInfoHelper.getMetaInfo(
@@ -132,7 +129,6 @@ class YoutubeSearchExtractor(service: StreamingService,
         }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val collector: MultiInfoItemsCollector = MultiInfoItemsCollector(getServiceId())

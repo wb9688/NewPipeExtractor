@@ -36,7 +36,6 @@ class BandcampRadioStreamExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             /* Select "subtitle" and not "audio_title", as the latter would cause a lot of
@@ -46,21 +45,18 @@ class BandcampRadioStreamExtractor(service: StreamingService,
         }
 
     @get:Throws(ContentNotSupportedException::class)
-    @get:Nonnull
     override val uploaderUrl: String?
         get() {
             throw ContentNotSupportedException("Fan pages are not supported")
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val url: String?
         get() {
             return getLinkHandler().getUrl()
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderName: String?
         get() {
             return Jsoup.parse(showInfo!!.getString("image_caption")).getElementsByTag("a").stream()
@@ -74,13 +70,11 @@ class BandcampRadioStreamExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return BandcampExtractorHelper.getImagesFromImageId(showInfo!!.getLong("show_image_id"), false)
         }
 
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return listOf(
@@ -88,7 +82,6 @@ class BandcampRadioStreamExtractor(service: StreamingService,
                             512, 512, ResolutionLevel.MEDIUM))
         }
 
-    @get:Nonnull
     override val description: Description
         get() {
             return Description(showInfo!!.getString("desc"), Description.Companion.PLAIN_TEXT)
@@ -120,7 +113,6 @@ class BandcampRadioStreamExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val streamSegments: List<StreamSegment>
         get() {
             val tracks: JsonArray = showInfo!!.getArray("tracks")
@@ -137,21 +129,18 @@ class BandcampRadioStreamExtractor(service: StreamingService,
             return segments
         }
 
-    @get:Nonnull
     override val licence: String?
         get() {
             // Contrary to other Bandcamp streams, radio streams don't have a license
             return ""
         }
 
-    @get:Nonnull
     override val category: String?
         get() {
             // Contrary to other Bandcamp streams, radio streams don't have categories
             return ""
         }
 
-    @get:Nonnull
     override val tags: List<String?>?
         get() {
             // Contrary to other Bandcamp streams, radio streams don't have tags

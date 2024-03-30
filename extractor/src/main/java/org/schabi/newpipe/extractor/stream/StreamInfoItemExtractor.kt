@@ -44,7 +44,6 @@ open interface StreamInfoItemExtractor : InfoItemExtractor {
     val uploaderUrl: String?
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     val uploaderAvatars: List<Image?>?
         /**
          * Get the uploader avatars.

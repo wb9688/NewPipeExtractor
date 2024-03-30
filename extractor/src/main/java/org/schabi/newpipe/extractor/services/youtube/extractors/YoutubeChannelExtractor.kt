@@ -103,7 +103,6 @@ class YoutubeChannelExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val url: String?
         get() {
             try {
@@ -114,7 +113,6 @@ class YoutubeChannelExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val id: String?
         get() {
             assertPageFetched()
@@ -133,7 +131,6 @@ class YoutubeChannelExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             assertPageFetched()
@@ -176,7 +173,6 @@ class YoutubeChannelExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val avatars: List<Image?>?
         get() {
             assertPageFetched()
@@ -209,7 +205,6 @@ class YoutubeChannelExtractor(service: StreamingService,
                     .orElseThrow<ParsingException>(Supplier<ParsingException>({ ParsingException("Could not get avatars") }))
         }
 
-    @get:Nonnull
     override val banners: List<Image?>?
         get() {
             assertPageFetched()
@@ -316,7 +311,6 @@ class YoutubeChannelExtractor(service: StreamingService,
             return ""
         }
 
-    @get:Nonnull
     override val parentChannelAvatars: List<Image?>?
         get() {
             return listOf<Image>()
@@ -351,7 +345,6 @@ class YoutubeChannelExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val tabs: List<ListLinkHandler>
         get() {
             assertPageFetched()
@@ -362,7 +355,6 @@ class YoutubeChannelExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     private val tabsForNonAgeRestrictedChannels: List<ListLinkHandler>
         private get() {
             val responseTabs: JsonArray = jsonResponse!!.getObject("contents")
@@ -420,7 +412,6 @@ class YoutubeChannelExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     private val tabsForAgeRestrictedChannels: List<ListLinkHandler>
         private get() {
             // As we don't have access to the channel tabs list, consider that the channel has videos,
@@ -441,7 +432,6 @@ class YoutubeChannelExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val tags: List<String>
         get() {
             assertPageFetched()

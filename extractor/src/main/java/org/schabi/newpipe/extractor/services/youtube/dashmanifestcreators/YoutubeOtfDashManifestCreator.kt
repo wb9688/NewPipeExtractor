@@ -21,7 +21,6 @@ object YoutubeOtfDashManifestCreator {
     /**
      * Cache of DASH manifests generated for OTF streams.
      */
-    @get:Nonnull
     val cache: ManifestCreatorCache<String, String> = ManifestCreatorCache()
 
     /**

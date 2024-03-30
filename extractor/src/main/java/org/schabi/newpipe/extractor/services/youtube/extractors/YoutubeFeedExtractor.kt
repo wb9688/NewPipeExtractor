@@ -30,7 +30,6 @@ class YoutubeFeedExtractor(service: StreamingService, linkHandler: ListLinkHandl
         document = Jsoup.parse(response.responseBody())
     }
 
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val entries: Elements = document!!.select("feed > entry")
@@ -41,13 +40,11 @@ class YoutubeFeedExtractor(service: StreamingService, linkHandler: ListLinkHandl
             return InfoItemsPage(collector, null)
         }
 
-    @get:Nonnull
     override val id: String?
         get() {
             return url!!.replace(WEBSITE_CHANNEL_BASE_URL, "")
         }
 
-    @get:Nonnull
     override val url: String?
         get() {
             val authorUriElement: Element? = document!!.select("feed > author > uri")
@@ -66,7 +63,6 @@ class YoutubeFeedExtractor(service: StreamingService, linkHandler: ListLinkHandl
             return ""
         }
 
-    @get:Nonnull
     override val name: String?
         get() {
             val nameElement: Element? = document!!.select("feed > author > name")

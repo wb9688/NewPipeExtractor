@@ -31,26 +31,22 @@ class MediaCCCStreamExtractor(service: StreamingService, linkHandler: LinkHandle
     private var data: JsonObject? = null
     private var conferenceData: JsonObject? = null
 
-    @get:Nonnull
     override val textualUploadDate: String?
         get() {
             return data!!.getString("release_date")
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploadDate: DateWrapper?
         get() {
             return DateWrapper(MediaCCCParsingHelper.parseDateFrom(textualUploadDate))
         }
 
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return MediaCCCParsingHelper.getThumbnailsFromStreamItem(data)
         }
 
-    @get:Nonnull
     override val description: Description
         get() {
             return Description(data!!.getString("description"), Description.Companion.PLAIN_TEXT)
@@ -64,20 +60,17 @@ class MediaCCCStreamExtractor(service: StreamingService, linkHandler: LinkHandle
             return data!!.getInt("view_count").toLong()
         }
 
-    @get:Nonnull
     override val uploaderUrl: String?
         get() {
             return MediaCCCConferenceLinkHandlerFactory.Companion.CONFERENCE_PATH + uploaderName
         }
 
-    @get:Nonnull
     override val uploaderName: String?
         get() {
             return data!!.getString("conference_url")
                     .replaceFirst("https://(api\\.)?media\\.ccc\\.de/public/conferences/".toRegex(), "")
         }
 
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return MediaCCCParsingHelper.getImageListFromLogoImageUrl(conferenceData!!.getString("logo_url"))
@@ -185,13 +178,11 @@ class MediaCCCStreamExtractor(service: StreamingService, linkHandler: LinkHandle
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return data!!.getString("title")
         }
 
-    @get:Nonnull
     override val originalUrl: String?
         get() {
             return data!!.getString("frontend_link")
@@ -203,7 +194,6 @@ class MediaCCCStreamExtractor(service: StreamingService, linkHandler: LinkHandle
             return Localization.Companion.getLocaleFromThreeLetterCode(data!!.getString("original_language"))
         }
 
-    @get:Nonnull
     override val tags: List<String?>?
         get() {
             return JsonUtils.getStringListFromJsonArray(data!!.getArray("tags"))

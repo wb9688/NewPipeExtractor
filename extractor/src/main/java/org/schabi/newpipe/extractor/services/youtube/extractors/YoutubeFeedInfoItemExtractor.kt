@@ -69,7 +69,6 @@ class YoutubeFeedInfoItemExtractor(private val entryElement: Element) : StreamIn
             return entryElement.getElementsByTag("link").first()!!.attr("href")
         }
 
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             val thumbnailElement: Element? = entryElement.getElementsByTag("media:thumbnail").first()

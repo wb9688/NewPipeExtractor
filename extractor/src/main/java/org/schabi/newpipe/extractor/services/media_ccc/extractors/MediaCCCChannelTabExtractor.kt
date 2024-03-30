@@ -36,7 +36,6 @@ class MediaCCCChannelTabExtractor
         }
     }
 
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val collector: MultiInfoItemsCollector = MultiInfoItemsCollector(getServiceId())

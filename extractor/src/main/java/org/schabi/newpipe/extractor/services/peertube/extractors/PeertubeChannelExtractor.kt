@@ -27,13 +27,11 @@ class PeertubeChannelExtractor(service: StreamingService,
         baseUrl = getBaseUrl()
     }
 
-    @get:Nonnull
     override val avatars: List<Image?>?
         get() {
             return PeertubeParsingHelper.getAvatarsFromOwnerAccountOrVideoChannelObject(baseUrl, json)
         }
 
-    @get:Nonnull
     override val banners: List<Image?>?
         get() {
             return PeertubeParsingHelper.getBannersFromAccountOrVideoChannelObject(baseUrl, json)
@@ -65,7 +63,6 @@ class PeertubeChannelExtractor(service: StreamingService,
             return JsonUtils.getString(json, "ownerAccount.url")
         }
 
-    @get:Nonnull
     override val parentChannelAvatars: List<Image?>?
         get() {
             return PeertubeParsingHelper.getAvatarsFromOwnerAccountOrVideoChannelObject(
@@ -79,7 +76,6 @@ class PeertubeChannelExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val tabs: List<ListLinkHandler>
         get() {
             return java.util.List.of<ListLinkHandler>(
@@ -113,7 +109,6 @@ class PeertubeChannelExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return JsonUtils.getString(json, "displayName")

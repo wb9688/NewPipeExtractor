@@ -38,7 +38,6 @@ class MediaCCCSearchExtractor(service: StreamingService,
         }
     }
 
-    @get:Nonnull
     override val searchSuggestion: String?
         get() {
             return ""
@@ -48,13 +47,11 @@ class MediaCCCSearchExtractor(service: StreamingService,
             return false
         }
 
-    @get:Nonnull
     override val metaInfo: List<MetaInfo?>?
         get() {
             return emptyList<MetaInfo>()
         }
 
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val searchItems: MultiInfoItemsCollector = MultiInfoItemsCollector(getServiceId())
@@ -139,7 +136,6 @@ class MediaCCCSearchExtractor(service: StreamingService,
                             return item.getUrl()
                         }
 
-                    @get:Nonnull
                     override val thumbnails: List<Image?>?
                         get() {
                             return item.getThumbnails()

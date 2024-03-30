@@ -20,7 +20,6 @@ object YoutubeProgressiveDashManifestCreator {
     /**
      * Cache of DASH manifests generated for progressive streams.
      */
-    @get:Nonnull
     val cache: ManifestCreatorCache<String, String> = ManifestCreatorCache()
 
     /**

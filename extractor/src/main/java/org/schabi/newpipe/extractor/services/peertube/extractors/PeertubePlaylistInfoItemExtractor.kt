@@ -29,7 +29,6 @@ class PeertubePlaylistInfoItemExtractor(@param:Nonnull private val item: JsonObj
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return PeertubeParsingHelper.getThumbnailsFromPlaylistOrVideoItem(baseUrl, item)
@@ -60,7 +59,6 @@ class PeertubePlaylistInfoItemExtractor(@param:Nonnull private val item: JsonObj
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val description: Description
         get() {
             val description: String = item.getString("description")

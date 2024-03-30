@@ -40,7 +40,6 @@ open class YoutubeReelInfoItemExtractor(@field:Nonnull @param:Nonnull private va
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return YoutubeParsingHelper.getThumbnailsFromInfoItem(reelInfo)

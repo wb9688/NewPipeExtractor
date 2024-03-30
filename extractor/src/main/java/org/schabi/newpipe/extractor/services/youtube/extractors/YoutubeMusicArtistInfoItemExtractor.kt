@@ -10,7 +10,6 @@ import org.schabi.newpipe.extractor.utils.Utils
 
 class YoutubeMusicArtistInfoItemExtractor(private val artistInfoItem: JsonObject) : ChannelInfoItemExtractor {
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             try {

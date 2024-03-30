@@ -67,7 +67,6 @@ class MediaCCCStreamInfoItemExtractor(private val event: JsonObject) : StreamInf
                     + event.getString("guid"))
         }
 
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return MediaCCCParsingHelper.getThumbnailsFromStreamItem(event)

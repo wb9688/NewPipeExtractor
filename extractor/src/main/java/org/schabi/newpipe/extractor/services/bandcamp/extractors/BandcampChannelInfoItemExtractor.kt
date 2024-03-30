@@ -26,7 +26,6 @@ class BandcampChannelInfoItemExtractor(private val searchResult: Element) : Chan
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return BandcampExtractorHelper.getImagesFromSearchResult(searchResult)

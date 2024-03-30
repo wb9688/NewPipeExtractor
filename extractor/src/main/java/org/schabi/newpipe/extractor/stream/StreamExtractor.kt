@@ -78,11 +78,9 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
 
     @JvmField
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val thumbnails: List<Image?>?
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val description: Description
         /**
          * This is the stream description.
@@ -156,12 +154,10 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
 
     @JvmField
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val uploaderUrl: String?
 
     @JvmField
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val uploaderName: String?
 
     @get:Throws(ParsingException::class)
@@ -177,7 +173,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val uploaderAvatars: List<Image?>?
         /**
          * The image files/profile pictures/avatars of the creator/uploader of the stream.
@@ -195,7 +190,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val subChannelUrl: String?
         /**
          * The Url to the page of the sub-channel of the stream. This must not be a homepage,
@@ -210,7 +204,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val subChannelName: String?
         /**
          * The name of the sub-channel of the stream.
@@ -223,7 +216,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val subChannelAvatars: List<Image?>?
         /**
          * The avatars of the sub-channel of the stream.
@@ -247,7 +239,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val dashMpdUrl: String
         /**
          * Get the dash mpd url. If you don't know what a dash MPD is you can read about it
@@ -261,7 +252,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val hlsUrl: String
         /**
          * I am not sure if this is in use, and how this is used. However the frontend is missing
@@ -288,7 +278,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
     abstract val videoOnlyStreams: List<VideoStream?>
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     open val subtitlesDefault: List<SubtitlesStream?>
         /**
          * This will return a list of available [SubtitlesStream]s.
@@ -349,7 +338,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ExtractionException::class)
-    @get:Nonnull
     open val frames: List<Frameset>
         /**
          * Should return a list of Frameset object that contains preview of stream frames
@@ -419,7 +407,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val host: String?
         /**
          * The host of the stream (Eg. peertube.cpy.re).
@@ -445,7 +432,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val category: String?
         /**
          * The name of the category of the stream.
@@ -458,7 +444,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val licence: String?
         /**
          * The name of the licence of the stream.
@@ -485,7 +470,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val tags: List<String?>?
         /**
          * The list of tags of the stream.
@@ -498,7 +482,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val supportInfo: String?
         /**
          * The support information of the stream.
@@ -514,7 +497,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val streamSegments: List<StreamSegment>
         /**
          * The list of stream segments by timestamps for the stream.
@@ -527,7 +509,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val metaInfo: List<MetaInfo?>?
         /**
          * Meta information about the stream.

@@ -34,6 +34,5 @@ abstract class KioskExtractor<T : InfoItem?>(streamingService: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract override val name: String?
 }

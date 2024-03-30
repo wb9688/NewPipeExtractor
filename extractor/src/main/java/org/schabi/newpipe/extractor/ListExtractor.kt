@@ -12,7 +12,6 @@ import java.io.IOException
 abstract class ListExtractor<R : InfoItem?>(service: StreamingService, linkHandler: ListLinkHandler?) : Extractor(service, linkHandler) {
     @JvmField
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     abstract val initialPage: InfoItemsPage<R?>?
 
     /**
@@ -25,7 +24,6 @@ abstract class ListExtractor<R : InfoItem?>(service: StreamingService, linkHandl
     @Throws(IOException::class, ExtractionException::class)
     abstract fun getPage(page: Page?): InfoItemsPage<R?>?
 
-    @get:Nonnull
     override val linkHandler: LinkHandler?
         get() {
             return super.getLinkHandler() as ListLinkHandler?

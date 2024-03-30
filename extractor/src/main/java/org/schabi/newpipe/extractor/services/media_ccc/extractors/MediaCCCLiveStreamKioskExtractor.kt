@@ -23,7 +23,6 @@ class MediaCCCLiveStreamKioskExtractor(private val conferenceInfo: JsonObject,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return MediaCCCParsingHelper.getThumbnailsFromLiveStreamItem(roomInfo)

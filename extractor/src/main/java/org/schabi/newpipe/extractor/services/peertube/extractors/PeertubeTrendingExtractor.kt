@@ -20,14 +20,12 @@ class PeertubeTrendingExtractor(streamingService: StreamingService,
                                 linkHandler: ListLinkHandler?,
                                 kioskId: String) : KioskExtractor<StreamInfoItem?>(streamingService, linkHandler, kioskId) {
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return getId()
         }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             return getPage(Page((getUrl() + "&" + PeertubeParsingHelper.START_KEY + "=0&"

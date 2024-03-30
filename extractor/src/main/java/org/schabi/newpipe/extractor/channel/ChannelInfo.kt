@@ -39,23 +39,18 @@ class ChannelInfo(serviceId: Int,
     var description: String? = null
     var donationLinks: Array<String>
 
-    @get:Nonnull
     @Nonnull
     var avatars: List<Image?>? = listOf<Image>()
 
-    @get:Nonnull
     @Nonnull
     var banners: List<Image?>? = listOf<Image>()
 
-    @get:Nonnull
     @Nonnull
     var parentChannelAvatars: List<Image?>? = listOf<Image>()
     var isVerified: Boolean = false
 
-    @get:Nonnull
     var tabs: List<ListLinkHandler?>? = listOf<ListLinkHandler>()
 
-    @get:Nonnull
     var tags: List<String?>? = listOf<String>()
 
     companion object {

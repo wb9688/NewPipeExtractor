@@ -31,7 +31,6 @@ class BandcampPlaylistInfoItemFeaturedExtractor(private val featuredStory: JsonO
             return Utils.replaceHttpWithHttps(featuredStory.getString("item_url"))
         }
 
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return if (featuredStory.has("art_id")) BandcampExtractorHelper.getImagesFromImageId(featuredStory.getLong("art_id"), true) else BandcampExtractorHelper.getImagesFromImageId(featuredStory.getLong("item_art_id"), true)

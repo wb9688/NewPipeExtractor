@@ -31,7 +31,6 @@ class Image(@JvmField @field:Nonnull
              *
              * @return the [Image]'s URL.
              */
-            @get:Nonnull
             @param:Nonnull val url: String?,
             /**
              * Get the height of this [Image].
@@ -68,7 +67,6 @@ class Image(@JvmField @field:Nonnull
      * @return the estimated resolution level, which is never `null`
      * @see ResolutionLevel
      */
-    @get:Nonnull
     @Nonnull
     val estimatedResolutionLevel: ResolutionLevel?
 

@@ -38,7 +38,6 @@ class BandcampPlaylistInfoItemExtractor(@param:Nonnull private val searchResult:
             return resultInfo!!.getElementsByClass("itemurl").text()
         }
 
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return BandcampExtractorHelper.getImagesFromSearchResult(searchResult)

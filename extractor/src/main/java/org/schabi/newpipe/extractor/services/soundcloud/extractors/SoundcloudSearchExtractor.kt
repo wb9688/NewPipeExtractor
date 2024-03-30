@@ -29,7 +29,6 @@ class SoundcloudSearchExtractor(service: StreamingService,
                                 linkHandler: SearchQueryHandler?) : SearchExtractor(service, linkHandler) {
     private var initialSearchObject: JsonObject? = null
 
-    @get:Nonnull
     override val searchSuggestion: String?
         get() {
             return ""
@@ -39,14 +38,12 @@ class SoundcloudSearchExtractor(service: StreamingService,
             return false
         }
 
-    @get:Nonnull
     override val metaInfo: List<MetaInfo?>?
         get() {
             return emptyList<MetaInfo>()
         }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             if (initialSearchObject!!.getInt(TOTAL_RESULTS) > SoundcloudSearchQueryHandlerFactory.Companion.ITEMS_PER_PAGE) {

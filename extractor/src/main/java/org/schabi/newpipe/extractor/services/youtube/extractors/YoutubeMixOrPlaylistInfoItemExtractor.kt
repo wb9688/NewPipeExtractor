@@ -31,7 +31,6 @@ class YoutubeMixOrPlaylistInfoItemExtractor(private val mixInfoItem: JsonObject)
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return YoutubeParsingHelper.getThumbnailsFromInfoItem(mixInfoItem)
@@ -76,7 +75,6 @@ class YoutubeMixOrPlaylistInfoItemExtractor(private val mixInfoItem: JsonObject)
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val playlistType: PlaylistType?
         get() {
             return YoutubeParsingHelper.extractPlaylistTypeFromPlaylistUrl(url)

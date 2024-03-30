@@ -31,13 +31,11 @@ class BandcampRadioExtractor(streamingService: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return KIOSK_RADIO
         }
 
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val collector: StreamInfoItemsCollector = StreamInfoItemsCollector(getServiceId())

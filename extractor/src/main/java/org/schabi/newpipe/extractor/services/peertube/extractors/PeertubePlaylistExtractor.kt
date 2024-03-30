@@ -24,7 +24,6 @@ class PeertubePlaylistExtractor(service: StreamingService,
     private var playlistInfo: JsonObject? = null
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return PeertubeParsingHelper.getThumbnailsFromPlaylistOrVideoItem(getBaseUrl(), playlistInfo)
@@ -39,7 +38,6 @@ class PeertubePlaylistExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return PeertubeParsingHelper.getAvatarsFromOwnerAccountOrVideoChannelObject(getBaseUrl(),
@@ -57,7 +55,6 @@ class PeertubePlaylistExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val description: Description
         get() {
             val description: String = playlistInfo!!.getString("description")
@@ -67,20 +64,17 @@ class PeertubePlaylistExtractor(service: StreamingService,
             return Description(description, Description.Companion.PLAIN_TEXT)
         }
 
-    @get:Nonnull
     override val subChannelName: String?
         get() {
             return playlistInfo!!.getObject("videoChannel").getString("displayName")
         }
 
-    @get:Nonnull
     override val subChannelUrl: String?
         get() {
             return playlistInfo!!.getObject("videoChannel").getString("url")
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val subChannelAvatars: List<Image?>?
         get() {
             return PeertubeParsingHelper.getAvatarsFromOwnerAccountOrVideoChannelObject(getBaseUrl(),
@@ -88,7 +82,6 @@ class PeertubePlaylistExtractor(service: StreamingService,
         }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             return getPage(Page((getUrl() + "/videos?" + PeertubeParsingHelper.START_KEY + "=0&"
@@ -133,7 +126,6 @@ class PeertubePlaylistExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return playlistInfo!!.getString("displayName")

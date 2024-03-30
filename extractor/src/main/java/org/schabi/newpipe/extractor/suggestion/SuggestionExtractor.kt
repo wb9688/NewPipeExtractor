@@ -25,13 +25,11 @@ abstract class SuggestionExtractor(val service: StreamingService) {
         forcedContentCountry = contentCountry
     }
 
-    @get:Nonnull
     val extractorLocalization: Localization?
         get() {
             return if (forcedLocalization == null) service.getLocalization() else forcedLocalization
         }
 
-    @get:Nonnull
     val extractorContentCountry: ContentCountry?
         get() {
             return if (forcedContentCountry == null) service.getContentCountry() else forcedContentCountry

@@ -22,7 +22,6 @@ import java.io.IOException
 class SoundcloudCommentsExtractor(service: StreamingService,
                                   uiHandler: ListLinkHandler?) : CommentsExtractor(service, uiHandler) {
     @get:Throws(ExtractionException::class, IOException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             return getPage(getUrl())

@@ -38,7 +38,6 @@ class BandcampRadioInfoItemExtractor(private val show: JsonObject) : StreamInfoI
             return BandcampExtractorHelper.BASE_URL + "/?show=" + show.getInt("id")
         }
 
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return BandcampExtractorHelper.getImagesFromImageId(show.getLong("image_id"), false)

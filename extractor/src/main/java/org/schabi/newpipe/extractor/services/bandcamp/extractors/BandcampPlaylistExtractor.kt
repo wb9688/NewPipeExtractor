@@ -33,7 +33,6 @@ class BandcampPlaylistExtractor(service: StreamingService,
     private var trackInfo: JsonArray? = null
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override var name: String? = null
         private set
 
@@ -57,7 +56,6 @@ class BandcampPlaylistExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             if (albumJson!!.isNull("art_id")) {
@@ -79,7 +77,6 @@ class BandcampPlaylistExtractor(service: StreamingService,
             return albumJson!!.getString("artist")
         }
 
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return BandcampExtractorHelper.getImagesFromImageUrl(document!!.getElementsByClass("band-photo")
@@ -100,7 +97,6 @@ class BandcampPlaylistExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val description: Description
         get() {
             val tInfo: Element? = document!!.getElementById("trackInfo")
@@ -127,7 +123,6 @@ class BandcampPlaylistExtractor(service: StreamingService,
         }
 
     @get:Throws(ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val collector: StreamInfoItemsCollector = StreamInfoItemsCollector(getServiceId())

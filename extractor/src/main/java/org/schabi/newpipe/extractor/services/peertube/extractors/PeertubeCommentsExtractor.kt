@@ -27,7 +27,6 @@ class PeertubeCommentsExtractor(service: StreamingService,
     private var isReply: Boolean? = null
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             if (isReply()) {

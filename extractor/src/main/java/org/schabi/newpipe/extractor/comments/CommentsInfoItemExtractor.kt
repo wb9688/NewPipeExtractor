@@ -42,7 +42,6 @@ open interface CommentsInfoItemExtractor : InfoItemExtractor {
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     val commentText: Description
         /**
          * The text of the comment
@@ -92,7 +91,6 @@ open interface CommentsInfoItemExtractor : InfoItemExtractor {
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     val uploaderAvatars: List<Image?>?
         get() {
             return listOf<Image>()

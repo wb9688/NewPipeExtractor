@@ -32,7 +32,6 @@ class BandcampCommentsExtractor(service: StreamingService,
     }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val collector: CommentsInfoItemsCollector = CommentsInfoItemsCollector(getServiceId())

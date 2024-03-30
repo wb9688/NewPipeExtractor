@@ -28,12 +28,10 @@ import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler
 abstract class ChannelExtractor protected constructor(service: StreamingService, linkHandler: ListLinkHandler?) : Extractor(service, linkHandler) {
     @JvmField
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val avatars: List<Image?>?
 
     @JvmField
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val banners: List<Image?>?
 
     @JvmField
@@ -55,7 +53,6 @@ abstract class ChannelExtractor protected constructor(service: StreamingService,
     abstract val parentChannelUrl: String?
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val parentChannelAvatars: List<Image?>?
 
     @JvmField
@@ -64,11 +61,9 @@ abstract class ChannelExtractor protected constructor(service: StreamingService,
 
     @JvmField
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val tabs: List<ListLinkHandler>
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val tags: List<String>
         get() {
             return listOf()

@@ -16,7 +16,6 @@ import java.io.IOException
 
 class SoundcloudChannelTabExtractor(service: StreamingService,
                                     linkHandler: ListLinkHandler?) : ChannelTabExtractor(service, linkHandler) {
-    @get:Nonnull
     override val id: String?
 
     init {
@@ -24,7 +23,6 @@ class SoundcloudChannelTabExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     private val endpoint: String
         private get() {
             when (getName()) {
@@ -38,7 +36,6 @@ class SoundcloudChannelTabExtractor(service: StreamingService,
     public override fun onFetchPage(downloader: Downloader?) {}
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             return getPage(Page((USERS_ENDPOINT + id + endpoint + "?client_id="

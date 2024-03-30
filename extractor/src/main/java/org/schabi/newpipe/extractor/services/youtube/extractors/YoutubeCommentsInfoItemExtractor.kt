@@ -30,7 +30,6 @@ class YoutubeCommentsInfoItemExtractor(private val json: JsonObject,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     private val authorThumbnails: List<Image?>?
         private get() {
             try {
@@ -42,7 +41,6 @@ class YoutubeCommentsInfoItemExtractor(private val json: JsonObject,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return authorThumbnails
@@ -165,7 +163,6 @@ class YoutubeCommentsInfoItemExtractor(private val json: JsonObject,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val commentText: Description
         get() {
             try {
@@ -196,7 +193,6 @@ class YoutubeCommentsInfoItemExtractor(private val json: JsonObject,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return authorThumbnails

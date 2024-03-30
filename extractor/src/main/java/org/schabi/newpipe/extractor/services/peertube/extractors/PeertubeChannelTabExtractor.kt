@@ -29,7 +29,6 @@ class PeertubeChannelTabExtractor(service: StreamingService,
     public override fun onFetchPage(downloader: Downloader?) {}
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             return getPage(Page((baseUrl + PeertubeChannelLinkHandlerFactory.Companion.API_ENDPOINT

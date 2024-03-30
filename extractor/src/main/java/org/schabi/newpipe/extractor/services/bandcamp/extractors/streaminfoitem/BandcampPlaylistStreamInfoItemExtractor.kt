@@ -45,7 +45,6 @@ class BandcampPlaylistStreamInfoItemExtractor(private val track: JsonObject,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         /**
          * Each track can have its own cover art. Therefore, unless a substitute is provided,

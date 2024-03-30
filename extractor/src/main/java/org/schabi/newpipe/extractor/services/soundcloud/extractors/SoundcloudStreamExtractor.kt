@@ -56,19 +56,16 @@ class SoundcloudStreamExtractor(service: StreamingService,
         }
     }
 
-    @get:Nonnull
     override val id: String?
         get() {
             return track!!.getInt("id").toString()
         }
 
-    @get:Nonnull
     override val name: String?
         get() {
             return track!!.getString("title")
         }
 
-    @get:Nonnull
     override val textualUploadDate: String?
         get() {
             return track!!.getString("created_at")
@@ -77,20 +74,17 @@ class SoundcloudStreamExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploadDate: DateWrapper?
         get() {
             return DateWrapper(SoundcloudParsingHelper.parseDateFrom(track!!.getString("created_at")))
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return SoundcloudParsingHelper.getAllImagesFromTrackObject(track)
         }
 
-    @get:Nonnull
     override val description: Description
         get() {
             return Description(track!!.getString("description"), Description.Companion.PLAIN_TEXT)
@@ -114,13 +108,11 @@ class SoundcloudStreamExtractor(service: StreamingService,
             return track!!.getLong("likes_count", -1)
         }
 
-    @get:Nonnull
     override val uploaderUrl: String?
         get() {
             return SoundcloudParsingHelper.getUploaderUrl(track)
         }
 
-    @get:Nonnull
     override val uploaderName: String?
         get() {
             return SoundcloudParsingHelper.getUploaderName(track)
@@ -132,7 +124,6 @@ class SoundcloudStreamExtractor(service: StreamingService,
             return track!!.getObject("user").getBoolean("verified")
         }
 
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             return SoundcloudParsingHelper.getAllImagesFromArtworkOrAvatarUrl(SoundcloudParsingHelper.getAvatarUrl(track))
@@ -306,19 +297,16 @@ class SoundcloudStreamExtractor(service: StreamingService,
             return if ((track!!.getString("sharing") == "public")) Privacy.PUBLIC else Privacy.PRIVATE
         }
 
-    @get:Nonnull
     override val category: String?
         get() {
             return track!!.getString("genre")
         }
 
-    @get:Nonnull
     override val licence: String?
         get() {
             return track!!.getString("license")
         }
 
-    @get:Nonnull
     override val tags: List<String?>?
         get() {
             // Tags are separated by spaces, but they can be multiple words escaped by quotes "

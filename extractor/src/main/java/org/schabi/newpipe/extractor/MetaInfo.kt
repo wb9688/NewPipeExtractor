@@ -9,11 +9,9 @@ class MetaInfo : Serializable {
      * @return Title of the info. Can be empty.
      */
     @JvmField
-    @get:Nonnull
     var title: String? = ""
 
     @JvmField
-    @get:Nonnull
     var content: Description? = null
     private var urls: MutableList<URL> = ArrayList()
     private var urlTexts: MutableList<String?> = ArrayList()

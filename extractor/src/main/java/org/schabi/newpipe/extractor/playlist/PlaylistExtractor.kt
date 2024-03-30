@@ -20,7 +20,6 @@ abstract class PlaylistExtractor(service: StreamingService, linkHandler: ListLin
 
     @JvmField
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val uploaderAvatars: List<Image?>?
 
     @JvmField
@@ -33,39 +32,33 @@ abstract class PlaylistExtractor(service: StreamingService, linkHandler: ListLin
 
     @JvmField
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     abstract val description: Description
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val thumbnails: List<Image?>?
         get() {
             return emptyList<Image>()
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     val banners: List<Image>
         get() {
             return listOf()
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val subChannelName: String?
         get() {
             return ""
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val subChannelUrl: String?
         get() {
             return ""
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     open val subChannelAvatars: List<Image?>?
         get() {
             return listOf<Image>()

@@ -33,7 +33,6 @@ class YoutubePlaylistExtractor(service: StreamingService,
     private var playlistInfo: JsonObject? = null
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     private var uploaderInfo: JsonObject? = null
         private get() {
             if (field == null) {
@@ -59,7 +58,6 @@ class YoutubePlaylistExtractor(service: StreamingService,
             return field
         }
 
-    @get:Nonnull
     private var playlistHeader: JsonObject? = null
         private get() {
             if (field == null) {
@@ -123,7 +121,6 @@ class YoutubePlaylistExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             val name: String? = YoutubeParsingHelper.getTextFromObject(getPlaylistInfo()!!.getObject("title"))
@@ -136,7 +133,6 @@ class YoutubePlaylistExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             val playlistMetadataThumbnailsArray: JsonArray
@@ -190,7 +186,6 @@ class YoutubePlaylistExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val uploaderAvatars: List<Image?>?
         get() {
             if (isNewPlaylistInterface) {
@@ -256,7 +251,6 @@ class YoutubePlaylistExtractor(service: StreamingService,
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val description: Description
         get() {
             val description: String? = YoutubeParsingHelper.getTextFromObject(
@@ -267,7 +261,6 @@ class YoutubePlaylistExtractor(service: StreamingService,
         }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val collector: StreamInfoItemsCollector = StreamInfoItemsCollector(getServiceId())
@@ -374,7 +367,6 @@ class YoutubePlaylistExtractor(service: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val playlistType: PlaylistType?
         get() {
             return YoutubeParsingHelper.extractPlaylistTypeFromPlaylistUrl(getUrl())

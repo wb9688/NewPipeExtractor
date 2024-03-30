@@ -16,7 +16,6 @@ class SoundcloudChannelInfoItemExtractor(private val itemObject: JsonObject) : C
             return Utils.replaceHttpWithHttps(itemObject.getString("permalink_url"))
         }
 
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             return SoundcloudParsingHelper.getAllImagesFromArtworkOrAvatarUrl(itemObject.getString("avatar_url"))

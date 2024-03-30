@@ -34,14 +34,12 @@ class BandcampFeaturedExtractor(streamingService: StreamingService,
     }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val name: String?
         get() {
             return KIOSK_FEATURED
         }
 
     @get:Throws(IOException::class, ExtractionException::class)
-    @get:Nonnull
     override val initialPage: InfoItemsPage<R?>?
         get() {
             val featuredStories: JsonArray = json!!.getObject("feed_content")

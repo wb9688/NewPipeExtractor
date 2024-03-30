@@ -137,7 +137,6 @@ class YoutubeMusicSongOrVideoInfoItemExtractor(private val songOrVideoInfoItem: 
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             try {

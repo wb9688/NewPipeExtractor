@@ -18,7 +18,6 @@ class SoundcloudPlaylistInfoItemExtractor(private val itemObject: JsonObject) : 
         }
 
     @get:Throws(ParsingException::class)
-    @get:Nonnull
     override val thumbnails: List<Image?>?
         get() {
             // Over-engineering at its finest
