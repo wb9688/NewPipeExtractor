@@ -11,7 +11,6 @@ import java.util.stream.Collectors
 
 object JsonUtils {
     @JvmStatic
-    @Nonnull
     @Throws(ParsingException::class)
     fun getValue(`object`: JsonObject?,
                  path: String): Any {
@@ -34,41 +33,35 @@ object JsonUtils {
         }
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     fun getString(`object`: JsonObject?, path: String): String {
         return getInstanceOf(`object`, path, String::class.java)
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     fun getBoolean(`object`: JsonObject?,
                    path: String): Boolean {
         return getInstanceOf(`object`, path, Boolean::class.java)
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     fun getNumber(`object`: JsonObject?,
                   path: String): Number {
         return getInstanceOf(`object`, path, Number::class.java)
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     fun getObject(`object`: JsonObject?,
                   path: String): JsonObject {
         return getInstanceOf(`object`, path, JsonObject::class.java)
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     fun getArray(`object`: JsonObject?, path: String): JsonArray {
         return getInstanceOf(`object`, path, JsonArray::class.java)
     }
 
     @JvmStatic
-    @Nonnull
     @Throws(ParsingException::class)
     fun getValues(array: JsonArray, path: String): List<Any> {
         val result: MutableList<Any> = ArrayList()

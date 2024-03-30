@@ -75,7 +75,6 @@ object Parser {
         return mat.find()
     }
 
-    @Nonnull
     @Throws(UnsupportedEncodingException::class)
     fun compatParseMap(input: String): Map<String?, String?> {
         val map: MutableMap<String?, String?> = HashMap()

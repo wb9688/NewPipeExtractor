@@ -62,7 +62,6 @@ object Utils {
      * @param toRemove string to remove non-digit chars
      * @return a string that contains only digits
      */
-    @Nonnull
     fun removeNonDigitCharacters(toRemove: String?): String {
         return toRemove!!.replace("\\D+".toRegex(), "")
     }
@@ -175,7 +174,6 @@ object Utils {
      * @param url the string to be converted to a URL-Object
      * @return a [URL object][URL] containing the url
      */
-    @Nonnull
     @Throws(MalformedURLException::class)
     fun stringToURL(url: String?): URL {
         return try {
@@ -209,7 +207,6 @@ object Utils {
         } else url
     }
 
-    @Nonnull
     fun removeUTF8BOM(s: String?): String? {
         var result = s
         if (result!!.startsWith("\uFEFF")) {
@@ -222,7 +219,6 @@ object Utils {
     }
 
     @JvmStatic
-    @Nonnull
     @Throws(ParsingException::class)
     fun getBaseUrl(url: String?): String {
         return try {
@@ -300,7 +296,6 @@ object Utils {
         return string == null || string.isBlank()
     }
 
-    @Nonnull
     fun join(
             delimiter: String?,
             mapJoin: String,
@@ -314,7 +309,6 @@ object Utils {
      * Concatenate all non-null, non-empty and strings which are not equal to `"null"`.
      */
     @JvmStatic
-    @Nonnull
     fun nonEmptyAndNullJoin(delimiter: CharSequence?,
                             vararg elements: String): String {
         return Arrays.stream(elements)
@@ -331,7 +325,6 @@ object Utils {
      * @return the result
      * @throws Parser.RegexException if none of the patterns match the input
      */
-    @Nonnull
     @Throws(RegexException::class)
     fun getStringResultFromRegexArray(input: String?,
                                       regexes: Array<String?>?): String {
@@ -347,7 +340,6 @@ object Utils {
      * @return the result
      * @throws Parser.RegexException if none of the patterns match the input
      */
-    @Nonnull
     @Throws(RegexException::class)
     fun getStringResultFromRegexArray(input: String?,
                                       regexes: Array<Pattern>): String {
@@ -365,7 +357,6 @@ object Utils {
      * @throws Parser.RegexException if none of the patterns match the input, or at least in the
      * specified group
      */
-    @Nonnull
     @Throws(RegexException::class)
     fun getStringResultFromRegexArray(input: String?,
                                       regexes: Array<String?>?,
@@ -389,7 +380,6 @@ object Utils {
      * @throws Parser.RegexException if none of the patterns match the input, or at least in the
      * specified group
      */
-    @Nonnull
     @Throws(RegexException::class)
     fun getStringResultFromRegexArray(input: String?,
                                       regexes: Array<Pattern>,

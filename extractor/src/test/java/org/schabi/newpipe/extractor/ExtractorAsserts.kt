@@ -22,7 +22,6 @@ object ExtractorAsserts {
         }
     }
 
-    @Nonnull
     private fun urlFromString(url: String?): URL {
         return try {
             URL(url)

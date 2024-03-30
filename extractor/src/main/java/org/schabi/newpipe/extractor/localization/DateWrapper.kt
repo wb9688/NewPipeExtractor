@@ -16,7 +16,6 @@ class DateWrapper @JvmOverloads constructor(offsetDateTime: OffsetDateTime?,
                                              * returns an approximation like 2 weeks ago instead of a precise date).
                                              */
                                             val isApproximation: Boolean = false) : Serializable {
-    @Nonnull
     private val offsetDateTime: OffsetDateTime
 
     @Deprecated("Use {@link #DateWrapper(OffsetDateTime)} instead.")
@@ -32,7 +31,6 @@ class DateWrapper @JvmOverloads constructor(offsetDateTime: OffsetDateTime?,
     /**
      * @return the wrapped date/time as a [Calendar].
      */
-    @Nonnull
     @Deprecated("use {@link #offsetDateTime()} instead.")
     fun date(): Calendar {
         return GregorianCalendar.from(offsetDateTime.toZonedDateTime())
@@ -41,7 +39,6 @@ class DateWrapper @JvmOverloads constructor(offsetDateTime: OffsetDateTime?,
     /**
      * @return the wrapped date/time.
      */
-    @Nonnull
     fun offsetDateTime(): OffsetDateTime {
         return offsetDateTime
     }

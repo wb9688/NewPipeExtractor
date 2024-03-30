@@ -122,7 +122,6 @@ internal class YoutubeDashManifestCreatorsTest {
         }
     }
 
-    @Nonnull
     private fun assertFilterStreams(
             streams: List<Stream?>,
             deliveryMethod: DeliveryMethod): List<Stream> {
@@ -318,7 +317,6 @@ internal class YoutubeDashManifestCreatorsTest {
         )
     }
 
-    @Nonnull
     private fun assertGetElement(document: Document,
                                  tagName: String,
                                  expectedParentTagName: String): Element {

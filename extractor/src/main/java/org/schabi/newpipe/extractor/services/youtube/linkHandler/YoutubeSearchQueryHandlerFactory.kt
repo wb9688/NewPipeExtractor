@@ -67,7 +67,6 @@ class YoutubeSearchQueryHandlerFactory() : SearchQueryHandlerFactory() {
         val MUSIC_ARTISTS: String = "music_artists"
         private val SEARCH_URL: String = "https://www.youtube.com/results?search_query="
         private val MUSIC_SEARCH_URL: String = "https://music.youtube.com/search?q="
-        @Nonnull
         fun getSearchParameter(contentFilter: String?): String {
             if (Utils.isNullOrEmpty(contentFilter)) {
                 return "8AEB"

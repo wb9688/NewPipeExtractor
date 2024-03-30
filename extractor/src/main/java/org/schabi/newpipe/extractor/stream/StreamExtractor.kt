@@ -296,7 +296,6 @@ abstract class StreamExtractor(service: StreamingService, linkHandler: LinkHandl
      * @param format the media format by which the subtitles should be filtered
      * @return a list of available subtitles or an empty list
      */
-    @Nonnull
     @Throws(IOException::class, ExtractionException::class)
     open fun getSubtitles(format: MediaFormat): List<SubtitlesStream?> {
         return emptyList<SubtitlesStream>()

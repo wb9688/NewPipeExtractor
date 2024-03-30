@@ -148,7 +148,6 @@ object PeertubeParsingHelper {
      * [JsonObject]
      * @return an unmodifiable list of [Image]s, which may be empty but never null
      */
-    @Nonnull
     fun getAvatarsFromOwnerAccountOrVideoChannelObject(
             baseUrl: String?,
             ownerAccountOrVideoChannelObject: JsonObject?): List<Image> {
@@ -181,7 +180,6 @@ object PeertubeParsingHelper {
      * [JsonObject]
      * @return an unmodifiable list of [Image]s, which may be empty but never null
      */
-    @Nonnull
     fun getBannersFromAccountOrVideoChannelObject(
             baseUrl: String?,
             ownerAccountOrVideoChannelObject: JsonObject?): List<Image> {
@@ -211,7 +209,6 @@ object PeertubeParsingHelper {
      * must not be null
      * @return an unmodifiable list of [Image]s, which is never null but can be empty
      */
-    @Nonnull
     fun getThumbnailsFromPlaylistOrVideoItem(
             baseUrl: String?,
             playlistOrVideoItemObject: JsonObject?): List<Image> {
@@ -252,7 +249,6 @@ object PeertubeParsingHelper {
      * [JsonArray] is null or empty
      * @return an unmodifiable list of [Image]s, which may be empty but never null
      */
-    @Nonnull
     private fun getImagesFromAvatarsOrBanners(
             baseUrl: String?,
             ownerAccountOrVideoChannelObject: JsonObject?,
@@ -291,7 +287,6 @@ object PeertubeParsingHelper {
      * @param avatarsOrBannersArray an `avatars` or `banners` [JsonArray]
      * @return an unmodifiable list of [Image]s, which may be empty but never null
      */
-    @Nonnull
     private fun getImagesFromAvatarOrBannerArray(
             baseUrl: String?,
             avatarsOrBannersArray: JsonArray): List<Image> {

@@ -100,7 +100,6 @@ object NewPipe {
     }
 
     @JvmStatic
-    @Nonnull
     fun getPreferredLocalization(): Localization {
         return if (preferredLocalization == null) Localization.Companion.DEFAULT else preferredLocalization!!
     }
@@ -110,7 +109,6 @@ object NewPipe {
     }
 
     @JvmStatic
-    @Nonnull
     fun getPreferredContentCountry(): ContentCountry {
         return if (preferredContentCountry == null) ContentCountry.Companion.DEFAULT else preferredContentCountry!!
     }

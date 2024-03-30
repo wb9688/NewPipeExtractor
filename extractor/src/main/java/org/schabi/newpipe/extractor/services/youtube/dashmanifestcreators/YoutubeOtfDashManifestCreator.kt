@@ -87,7 +87,6 @@ object YoutubeOtfDashManifestCreator {
      * @return the manifest generated into a string
      */
     @JvmStatic
-    @Nonnull
     @Throws(CreationException::class)
     fun fromOtfStreamingUrl(
             otfBaseStreamingUrl: String,

@@ -32,7 +32,6 @@ internal object YoutubeThrottlingParameterUtils {
      * @throws ParsingException if the name of the throttling parameter deobfuscation function
      * could not be extracted
      */
-    @Nonnull
     @Throws(ParsingException::class)
     fun getDeobfuscationFunctionName(javaScriptPlayerCode: String?): String {
         val matcher: Matcher = DEOBFUSCATION_FUNCTION_NAME_PATTERN.matcher(javaScriptPlayerCode)
@@ -63,7 +62,6 @@ internal object YoutubeThrottlingParameterUtils {
      * @throws ParsingException if the throttling parameter deobfuscation code couldn't be
      * extracted
      */
-    @Nonnull
     @Throws(ParsingException::class)
     fun getDeobfuscationFunction(javaScriptPlayerCode: String?,
                                  functionName: String?): String {
@@ -92,7 +90,6 @@ internal object YoutubeThrottlingParameterUtils {
         }
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun parseFunctionWithLexer(javaScriptPlayerCode: String?,
                                        functionName: String?): String {
@@ -101,7 +98,6 @@ internal object YoutubeThrottlingParameterUtils {
                 javaScriptPlayerCode, functionBase) + ";"
     }
 
-    @Nonnull
     @Throws(RegexException::class)
     private fun parseFunctionWithRegex(javaScriptPlayerCode: String?,
                                        functionName: String?): String {
@@ -113,7 +109,6 @@ internal object YoutubeThrottlingParameterUtils {
                 + Parser.matchGroup1(functionPattern, javaScriptPlayerCode)))
     }
 
-    @Nonnull
     private fun validateFunction(function: String): String {
         JavaScript.compileOrThrow(function)
         return function

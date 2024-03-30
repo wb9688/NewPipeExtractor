@@ -35,7 +35,6 @@ class SoundcloudCommentsExtractor(service: StreamingService,
         return getPage(page.getUrl())
     }
 
-    @Nonnull
     @Throws(ParsingException::class, IOException::class, ReCaptchaException::class)
     private fun getPage(url: String?): InfoItemsPage<CommentsInfoItem?> {
         val downloader: Downloader? = NewPipe.getDownloader()

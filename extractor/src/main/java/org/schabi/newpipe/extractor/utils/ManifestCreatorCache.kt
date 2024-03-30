@@ -205,7 +205,6 @@ class ManifestCreatorCache<K : Serializable?, V : Serializable?> : Serializable 
         clearFactor = DEFAULT_CLEAR_FACTOR
     }
 
-    @Nonnull
     override fun toString(): String {
         return ("ManifestCreatorCache[clearFactor=" + clearFactor + ", maximumSize=" + maximumSize
                 + ", concurrentHashMap=" + concurrentHashMap + "]")

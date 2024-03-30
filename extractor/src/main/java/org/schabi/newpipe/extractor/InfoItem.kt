@@ -27,7 +27,6 @@ abstract class InfoItem(@JvmField val infoType: InfoType,
                         @JvmField val name: String?) : Serializable {
 
     @JvmField
-    @Nonnull
     var thumbnails: List<Image> = listOf()
 
     public override fun toString(): String {

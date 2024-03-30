@@ -147,7 +147,6 @@ class BandcampChannelExtractor(service: StreamingService,
         }
 
     private class TabExtractorBuilder internal constructor(private val discography: JsonArray) : ChannelTabExtractorBuilder {
-        @Nonnull
         public override fun build(service: StreamingService,
                                   linkHandler: ListLinkHandler?): ChannelTabExtractor {
             return BandcampChannelTabExtractor.Companion.fromDiscography(service, linkHandler, discography)

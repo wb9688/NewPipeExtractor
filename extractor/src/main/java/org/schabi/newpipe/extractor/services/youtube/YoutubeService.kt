@@ -157,7 +157,6 @@ class YoutubeService(id: Int) : StreamingService(id, "YouTube", Arrays.asList<Me
             return YoutubeSubscriptionExtractor(this)
         }
 
-    @Nonnull
     @Throws(ExtractionException::class)
     public override fun getFeedExtractor(channelUrl: String?): FeedExtractor? {
         return YoutubeFeedExtractor(this, channelLHFactory.fromUrl(channelUrl))

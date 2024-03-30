@@ -333,7 +333,6 @@ object YoutubeParsingHelper {
         }
     }
 
-    @Nonnull
     fun getFeedUrlFrom(channelIdOrUser: String?): String {
         if (channelIdOrUser!!.startsWith("user/")) {
             return FEED_BASE_USER + channelIdOrUser.replace("user/", "")
@@ -419,7 +418,6 @@ object YoutubeParsingHelper {
      * if it is a mix but it's not based on a specific stream (this is the
      * case for channel or genre mixes)
      */
-    @Nonnull
     @Throws(ParsingException::class)
     fun extractVideoIdFromMixId(playlistId: String): String {
         if (Utils.isNullOrEmpty(playlistId)) {
@@ -457,7 +455,6 @@ object YoutubeParsingHelper {
      * types included)
      * @throws ParsingException if the playlistId is null or empty
      */
-    @Nonnull
     @Throws(ParsingException::class)
     fun extractPlaylistTypeFromPlaylistId(
             playlistId: String?): PlaylistType {
@@ -1030,7 +1027,6 @@ object YoutubeParsingHelper {
                 .replace(" {2}".toRegex(), " &nbsp;")
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     fun getTextFromObjectOrThrow(textObject: JsonObject?, error: String): String {
         val result: String? = getTextFromObject(textObject)
@@ -1099,7 +1095,6 @@ object YoutubeParsingHelper {
      * @throws ParsingException if an exception occurs when
      * [.getImagesFromThumbnailsArray] is executed
      */
-    @Nonnull
     @Throws(ParsingException::class)
     fun getThumbnailsFromInfoItem(infoItem: JsonObject): List<Image> {
         try {
@@ -1122,7 +1117,6 @@ object YoutubeParsingHelper {
      * @param thumbnails a YouTube `thumbnails` [JsonArray]
      * @return an unmodifiable list of [Image]s extracted from the given [JsonArray]
      */
-    @Nonnull
     fun getImagesFromThumbnailsArray(
             thumbnails: JsonArray?): List<Image> {
         return thumbnails!!.stream()
@@ -1139,7 +1133,6 @@ object YoutubeParsingHelper {
                 .collect(Collectors.toUnmodifiableList<Image>())
     }
 
-    @Nonnull
     @Throws(ParsingException::class, MalformedURLException::class)
     fun getValidJsonResponseBody(response: Response?): String? {
         if (response!!.responseCode() == 404) {
@@ -1216,7 +1209,6 @@ object YoutubeParsingHelper {
     }
 
     @JvmStatic
-    @Nonnull
     @Throws(IOException::class, ExtractionException::class)
     fun prepareDesktopJsonBuilder(
             localization: Localization?,
@@ -1225,7 +1217,6 @@ object YoutubeParsingHelper {
     }
 
     @JvmStatic
-    @Nonnull
     @Throws(IOException::class, ExtractionException::class)
     fun prepareDesktopJsonBuilder(
             localization: Localization?,
@@ -1259,7 +1250,6 @@ object YoutubeParsingHelper {
             // @formatter:on
     }
 
-    @Nonnull
     fun prepareAndroidMobileJsonBuilder(
             localization: Localization?,
             contentCountry: ContentCountry?): JsonBuilder<JsonObject?> {
@@ -1300,7 +1290,6 @@ object YoutubeParsingHelper {
             // @formatter:on
     }
 
-    @Nonnull
     fun prepareIosMobileJsonBuilder(
             localization: Localization?,
             contentCountry: ContentCountry?): JsonBuilder<JsonObject?> {
@@ -1338,7 +1327,6 @@ object YoutubeParsingHelper {
             // @formatter:on
     }
 
-    @Nonnull
     fun prepareTvHtml5EmbedJsonBuilder(
             localization: Localization?,
             contentCountry: ContentCountry?,
@@ -1371,7 +1359,6 @@ object YoutubeParsingHelper {
             // @formatter:on
     }
 
-    @Nonnull
     @Throws(IOException::class, ExtractionException::class)
     fun createDesktopPlayerBody(
             localization: Localization?,
@@ -1412,7 +1399,6 @@ object YoutubeParsingHelper {
      * @return the Android user-agent used for InnerTube requests with the Android client,
      * depending on the [Localization] provided
      */
-    @Nonnull
     fun getAndroidUserAgent(localization: Localization?): String {
         // Spoofing an Android 14 device with the hardcoded version of the Android app
         return ("com.google.android.youtube/" + ANDROID_YOUTUBE_CLIENT_VERSION
@@ -1435,7 +1421,6 @@ object YoutubeParsingHelper {
      * @return the iOS user-agent used for InnerTube requests with the iOS client, depending on the
      * [Localization] provided
      */
-    @Nonnull
     fun getIosUserAgent(localization: Localization?): String {
         // Spoofing an iPhone 15 running iOS 17.1.2 with the hardcoded version of the iOS app
         return ("com.google.ios.youtube/" + IOS_YOUTUBE_CLIENT_VERSION
@@ -1511,7 +1496,6 @@ object YoutubeParsingHelper {
             return java.util.Map.of("Cookie", java.util.List.of(generateConsentCookie()))
         }
 
-    @Nonnull
     fun generateConsentCookie(): String {
         return "SOCS=" + (if (isConsentAccepted // CAISAiAD means that the user configured manually cookies YouTube, regardless of
         // the consent values
@@ -1632,7 +1616,6 @@ object YoutubeParsingHelper {
      *
      * @return a content playback nonce string
      */
-    @Nonnull
     fun generateContentPlaybackNonce(): String? {
         return RandomStringFromAlphabetGenerator.generate(
                 CONTENT_PLAYBACK_NONCE_ALPHABET, 16, numberGenerator)
@@ -1650,7 +1633,6 @@ object YoutubeParsingHelper {
      *
      * @return a 12 characters string to try to reproduce the `` parameter
      */
-    @Nonnull
     fun generateTParameter(): String? {
         return RandomStringFromAlphabetGenerator.generate(
                 CONTENT_PLAYBACK_NONCE_ALPHABET, 12, numberGenerator)

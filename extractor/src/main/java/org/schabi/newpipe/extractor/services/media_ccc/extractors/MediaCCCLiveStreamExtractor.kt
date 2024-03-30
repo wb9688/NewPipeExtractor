@@ -126,7 +126,6 @@ class MediaCCCLiveStreamExtractor(service: StreamingService,
             return getManifestOfDeliveryMethodWanted("hls")
         }
 
-    @Nonnull
     private fun getManifestOfDeliveryMethodWanted(deliveryMethod: String): String {
         return room!!.getArray(STREAMS).stream()
                 .filter(Predicate({ o: Any? -> JsonObject::class.java.isInstance(o) }))

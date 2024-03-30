@@ -154,7 +154,6 @@ class SoundcloudStreamExtractor(service: StreamingService,
             return audioStreams
         }
 
-    @Nonnull
     @Throws(IOException::class, ExtractionException::class)
     private fun getTranscodingUrl(endpointUrl: String): String {
         val apiStreamUrl: String = endpointUrl + "?client_id=" + SoundcloudParsingHelper.clientId()

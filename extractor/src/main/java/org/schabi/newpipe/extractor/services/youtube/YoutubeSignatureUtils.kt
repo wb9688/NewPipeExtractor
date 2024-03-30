@@ -37,7 +37,6 @@ internal object YoutubeSignatureUtils {
      * @return the signature timestamp
      * @throws ParsingException if the signature timestamp couldn't be extracted
      */
-    @Nonnull
     @Throws(ParsingException::class)
     fun getSignatureTimestamp(javaScriptPlayerCode: String?): String? {
         try {
@@ -55,7 +54,6 @@ internal object YoutubeSignatureUtils {
      * @return the signature deobfuscation code
      * @throws ParsingException if the signature deobfuscation code couldn't be extracted
      */
-    @Nonnull
     @Throws(ParsingException::class)
     fun getDeobfuscationCode(javaScriptPlayerCode: String?): String {
         try {
@@ -84,7 +82,6 @@ internal object YoutubeSignatureUtils {
         }
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun getDeobfuscationFunctionName(javaScriptPlayerCode: String?): String? {
         var exception: RegexException? = null
@@ -101,7 +98,6 @@ internal object YoutubeSignatureUtils {
                 "Could not find deobfuscation function with any of the known patterns", exception)
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun getDeobfuscateFunctionWithLexer(
             javaScriptPlayerCode: String?,
@@ -111,7 +107,6 @@ internal object YoutubeSignatureUtils {
                 javaScriptPlayerCode, functionBase)
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun getDeobfuscateFunctionWithRegex(
             javaScriptPlayerCode: String?,
@@ -122,7 +117,6 @@ internal object YoutubeSignatureUtils {
         return "var " + Parser.matchGroup1(functionPattern, javaScriptPlayerCode)
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun getHelperObject(javaScriptPlayerCode: String?,
                                 helperObjectName: String?): String {

@@ -21,7 +21,6 @@ class ChannelTabInfo(serviceId: Int,
          * @param linkHandler Channel tab handler (from [ChannelInfo])
          * @return the extracted [ChannelTabInfo]
          */
-        @Nonnull
         @Throws(ExtractionException::class, IOException::class)
         fun getInfo(service: StreamingService,
                     linkHandler: ListLinkHandler?): ChannelTabInfo {
@@ -36,7 +35,6 @@ class ChannelTabInfo(serviceId: Int,
          * @param extractor an extractor where `fetchPage()` was already got called on
          * @return the extracted [ChannelTabInfo]
          */
-        @Nonnull
         fun getInfo(extractor: ChannelTabExtractor?): ChannelTabInfo {
             val info: ChannelTabInfo = ChannelTabInfo(extractor.getServiceId(), extractor.getLinkHandler())
             try {

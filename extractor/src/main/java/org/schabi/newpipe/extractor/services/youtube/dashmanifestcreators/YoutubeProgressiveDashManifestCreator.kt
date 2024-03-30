@@ -69,7 +69,6 @@ object YoutubeProgressiveDashManifestCreator {
      * @return the manifest generated into a string
      */
     @JvmStatic
-    @Nonnull
     @Throws(CreationException::class)
     fun fromProgressiveStreamingUrl(
             progressiveStreamingBaseUrl: String?,

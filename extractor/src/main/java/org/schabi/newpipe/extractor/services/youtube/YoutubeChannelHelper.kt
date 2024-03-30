@@ -27,7 +27,6 @@ object YoutubeChannelHelper {
      * @throws ExtractionException if a channel resolve request response could not be parsed or is
      * invalid
      */
-    @Nonnull
     @Throws(ExtractionException::class, IOException::class)
     fun resolveChannelId(idOrPath: String?): String {
         val channelId: Array<String> = idOrPath!!.split("/".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
@@ -89,7 +88,6 @@ object YoutubeChannelHelper {
      * @throws IOException if a channel request failed
      * @throws ExtractionException if a channel request response could not be parsed or is invalid
      */
-    @Nonnull
     @Throws(ExtractionException::class, IOException::class)
     fun getChannelResponse(channelId: String?,
                            parameters: String?,
@@ -165,7 +163,6 @@ object YoutubeChannelHelper {
      * @return an [Optional] containing a [ChannelHeader] or an empty [Optional]
      * if no supported header has been found
      */
-    @Nonnull
     fun getChannelHeader(
             channelResponse: JsonObject?): Optional<ChannelHeader?> {
         val header: JsonObject = channelResponse!!.getObject("header")

@@ -41,7 +41,6 @@ class PeertubeChannelTabLinkHandlerFactory private constructor() : ListLinkHandl
 
     companion object {
         val instance: PeertubeChannelTabLinkHandlerFactory = PeertubeChannelTabLinkHandlerFactory()
-        @Nonnull
         @Throws(UnsupportedTabException::class)
         fun getUrlSuffix(tab: String?): String {
             when (tab) {

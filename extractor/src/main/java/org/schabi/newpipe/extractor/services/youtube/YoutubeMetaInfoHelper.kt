@@ -15,7 +15,6 @@ import java.util.function.Predicate
 import java.util.stream.Collectors
 
 object YoutubeMetaInfoHelper {
-    @Nonnull
     @Throws(ParsingException::class)
     fun getMetaInfo(contents: JsonArray): List<MetaInfo> {
         val metaInfo: MutableList<MetaInfo> = ArrayList()
@@ -43,7 +42,6 @@ object YoutubeMetaInfoHelper {
         return metaInfo
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun getInfoPanelContent(infoPanelContentRenderer: JsonObject): MetaInfo {
         val metaInfo: MetaInfo = MetaInfo()
@@ -76,7 +74,6 @@ object YoutubeMetaInfoHelper {
         return metaInfo
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun getClarificationRenderer(
             clarificationRenderer: JsonObject): MetaInfo {

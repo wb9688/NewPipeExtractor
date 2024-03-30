@@ -494,7 +494,6 @@ class ItagItem : Serializable {
             return false
         }
 
-        @Nonnull
         @Throws(ParsingException::class)
         fun getItag(itagId: Int): ItagItem {
             for (item: ItagItem in ITAG_LIST) {

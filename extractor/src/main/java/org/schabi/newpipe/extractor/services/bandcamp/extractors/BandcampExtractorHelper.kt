@@ -144,7 +144,6 @@ object BandcampExtractorHelper {
      * @param isAlbum whether the image is the cover of an album or a track
      * @return a URL of the image with this ID with a width up to 1200px
      */
-    @Nonnull
     fun getImageUrl(id: Long, isAlbum: Boolean): String {
         return IMAGES_DOMAIN_AND_PATH + (if (isAlbum) 'a' else "") + id + "_10.jpg"
     }
@@ -214,7 +213,6 @@ object BandcampExtractorHelper {
      * @return an unmodifiable list of [Image]s, which is never null but can be empty, in the
      * case where no valid image URL was found
      */
-    @Nonnull
     fun getImagesFromSearchResult(searchResult: Element): List<Image> {
         return getImagesFromImageUrl(searchResult.getElementsByClass("art")
                 .stream()
@@ -238,7 +236,6 @@ object BandcampExtractorHelper {
      * @return an unmodifiable list of [Image]s, which is never null but can be empty, in the
      * case where the image URL has been not extracted (and so is null or empty)
      */
-    @Nonnull
     fun getImagesFromImageUrl(imageUrl: String?): List<Image> {
         if (Utils.isNullOrEmpty(imageUrl)) {
             return listOf()
@@ -260,7 +257,6 @@ object BandcampExtractorHelper {
      * @return an unmodifiable list of [Image]s, which is never null but can be empty, in the
      * case where the image ID has been not extracted (and so equal to 0)
      */
-    @Nonnull
     fun getImagesFromImageId(id: Long, isAlbum: Boolean): List<Image> {
         if (id == 0L) {
             return listOf()
@@ -285,7 +281,6 @@ object BandcampExtractorHelper {
      * @param baseUrl the base URL of the image
      * @return an unmodifiable and non-empty list of [Image]s
      */
-    @Nonnull
     private fun getImagesFromImageBaseUrl(baseUrl: String): List<Image> {
         return IMAGE_URL_SUFFIXES_AND_RESOLUTIONS.stream()
                 .map(Function({ imageSuffix: ImageSuffix ->

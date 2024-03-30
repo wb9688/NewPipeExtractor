@@ -111,7 +111,6 @@ class YoutubeChannelTabPlaylistExtractor(service: StreamingService,
      * @throws SystemPlaylistUrlCreationException if the system playlist URL could not be created,
      * which should never happen
      */
-    @Nonnull
     @Throws(IllegalArgumentException::class, SystemPlaylistUrlCreationException::class)
     private fun getPlaylistLinkHandler(
             originalLinkHandler: ListLinkHandler): ListLinkHandler {

@@ -12,7 +12,6 @@ import java.util.function.Supplier
 
 class Localization @JvmOverloads constructor(@field:Nonnull @get:Nonnull
                                              @param:Nonnull val languageCode: String?, private val countryCode: String? = null) : Serializable {
-    @Nonnull
     fun getCountryCode(): String {
         return if (countryCode == null) "" else countryCode
     }
@@ -58,7 +57,6 @@ class Localization @JvmOverloads constructor(@field:Nonnull @get:Nonnull
          * @throws IllegalArgumentException If any of the localizationCodeList is formatted incorrectly
          * @return list of Localization objects
          */
-        @Nonnull
         fun listFrom(vararg localizationCodeList: String): List<Localization?> {
             val toReturn: MutableList<Localization?> = ArrayList()
             for (localizationCode: String in localizationCodeList) {
@@ -76,7 +74,6 @@ class Localization @JvmOverloads constructor(@field:Nonnull @get:Nonnull
          * @param localizationCode a localization code, formatted like [.getLocalizationCode]
          * @return A Localization, if the code was valid.
          */
-        @Nonnull
         fun fromLocalizationCode(localizationCode: String): Optional<Localization> {
             return LocaleCompat.forLanguageTag(localizationCode).map(Function({ locale: Locale? -> fromLocale(locale) }))
         }

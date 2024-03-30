@@ -234,7 +234,6 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
             return subtitles
         }
 
-    @Nonnull
     @Throws(ParsingException::class)
     public override fun getSubtitles(format: MediaFormat): List<SubtitlesStream?> {
         if (subtitlesException != null) {
@@ -346,7 +345,6 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
             return framesets
         }
 
-    @Nonnull
     @Throws(UnsupportedEncodingException::class)
     private fun getRelatedItemsUrl(tags: List<String?>?): String {
         val url: String = baseUrl + PeertubeSearchQueryHandlerFactory.Companion.SEARCH_ENDPOINT_VIDEOS
@@ -536,7 +534,6 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
         }
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun getHlsPlaylistUrlFromFragmentedFileUrl(
             streamJsonObject: JsonObject,
@@ -547,7 +544,6 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
         return streamUrl!!.replace("-fragmented." + format, ".m3u8")
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun getHlsPlaylistUrlFromMasterPlaylist(streamJsonObject: JsonObject,
                                                     playlistUrl: String?): String {

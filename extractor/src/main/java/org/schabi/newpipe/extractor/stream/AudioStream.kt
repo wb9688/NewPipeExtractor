@@ -385,7 +385,6 @@ class AudioStream private constructor(id: String,
          * @throws IllegalStateException if `id`, `content` (and so `isUrl`) or
          * `deliveryMethod` have been not set, or have been set as `null`
          */
-        @Nonnull
         fun build(): AudioStream {
             if (id == null) {
                 throw IllegalStateException(

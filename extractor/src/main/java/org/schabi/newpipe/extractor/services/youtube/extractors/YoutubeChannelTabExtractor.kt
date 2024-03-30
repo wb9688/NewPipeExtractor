@@ -405,13 +405,11 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
             // Nothing to do, the initial data was already fetched and is stored in the link handler
         }
 
-        @Nonnull
         @Throws(ParsingException::class)
         public override fun getId(): String? {
             return channelId
         }
 
-        @Nonnull
         @Throws(ParsingException::class)
         public override fun getUrl(): String? {
             return channelUrl

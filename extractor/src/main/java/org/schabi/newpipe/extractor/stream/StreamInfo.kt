@@ -57,7 +57,6 @@ class StreamInfo(serviceId: Int,
      *
      * @return the thumbnail url as a string
      */
-    @Nonnull
     var thumbnails: List<Image?>? = listOf<Image>()
     var textualUploadDate: String? = null
     var uploadDate: DateWrapper? = null
@@ -87,14 +86,12 @@ class StreamInfo(serviceId: Int,
     var uploaderName: String? = ""
     var uploaderUrl: String? = ""
 
-    @Nonnull
     var uploaderAvatars: List<Image?>? = listOf<Image>()
     var isUploaderVerified: Boolean = false
     var uploaderSubscriberCount: Long = -1
     var subChannelName: String? = ""
     var subChannelUrl: String? = ""
 
-    @Nonnull
     var subChannelAvatars: List<Image?>? = listOf<Image>()
     var videoStreams: List<VideoStream?>? = listOf<VideoStream>()
     var audioStreams: List<AudioStream?>? = listOf<AudioStream>()
@@ -168,7 +165,6 @@ class StreamInfo(serviceId: Int,
             }
         }
 
-        @Nonnull
         @Throws(ExtractionException::class)
         private fun extractImportantData(extractor: StreamExtractor?): StreamInfo {
             // Important data, without it the content can't be displayed.

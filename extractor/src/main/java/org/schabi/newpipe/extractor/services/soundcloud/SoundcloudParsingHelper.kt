@@ -226,7 +226,6 @@ object SoundcloudParsingHelper {
      *
      * @return the next streams url, empty if don't have
      */
-    @Nonnull
     @Throws(IOException::class, ReCaptchaException::class, ParsingException::class)
     fun getUsersFromApi(collector: ChannelInfoItemsCollector,
                         apiUrl: String?): String {
@@ -273,7 +272,6 @@ object SoundcloudParsingHelper {
      *
      * @return the next streams url, empty if don't have
      */
-    @Nonnull
     @Throws(IOException::class, ReCaptchaException::class, ParsingException::class)
     fun getStreamsFromApi(collector: StreamInfoItemsCollector,
                           apiUrl: String?,
@@ -300,7 +298,6 @@ object SoundcloudParsingHelper {
         return getNextPageUrl(responseObject)
     }
 
-    @Nonnull
     private fun getNextPageUrl(response: JsonObject): String {
         try {
             var nextPageUrl: String = response.getString("next_href")
@@ -357,24 +354,20 @@ object SoundcloudParsingHelper {
         return nextPageUrl
     }
 
-    @Nonnull
     fun getUploaderUrl(`object`: JsonObject?): String? {
         val url: String = `object`!!.getObject("user").getString("permalink_url", "")
         return Utils.replaceHttpWithHttps(url)
     }
 
-    @Nonnull
     fun getAvatarUrl(`object`: JsonObject?): String? {
         val url: String = `object`!!.getObject("user").getString("avatar_url", "")
         return Utils.replaceHttpWithHttps(url)
     }
 
-    @Nonnull
     fun getUploaderName(`object`: JsonObject?): String {
         return `object`!!.getObject("user").getString("username", "")
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     fun getAllImagesFromTrackObject(trackObject: JsonObject?): List<Image> {
         val artworkUrl: String? = trackObject!!.getString("artwork_url")
@@ -388,7 +381,6 @@ object SoundcloudParsingHelper {
         throw ParsingException("Could not get track or track user's thumbnails")
     }
 
-    @Nonnull
     fun getAllImagesFromArtworkOrAvatarUrl(
             originalArtworkOrAvatarUrl: String?): List<Image> {
         if (Utils.isNullOrEmpty(originalArtworkOrAvatarUrl)) {
@@ -400,7 +392,6 @@ object SoundcloudParsingHelper {
                 ALBUMS_AND_ARTWORKS_IMAGE_SUFFIXES)
     }
 
-    @Nonnull
     fun getAllImagesFromVisualUrl(
             originalVisualUrl: String?): List<Image> {
         if (Utils.isNullOrEmpty(originalVisualUrl)) {

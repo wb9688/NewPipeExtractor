@@ -28,7 +28,6 @@ class Response(private val responseCode: Int,
         return responseHeaders
     }
 
-    @Nonnull
     fun responseBody(): String {
         return responseBody
     }
@@ -38,7 +37,6 @@ class Response(private val responseCode: Int,
      *
      * @return latest url known right before this response object was created
      */
-    @Nonnull
     fun latestUrl(): String? {
         return latestUrl
     }

@@ -353,7 +353,6 @@ class VideoStream private constructor(id: String,
          * `deliveryMethod`, `isVideoOnly` or `resolution` have been not set, or
          * have been set as `null`
          */
-        @Nonnull
         fun build(): VideoStream {
             if (id == null) {
                 throw IllegalStateException(

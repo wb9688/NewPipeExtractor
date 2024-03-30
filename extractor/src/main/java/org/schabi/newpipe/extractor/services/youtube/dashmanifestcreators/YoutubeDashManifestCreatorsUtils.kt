@@ -133,7 +133,6 @@ object YoutubeDashManifestCreatorsUtils {
      * @param streamDuration the duration of the stream, in milliseconds
      * @return a [Document] with the common elements added in it
      */
-    @Nonnull
     @Throws(CreationException::class)
     fun generateDocumentAndDoCommonElementsGeneration(
             itagItem: ItagItem,
@@ -172,7 +171,6 @@ object YoutubeDashManifestCreatorsUtils {
      * @param duration the duration of the stream, in milliseconds
      * @return a [Document] instance which contains a `<MPD>` element
      */
-    @Nonnull
     @Throws(CreationException::class)
     fun generateDocumentAndMpdElement(duration: Long): Document {
         try {
@@ -574,7 +572,6 @@ object YoutubeDashManifestCreatorsUtils {
      * @return the "initialization" response, without redirections on the network on which the
      * request(s) is/are made
      */
-    @Nonnull
     @Throws(CreationException::class)
     fun getInitializationResponse(baseStreamingUrl: String,
                                   itagItem: ItagItem,
@@ -676,7 +673,6 @@ object YoutubeDashManifestCreatorsUtils {
      * @return the base streaming URL to which the param(s) are appended, depending on the
      * [DeliveryType] of the stream
      */
-    @Nonnull
     private fun appendRnSqParamsIfNeeded(baseStreamingUrl: String,
                                          deliveryType: DeliveryType): String {
         return baseStreamingUrl + (if (deliveryType == DeliveryType.PROGRESSIVE) "" else SQ_0) + RN_0
@@ -711,7 +707,6 @@ object YoutubeDashManifestCreatorsUtils {
      * @param responseMimeTypeExpected the response mime type expected from Google video servers
      * @return the [Response] of the stream, which should have no redirections
      */
-    @Nonnull
     @Throws(CreationException::class)
     private fun getStreamingWebUrlWithoutRedirects(
             downloader: Downloader?,

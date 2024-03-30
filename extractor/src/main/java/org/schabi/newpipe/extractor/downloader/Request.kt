@@ -227,7 +227,6 @@ class Request(httpMethod: String?,
         /*//////////////////////////////////////////////////////////////////////////
     // Utils
     ////////////////////////////////////////////////////////////////////////// */
-        @Nonnull
         fun getHeadersFromLocalization(
                 localization: Localization?): Map<String?, List<String?>?> {
             if (localization == null) {

@@ -39,13 +39,10 @@ class ChannelInfo(serviceId: Int,
     var description: String? = null
     var donationLinks: Array<String>
 
-    @Nonnull
     var avatars: List<Image?>? = listOf<Image>()
 
-    @Nonnull
     var banners: List<Image?>? = listOf<Image>()
 
-    @Nonnull
     var parentChannelAvatars: List<Image?>? = listOf<Image>()
     var isVerified: Boolean = false
 

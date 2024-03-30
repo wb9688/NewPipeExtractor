@@ -55,16 +55,12 @@ class PlaylistInfo private constructor(serviceId: Int, linkHandler: ListLinkHand
     var subChannelName: String? = null
     var description: Description? = null
 
-    @Nonnull
     var banners: List<Image?>? = listOf<Image>()
 
-    @Nonnull
     var subChannelAvatars: List<Image?>? = listOf<Image>()
 
-    @Nonnull
     var thumbnails: List<Image?>? = listOf<Image>()
 
-    @Nonnull
     var uploaderAvatars: List<Image?>? = listOf<Image>()
     var streamCount: Long = 0
     var playlistType: PlaylistType? = null

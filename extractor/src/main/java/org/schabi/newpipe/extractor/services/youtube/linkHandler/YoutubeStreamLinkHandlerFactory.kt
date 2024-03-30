@@ -33,13 +33,11 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class YoutubeStreamLinkHandlerFactory private constructor() : LinkHandlerFactory() {
-    @Nonnull
     @Throws(ParsingException::class, UnsupportedOperationException::class)
     public override fun getUrl(id: String?): String? {
         return "https://www.youtube.com/watch?v=" + id
     }
 
-    @Nonnull
     @Throws(ParsingException::class, UnsupportedOperationException::class)
     public override fun getId(theUrlString: String?): String? {
         var urlString: String? = theUrlString
@@ -175,7 +173,6 @@ class YoutubeStreamLinkHandlerFactory private constructor() : LinkHandlerFactory
             return null
         }
 
-        @Nonnull
         @Throws(ParsingException::class)
         private fun assertIsId(id: String?): String {
             val extractedId: String? = extractId(id)

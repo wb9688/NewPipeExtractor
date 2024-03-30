@@ -154,7 +154,6 @@ class YoutubeMixPlaylistExtractor(service: StreamingService,
             return InfoItemsPage(collector, getNextPageFrom(playlistData, cookies))
         }
 
-    @Nonnull
     @Throws(IOException::class, ExtractionException::class)
     private fun getNextPageFrom(playlistJson: JsonObject?,
                                 cookies: Map<String?, String?>?): Page {
@@ -219,13 +218,11 @@ class YoutubeMixPlaylistExtractor(service: StreamingService,
                 .forEachOrdered(Consumer({ extractor: YoutubeStreamInfoItemExtractor -> collector.commit(extractor) }))
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun getThumbnailsFromPlaylistId(playlistId: String): List<Image?> {
         return getThumbnailsFromVideoId(YoutubeParsingHelper.extractVideoIdFromMixId(playlistId))
     }
 
-    @Nonnull
     private fun getThumbnailsFromVideoId(videoId: String?): List<Image?> {
         val baseUrl: String = "https://i.ytimg.com/vi/" + videoId + "/"
         return IMAGE_URL_SUFFIXES_AND_RESOLUTIONS.stream()

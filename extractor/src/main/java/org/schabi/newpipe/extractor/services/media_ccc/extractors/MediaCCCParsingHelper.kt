@@ -86,7 +86,6 @@ object MediaCCCParsingHelper {
      * @param logoImageUrl a logo image URL, which can be null or empty
      * @return an unmodifiable list of [Image]s, which is always empty or a singleton
      */
-    @Nonnull
     fun getImageListFromLogoImageUrl(logoImageUrl: String?): List<Image> {
         if (Utils.isNullOrEmpty(logoImageUrl)) {
             return listOf()
@@ -107,7 +106,6 @@ object MediaCCCParsingHelper {
      * @param streamItem a stream JSON item of MediaCCC's API, which must not be null
      * @return an unmodifiable list, which is never null but can be empty.
      */
-    @Nonnull
     fun getThumbnailsFromStreamItem(streamItem: JsonObject?): List<Image> {
         return getThumbnailsFromObject(streamItem, "thumb_url", "poster_url")
     }
@@ -124,7 +122,6 @@ object MediaCCCParsingHelper {
      * @param liveStreamItem a stream JSON item of MediaCCC's API, which must not be null
      * @return an unmodifiable list, which is never null but can be empty.
      */
-    @Nonnull
     fun getThumbnailsFromLiveStreamItem(
             liveStreamItem: JsonObject?): List<Image> {
         return getThumbnailsFromObject(liveStreamItem, "thumb", "poster")
@@ -149,7 +146,6 @@ object MediaCCCParsingHelper {
      * @param posterUrlKey the name of the `poster` URL key
      * @return an unmodifiable list, which is never null but can be empty.
      */
-    @Nonnull
     private fun getThumbnailsFromObject(
             streamOrLivestreamItem: JsonObject?,
             thumbUrlKey: String,

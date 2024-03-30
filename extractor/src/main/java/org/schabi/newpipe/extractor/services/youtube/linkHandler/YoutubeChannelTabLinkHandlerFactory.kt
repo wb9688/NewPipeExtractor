@@ -41,7 +41,6 @@ class YoutubeChannelTabLinkHandlerFactory private constructor() : ListLinkHandle
 
     companion object {
         val instance: YoutubeChannelTabLinkHandlerFactory = YoutubeChannelTabLinkHandlerFactory()
-        @Nonnull
         @Throws(UnsupportedTabException::class)
         fun getUrlSuffix(tab: String?): String {
             when (tab) {

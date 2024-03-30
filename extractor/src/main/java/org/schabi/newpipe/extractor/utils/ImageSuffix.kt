@@ -41,7 +41,6 @@ class ImageSuffix(@field:Nonnull
     /**
      * @return the estimated [ResolutionLevel] of the suffix, which is never null.
      */
-    @Nonnull
     val resolutionLevel: ResolutionLevel
 
     /**
@@ -73,7 +72,6 @@ class ImageSuffix(@field:Nonnull
      *
      * @return a string representation of this [ImageSuffix] instance
      */
-    @Nonnull
     override fun toString(): String {
         return ("ImageSuffix {" + "suffix=" + suffix + ", height=" + height + ", width="
                 + width + ", resolutionLevel=" + resolutionLevel + "}")

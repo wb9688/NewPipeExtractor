@@ -28,7 +28,6 @@ class MetaInfo : Serializable {
 
     constructor()
 
-    @Nonnull
     fun getUrls(): List<URL> {
         return urls
     }
@@ -41,7 +40,6 @@ class MetaInfo : Serializable {
         urls.add(url)
     }
 
-    @Nonnull
     fun getUrlTexts(): List<String?> {
         return urlTexts
     }

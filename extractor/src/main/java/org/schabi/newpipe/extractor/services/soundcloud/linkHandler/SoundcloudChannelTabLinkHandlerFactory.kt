@@ -34,7 +34,6 @@ class SoundcloudChannelTabLinkHandlerFactory private constructor() : ListLinkHan
 
     companion object {
         val instance: SoundcloudChannelTabLinkHandlerFactory = SoundcloudChannelTabLinkHandlerFactory()
-        @Nonnull
         @Throws(UnsupportedOperationException::class)
         fun getUrlSuffix(tab: String?): String {
             when (tab) {

@@ -141,7 +141,6 @@ class YoutubeCommentsExtractor(
         return getNextPage(continuation)
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun getNextPage(continuation: String?): Page {
         return Page(getUrl(), continuation) // URL is ignored tho

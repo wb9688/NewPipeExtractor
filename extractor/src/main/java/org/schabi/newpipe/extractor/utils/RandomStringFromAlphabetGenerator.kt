@@ -16,7 +16,6 @@ object RandomStringFromAlphabetGenerator {
      * @return a random string of the requested length made of only characters from the provided
      * alphabet
      */
-    @Nonnull
     fun generate(
             alphabet: String,
             length: Int,

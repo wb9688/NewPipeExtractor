@@ -67,7 +67,6 @@ class Image(@JvmField @field:Nonnull
      * @return the estimated resolution level, which is never `null`
      * @see ResolutionLevel
      */
-    @Nonnull
     val estimatedResolutionLevel: ResolutionLevel?
 
     /**
@@ -100,7 +99,6 @@ class Image(@JvmField @field:Nonnull
      *
      * @return a string representation of this [Image] instance
      */
-    @Nonnull
     public override fun toString(): String {
         return ("Image {" + "url=" + url + ", height=" + height + ", width=" + width
                 + ", estimatedResolutionLevel=" + estimatedResolutionLevel + "}")

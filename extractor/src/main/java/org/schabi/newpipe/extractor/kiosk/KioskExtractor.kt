@@ -28,7 +28,6 @@ import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler
 abstract class KioskExtractor<T : InfoItem?>(streamingService: StreamingService,
                                              linkHandler: ListLinkHandler?,
                                              private override val id: String) : ListExtractor<T>(streamingService, linkHandler) {
-    @Nonnull
     override fun getId(): String? {
         return id
     }

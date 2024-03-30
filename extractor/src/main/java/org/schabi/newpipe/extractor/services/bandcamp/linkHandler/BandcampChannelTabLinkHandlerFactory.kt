@@ -46,7 +46,6 @@ class BandcampChannelTabLinkHandlerFactory private constructor() : ListLinkHandl
          * @return a URL suffix
          * @throws UnsupportedTabException if the tab is not supported
          */
-        @Nonnull
         @Throws(UnsupportedTabException::class)
         fun getUrlSuffix(tab: String?): String {
             when (tab) {

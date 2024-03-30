@@ -510,7 +510,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
             return getSubtitles(MediaFormat.TTML)
         }
 
-    @Nonnull
     @Throws(ParsingException::class)
     public override fun getSubtitles(format: MediaFormat): List<SubtitlesStream?> {
         assertPageFetched()
@@ -850,7 +849,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
     }
 
-    @Nonnull
     private fun getVideoSecondaryInfoRenderer(): JsonObject? {
         if (videoSecondaryInfoRenderer != null) {
             return videoSecondaryInfoRenderer
@@ -859,7 +857,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         return videoSecondaryInfoRenderer
     }
 
-    @Nonnull
     private fun getVideoInfoRenderer(videoRendererName: String): JsonObject {
         return nextResponse!!.getObject("contents")
                 .getObject("twoColumnWatchNextResults")
@@ -875,7 +872,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
                 .orElse(JsonObject())
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun <T : org.schabi.newpipe.extractor.stream.Stream?> getItags(
             streamingDataKey: String,
@@ -998,7 +994,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
      * streams as video-only streams
      * @return a stream builder helper to build [VideoStream]s
      */
-    @Nonnull
     private fun getVideoStreamBuilderHelper(
             areStreamsVideoOnly: Boolean): Function<ItagInfo?, VideoStream?> {
         return Function({ itagInfo: ItagInfo? ->
@@ -1020,7 +1015,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         })
     }
 
-    @Nonnull
     private fun getStreamsFromStreamingDataKey(
             videoId: String?,
             streamingData: JsonObject?,
@@ -1395,7 +1389,6 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
             }
         }
 
-        @Nonnull
         private fun getManifestUrl(manifestType: String,
                                    streamingDataObjects: List<JsonObject?>): String {
             val manifestKey: String = manifestType + "ManifestUrl"

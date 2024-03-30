@@ -102,7 +102,6 @@ class YoutubePlaylistExtractor(service: StreamingService,
         return browseResponse!!.has("header") && !browseResponse!!.has(SIDEBAR)
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun getPlaylistInfo(): JsonObject? {
         if (playlistInfo == null) {

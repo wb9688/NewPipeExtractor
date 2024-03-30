@@ -94,7 +94,6 @@ object YoutubePostLiveStreamDvrDashManifestCreator {
      * first sequence
      * @return the manifest generated into a string
      */
-    @Nonnull
     @Throws(CreationException::class)
     fun fromPostLiveStreamDvrStreamingUrl(
             postLiveStreamDvrStreamingUrl: String,

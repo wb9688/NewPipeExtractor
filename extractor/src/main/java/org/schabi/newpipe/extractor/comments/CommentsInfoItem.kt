@@ -11,13 +11,11 @@ class CommentsInfoItem(serviceId: Int, url: String?, name: String?) : InfoItem(I
     var commentId: String? = null
 
     @JvmField
-    @Nonnull
     var commentText: Description? = Description.Companion.EMPTY_DESCRIPTION
     @JvmField
     var uploaderName: String? = null
 
     @JvmField
-    @Nonnull
     var uploaderAvatars: List<Image?>? = listOf<Image>()
     @JvmField
     var uploaderUrl: String? = null

@@ -16,7 +16,6 @@ object JavaScriptExtractor {
      * @throws ParsingException
      */
     @JvmStatic
-    @Nonnull
     @Throws(ParsingException::class)
     fun matchToClosingBrace(jsCode: String?, start: String): String {
         var startIndex = jsCode!!.indexOf(start)

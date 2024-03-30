@@ -46,7 +46,6 @@ internal object YoutubeJavaScriptExtractor {
      * @throws ParsingException if the extraction of the file failed
      */
     @JvmStatic
-    @Nonnull
     @Throws(ParsingException::class)
     fun extractJavaScriptPlayerCode(videoId: String?): String {
         var url: String?
@@ -72,7 +71,6 @@ internal object YoutubeJavaScriptExtractor {
     }
 
     @JvmStatic
-    @Nonnull
     @Throws(ParsingException::class)
     fun extractJavaScriptUrlWithIframeResource(): String {
         val iframeUrl: String
@@ -96,7 +94,6 @@ internal object YoutubeJavaScriptExtractor {
     }
 
     @JvmStatic
-    @Nonnull
     @Throws(ParsingException::class)
     fun extractJavaScriptUrlWithEmbedWatchPage(videoId: String?): String? {
         val embedUrl: String
@@ -132,7 +129,6 @@ internal object YoutubeJavaScriptExtractor {
         }
     }
 
-    @Nonnull
     private fun cleanJavaScriptUrl(javaScriptPlayerUrl: String?): String? {
         if (javaScriptPlayerUrl!!.startsWith("//")) {
             // https part has to be added manually if the URL is protocol-relative
@@ -146,7 +142,6 @@ internal object YoutubeJavaScriptExtractor {
         }
     }
 
-    @Nonnull
     @Throws(ParsingException::class)
     private fun downloadJavaScriptCode(javaScriptPlayerUrl: String?): String {
         try {

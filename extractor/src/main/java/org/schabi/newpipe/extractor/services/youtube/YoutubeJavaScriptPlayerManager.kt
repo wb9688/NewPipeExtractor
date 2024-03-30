@@ -23,7 +23,6 @@ import java.util.Objects
  *
  */
 object YoutubeJavaScriptPlayerManager {
-    @Nonnull
     private val CACHED_THROTTLING_PARAMETERS: MutableMap<String, String?> = HashMap()
     private var cachedJavaScriptPlayerCode: String? = null
     private var cachedSignatureTimestamp: Int? = null
@@ -62,7 +61,6 @@ object YoutubeJavaScriptPlayerManager {
      * signature timestamp failed
      */
     @JvmStatic
-    @Nonnull
     @Throws(ParsingException::class)
     fun getSignatureTimestamp(videoId: String?): Int? {
         // Return the cached result if it is present
@@ -111,7 +109,6 @@ object YoutubeJavaScriptPlayerManager {
      * signature deobfuscation function failed
      */
     @JvmStatic
-    @Nonnull
     @Throws(ParsingException::class)
     fun deobfuscateSignature(videoId: String?,
                              obfuscatedSignature: String?): String? {
@@ -190,7 +187,6 @@ object YoutubeJavaScriptPlayerManager {
      * throttling parameter deobfuscation function failed
      */
     @JvmStatic
-    @Nonnull
     @Throws(ParsingException::class)
     fun getUrlWithThrottlingParameterDeobfuscated(
             videoId: String?,

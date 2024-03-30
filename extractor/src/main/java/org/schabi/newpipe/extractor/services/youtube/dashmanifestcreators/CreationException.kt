@@ -32,7 +32,6 @@ class CreationException : RuntimeException {
          * @param cause   the exception which prevented addition of the element to the DASH document
          * @return a new [CreationException]
          */
-        @Nonnull
         fun couldNotAddElement(element: String?,
                                cause: Exception?): CreationException {
             return CreationException("Could not add " + element + " element", cause)
@@ -49,7 +48,6 @@ class CreationException : RuntimeException {
          * @param reason  the reason message of why the element has been not added to the DASH document
          * @return a new [CreationException]
          */
-        @Nonnull
         fun couldNotAddElement(element: String?, reason: String): CreationException {
             return CreationException("Could not add " + element + " element: " + reason)
         }
