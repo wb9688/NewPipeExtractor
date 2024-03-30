@@ -142,13 +142,13 @@ class StreamInfo(serviceId: Int,
         }
 
         @Throws(IOException::class, ExtractionException::class)
-        fun getInfo(@Nonnull service: StreamingService?,
+        fun getInfo(service: StreamingService?,
                     url: String?): StreamInfo {
             return getInfo(service!!.getStreamExtractor(url))
         }
 
         @Throws(ExtractionException::class, IOException::class)
-        fun getInfo(@Nonnull extractor: StreamExtractor?): StreamInfo {
+        fun getInfo(extractor: StreamExtractor?): StreamInfo {
             extractor!!.fetchPage()
             val streamInfo: StreamInfo
             try {
@@ -174,7 +174,7 @@ class StreamInfo(serviceId: Int,
 
         @Nonnull
         @Throws(ExtractionException::class)
-        private fun extractImportantData(@Nonnull extractor: StreamExtractor?): StreamInfo {
+        private fun extractImportantData(extractor: StreamExtractor?): StreamInfo {
             // Important data, without it the content can't be displayed.
             // If one of these is not available, the frontend will receive an exception directly.
             val url: String? = extractor.getUrl()

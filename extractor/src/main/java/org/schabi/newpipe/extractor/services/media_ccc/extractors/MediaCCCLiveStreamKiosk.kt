@@ -18,7 +18,7 @@ class MediaCCCLiveStreamKiosk(streamingService: StreamingService,
                               kioskId: String) : KioskExtractor<StreamInfoItem?>(streamingService, linkHandler, kioskId) {
     private var doc: JsonArray? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         doc = MediaCCCParsingHelper.getLiveStreams(downloader, getExtractorLocalization())
     }
 

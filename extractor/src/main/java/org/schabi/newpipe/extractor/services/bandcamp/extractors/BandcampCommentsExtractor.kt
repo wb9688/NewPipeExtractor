@@ -27,7 +27,7 @@ class BandcampCommentsExtractor(service: StreamingService,
                                 linkHandler: ListLinkHandler?) : CommentsExtractor(service, linkHandler) {
     private var document: Document? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         document = Jsoup.parse(downloader!!.get(getLinkHandler().getUrl()).responseBody())
     }
 

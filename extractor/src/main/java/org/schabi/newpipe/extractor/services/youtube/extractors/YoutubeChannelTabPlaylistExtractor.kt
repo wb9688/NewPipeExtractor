@@ -27,8 +27,8 @@ import java.lang.IllegalArgumentException
  * owner(s).
  *
  */
-class YoutubeChannelTabPlaylistExtractor(@Nonnull service: StreamingService,
-                                         @Nonnull linkHandler: ListLinkHandler) : ChannelTabExtractor(service, linkHandler) {
+class YoutubeChannelTabPlaylistExtractor(service: StreamingService,
+                                         linkHandler: ListLinkHandler) : ChannelTabExtractor(service, linkHandler) {
     private val playlistExtractorInstance: PlaylistExtractor
     private var playlistExisting: Boolean = false
 
@@ -52,7 +52,7 @@ class YoutubeChannelTabPlaylistExtractor(@Nonnull service: StreamingService,
     }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         try {
             playlistExtractorInstance.onFetchPage(downloader)
             if (!playlistExisting) {
@@ -115,7 +115,7 @@ class YoutubeChannelTabPlaylistExtractor(@Nonnull service: StreamingService,
     @Nonnull
     @Throws(IllegalArgumentException::class, SystemPlaylistUrlCreationException::class)
     private fun getPlaylistLinkHandler(
-            @Nonnull originalLinkHandler: ListLinkHandler): ListLinkHandler {
+            originalLinkHandler: ListLinkHandler): ListLinkHandler {
         val contentFilters: List<String?>? = originalLinkHandler.getContentFilters()
         if (contentFilters!!.isEmpty()) {
             throw IllegalArgumentException("A content filter is required")

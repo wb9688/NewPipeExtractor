@@ -37,7 +37,7 @@ open class BandcampStreamExtractor(service: StreamingService, linkHandler: LinkH
     private var current: JsonObject? = null
     private var document: Document? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val html: String? = downloader!!.get(getLinkHandler().getUrl()).responseBody()
         document = Jsoup.parse((html)!!)
         albumJson = getAlbumInfoJson(html)

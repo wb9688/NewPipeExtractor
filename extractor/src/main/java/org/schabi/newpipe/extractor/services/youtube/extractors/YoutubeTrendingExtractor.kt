@@ -46,7 +46,7 @@ class YoutubeTrendingExtractor(service: StreamingService,
                                kioskId: String) : KioskExtractor<StreamInfoItem?>(service, linkHandler, kioskId) {
     private var initialData: JsonObject? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         // @formatter:off
      val body: ByteArray = JsonWriter.string(YoutubeParsingHelper.prepareDesktopJsonBuilder(getExtractorLocalization(), 
         getExtractorContentCountry())

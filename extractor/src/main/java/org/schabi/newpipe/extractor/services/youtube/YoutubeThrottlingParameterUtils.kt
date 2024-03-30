@@ -34,7 +34,7 @@ internal object YoutubeThrottlingParameterUtils {
      */
     @Nonnull
     @Throws(ParsingException::class)
-    fun getDeobfuscationFunctionName(@Nonnull javaScriptPlayerCode: String?): String {
+    fun getDeobfuscationFunctionName(javaScriptPlayerCode: String?): String {
         val matcher: Matcher = DEOBFUSCATION_FUNCTION_NAME_PATTERN.matcher(javaScriptPlayerCode)
         if (!matcher.find()) {
             throw ParsingException(("Failed to find deobfuscation function name pattern \""
@@ -65,8 +65,8 @@ internal object YoutubeThrottlingParameterUtils {
      */
     @Nonnull
     @Throws(ParsingException::class)
-    fun getDeobfuscationFunction(@Nonnull javaScriptPlayerCode: String?,
-                                 @Nonnull functionName: String?): String {
+    fun getDeobfuscationFunction(javaScriptPlayerCode: String?,
+                                 functionName: String?): String {
         try {
             return parseFunctionWithLexer(javaScriptPlayerCode, functionName)
         } catch (e: Exception) {
@@ -81,7 +81,7 @@ internal object YoutubeThrottlingParameterUtils {
      * @return the throttling parameter of the streaming URL or `null` if no parameter has
      * been found
      */
-    fun getThrottlingParameterFromStreamingUrl(@Nonnull streamingUrl: String?): String? {
+    fun getThrottlingParameterFromStreamingUrl(streamingUrl: String?): String? {
         try {
             return Parser.matchGroup1(THROTTLING_PARAM_PATTERN, streamingUrl)
         } catch (e: RegexException) {
@@ -94,8 +94,8 @@ internal object YoutubeThrottlingParameterUtils {
 
     @Nonnull
     @Throws(ParsingException::class)
-    private fun parseFunctionWithLexer(@Nonnull javaScriptPlayerCode: String?,
-                                       @Nonnull functionName: String?): String {
+    private fun parseFunctionWithLexer(javaScriptPlayerCode: String?,
+                                       functionName: String?): String {
         val functionBase: String = functionName + "=function"
         return functionBase + JavaScriptExtractor.matchToClosingBrace(
                 javaScriptPlayerCode, functionBase) + ";"
@@ -103,8 +103,8 @@ internal object YoutubeThrottlingParameterUtils {
 
     @Nonnull
     @Throws(RegexException::class)
-    private fun parseFunctionWithRegex(@Nonnull javaScriptPlayerCode: String?,
-                                       @Nonnull functionName: String?): String {
+    private fun parseFunctionWithRegex(javaScriptPlayerCode: String?,
+                                       functionName: String?): String {
         // Quote the function name, as it may contain special regex characters such as dollar
         val functionPattern: Pattern = Pattern.compile(
                 Pattern.quote(functionName) + DEOBFUSCATION_FUNCTION_BODY_REGEX,
@@ -114,7 +114,7 @@ internal object YoutubeThrottlingParameterUtils {
     }
 
     @Nonnull
-    private fun validateFunction(@Nonnull function: String): String {
+    private fun validateFunction(function: String): String {
         JavaScript.compileOrThrow(function)
         return function
     }

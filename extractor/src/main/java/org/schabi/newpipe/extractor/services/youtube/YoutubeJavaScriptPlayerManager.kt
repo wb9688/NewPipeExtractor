@@ -64,7 +64,7 @@ object YoutubeJavaScriptPlayerManager {
     @JvmStatic
     @Nonnull
     @Throws(ParsingException::class)
-    fun getSignatureTimestamp(@Nonnull videoId: String?): Int? {
+    fun getSignatureTimestamp(videoId: String?): Int? {
         // Return the cached result if it is present
         if (cachedSignatureTimestamp != null) {
             return cachedSignatureTimestamp
@@ -113,8 +113,8 @@ object YoutubeJavaScriptPlayerManager {
     @JvmStatic
     @Nonnull
     @Throws(ParsingException::class)
-    fun deobfuscateSignature(@Nonnull videoId: String?,
-                             @Nonnull obfuscatedSignature: String?): String? {
+    fun deobfuscateSignature(videoId: String?,
+                             obfuscatedSignature: String?): String? {
         // If the signature deobfuscation function has been not extracted on a previous call, this
         // mean that we will fail to extract it on next calls too if the player code has been not
         // changed
@@ -193,8 +193,8 @@ object YoutubeJavaScriptPlayerManager {
     @Nonnull
     @Throws(ParsingException::class)
     fun getUrlWithThrottlingParameterDeobfuscated(
-            @Nonnull videoId: String?,
-            @Nonnull streamingUrl: String?): String? {
+            videoId: String?,
+            streamingUrl: String?): String? {
         val obfuscatedThrottlingParameter: String? = YoutubeThrottlingParameterUtils.getThrottlingParameterFromStreamingUrl(
                 streamingUrl)
         // If the throttling parameter is not present, return the original streaming URL
@@ -324,7 +324,7 @@ object YoutubeJavaScriptPlayerManager {
      * @throws ParsingException if the extraction of the base JavaScript player file failed
      */
     @Throws(ParsingException::class)
-    private fun extractJavaScriptCodeIfNeeded(@Nonnull videoId: String?) {
+    private fun extractJavaScriptCodeIfNeeded(videoId: String?) {
         if (cachedJavaScriptPlayerCode == null) {
             cachedJavaScriptPlayerCode = YoutubeJavaScriptExtractor.extractJavaScriptPlayerCode(
                     videoId)

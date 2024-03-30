@@ -114,7 +114,7 @@ class PeertubeAccountExtractor(service: StreamingService,
         }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val response: Response? = downloader!!.get((baseUrl
                 + PeertubeChannelLinkHandlerFactory.Companion.API_ENDPOINT + getId()))
         if (response != null) {

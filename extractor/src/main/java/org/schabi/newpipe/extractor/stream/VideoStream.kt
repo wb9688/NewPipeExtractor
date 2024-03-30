@@ -23,12 +23,12 @@ import org.schabi.newpipe.extractor.stream.DeliveryMethod
 * You should have received a copy of the GNU General Public License
 * along with NewPipe Extractor. If not, see <https://www.gnu.org/licenses/>.
 */
-class VideoStream private constructor(@Nonnull id: String,
-                                      @Nonnull content: String,
+class VideoStream private constructor(id: String,
+                                      content: String,
                                       isUrl: Boolean,
                                       format: MediaFormat?,
-                                      @Nonnull deliveryMethod: DeliveryMethod,
-                                      @Nonnull resolution: String,
+                                      deliveryMethod: DeliveryMethod,
+                                      resolution: String,
                                       isVideoOnly: Boolean,
                                       manifestUrl: String?,
                                       itagItem: ItagItem?) : Stream(id, content, isUrl, format, deliveryMethod, manifestUrl) {
@@ -196,7 +196,7 @@ class VideoStream private constructor(@Nonnull id: String,
          * @param id the identifier of the [VideoStream], which must not be null
          * @return this [Builder] instance
          */
-        fun setId(@Nonnull id: String?): Builder {
+        fun setId(id: String?): Builder {
             this.id = id
             return this
         }
@@ -213,7 +213,7 @@ class VideoStream private constructor(@Nonnull id: String,
          * @param isUrl   whether the content is a URL
          * @return this [Builder] instance
          */
-        fun setContent(@Nonnull content: String?,
+        fun setContent(content: String?,
                        isUrl: Boolean): Builder {
             this.content = content
             this.isUrl = isUrl
@@ -259,7 +259,7 @@ class VideoStream private constructor(@Nonnull id: String,
          * not be null
          * @return this [Builder] instance
          */
-        fun setDeliveryMethod(@Nonnull deliveryMethod: DeliveryMethod?): Builder {
+        fun setDeliveryMethod(deliveryMethod: DeliveryMethod?): Builder {
             this.deliveryMethod = deliveryMethod
             return this
         }
@@ -313,7 +313,7 @@ class VideoStream private constructor(@Nonnull id: String,
          * @param resolution the resolution of the [VideoStream]
          * @return this [Builder] instance
          */
-        fun setResolution(@Nonnull resolution: String?): Builder {
+        fun setResolution(resolution: String?): Builder {
             this.resolution = resolution
             return this
         }

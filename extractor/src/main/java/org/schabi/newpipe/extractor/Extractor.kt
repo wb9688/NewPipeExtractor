@@ -69,7 +69,7 @@ abstract class Extractor protected constructor(service: StreamingService, linkHa
      * @throws ExtractionException if the pages content is not understood
      */
     @Throws(IOException::class, ExtractionException::class)
-    abstract fun onFetchPage(@Nonnull downloader: Downloader?)
+    abstract fun onFetchPage(downloader: Downloader?)
 
     @get:Throws(ParsingException::class)
     @get:Nonnull

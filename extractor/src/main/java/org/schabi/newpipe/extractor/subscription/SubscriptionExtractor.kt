@@ -55,7 +55,7 @@ abstract class SubscriptionExtractor(protected val service: StreamingService,
      * not be parsed
      */
     @Throws(ExtractionException::class)
-    open fun fromInputStream(@Nonnull contentInputStream: InputStream?): List<SubscriptionItem> {
+    open fun fromInputStream(contentInputStream: InputStream?): List<SubscriptionItem> {
         throw UnsupportedOperationException(("Service " + service.getServiceInfo().getName()
                 + " doesn't support extracting from an InputStream"))
     }
@@ -67,8 +67,8 @@ abstract class SubscriptionExtractor(protected val service: StreamingService,
      * not be parsed
      */
     @Throws(ExtractionException::class)
-    open fun fromInputStream(@Nonnull contentInputStream: InputStream?,
-                             @Nonnull contentType: String): List<SubscriptionItem> {
+    open fun fromInputStream(contentInputStream: InputStream?,
+                             contentType: String): List<SubscriptionItem> {
         throw UnsupportedOperationException(("Service " + service.getServiceInfo().getName()
                 + " doesn't support extracting from an InputStream"))
     }

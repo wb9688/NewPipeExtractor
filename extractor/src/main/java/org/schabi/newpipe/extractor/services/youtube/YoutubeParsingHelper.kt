@@ -264,26 +264,26 @@ object YoutubeParsingHelper {
         }
     }
 
-    fun isYoutubeURL(@Nonnull url: URL?): Boolean {
+    fun isYoutubeURL(url: URL?): Boolean {
         return YOUTUBE_URLS.contains(url!!.getHost().lowercase())
     }
 
-    fun isYoutubeServiceURL(@Nonnull url: URL?): Boolean {
+    fun isYoutubeServiceURL(url: URL?): Boolean {
         val host: String = url!!.getHost()
         return (host.equals("www.youtube-nocookie.com", ignoreCase = true)
                 || host.equals("youtu.be", ignoreCase = true))
     }
 
-    fun isHooktubeURL(@Nonnull url: URL?): Boolean {
+    fun isHooktubeURL(url: URL?): Boolean {
         val host: String = url!!.getHost()
         return host.equals("hooktube.com", ignoreCase = true)
     }
 
-    fun isInvidiousURL(@Nonnull url: URL?): Boolean {
+    fun isInvidiousURL(url: URL?): Boolean {
         return INVIDIOUS_URLS.contains(url!!.getHost().lowercase())
     }
 
-    fun isY2ubeURL(@Nonnull url: URL?): Boolean {
+    fun isY2ubeURL(url: URL?): Boolean {
         return url!!.getHost().equals("y2u.be", ignoreCase = true)
     }
 
@@ -295,7 +295,7 @@ object YoutubeParsingHelper {
      */
     @JvmStatic
     @Throws(ParsingException::class, NumberFormatException::class)
-    fun parseDurationString(@Nonnull input: String?): Int {
+    fun parseDurationString(input: String?): Int {
         // If time separator : is not detected, try . instead
         val splitInput: Array<String> = if (input!!.contains(":")) input.split(":".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray() else input.split("\\.".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
         val units: IntArray = intArrayOf(24, 60, 60, 1)
@@ -334,7 +334,7 @@ object YoutubeParsingHelper {
     }
 
     @Nonnull
-    fun getFeedUrlFrom(@Nonnull channelIdOrUser: String?): String {
+    fun getFeedUrlFrom(channelIdOrUser: String?): String {
         if (channelIdOrUser!!.startsWith("user/")) {
             return FEED_BASE_USER + channelIdOrUser.replace("user/", "")
         } else if (channelIdOrUser.startsWith("channel/")) {
@@ -365,7 +365,7 @@ object YoutubeParsingHelper {
      * @param playlistId the playlist id
      * @return Whether given id belongs to a YouTube Mix
      */
-    fun isYoutubeMixId(@Nonnull playlistId: String?): Boolean {
+    fun isYoutubeMixId(playlistId: String?): Boolean {
         return playlistId!!.startsWith("RD")
     }
 
@@ -376,7 +376,7 @@ object YoutubeParsingHelper {
      * @param playlistId the playlist id
      * @return Whether given id belongs to a YouTube My Mix
      */
-    fun isYoutubeMyMixId(@Nonnull playlistId: String): Boolean {
+    fun isYoutubeMyMixId(playlistId: String): Boolean {
         return playlistId.startsWith("RDMM")
     }
 
@@ -387,7 +387,7 @@ object YoutubeParsingHelper {
      * @param playlistId the playlist id
      * @return Whether given id belongs to a YouTube Music Mix
      */
-    fun isYoutubeMusicMixId(@Nonnull playlistId: String?): Boolean {
+    fun isYoutubeMusicMixId(playlistId: String?): Boolean {
         return playlistId!!.startsWith("RDAMVM") || playlistId.startsWith("RDCLAK")
     }
 
@@ -397,7 +397,7 @@ object YoutubeParsingHelper {
      *
      * @return Whether given id belongs to a YouTube Channel Mix
      */
-    fun isYoutubeChannelMixId(@Nonnull playlistId: String?): Boolean {
+    fun isYoutubeChannelMixId(playlistId: String?): Boolean {
         return playlistId!!.startsWith("RDCM")
     }
 
@@ -407,7 +407,7 @@ object YoutubeParsingHelper {
      *
      * @return Whether given id belongs to a YouTube Genre Mix
      */
-    fun isYoutubeGenreMixId(@Nonnull playlistId: String?): Boolean {
+    fun isYoutubeGenreMixId(playlistId: String?): Boolean {
         return playlistId!!.startsWith("RDGMEM")
     }
 
@@ -626,9 +626,9 @@ object YoutubeParsingHelper {
     }
 
     private fun getClientVersionFromServiceTrackingParam(
-            @Nonnull serviceTrackingParamsStream: Stream<JsonObject>,
-            @Nonnull serviceName: String,
-            @Nonnull clientVersionKey: String): String? {
+            serviceTrackingParamsStream: Stream<JsonObject>,
+            serviceName: String,
+            clientVersionKey: String): String? {
         return serviceTrackingParamsStream.filter(Predicate({ serviceTrackingParam: JsonObject ->
             (serviceTrackingParam.getString("service", "")
                     == serviceName)
@@ -821,7 +821,7 @@ object YoutubeParsingHelper {
     }
 
     fun getUrlFromNavigationEndpoint(
-            @Nonnull navigationEndpoint: JsonObject): String? {
+            navigationEndpoint: JsonObject): String? {
         if (navigationEndpoint.has("urlEndpoint")) {
             var internUrl: String = navigationEndpoint.getObject("urlEndpoint")
                     .getString("url")
@@ -1061,7 +1061,7 @@ object YoutubeParsingHelper {
         return null
     }
 
-    fun getTextAtKey(@Nonnull jsonObject: JsonObject?, theKey: String?): String? {
+    fun getTextAtKey(jsonObject: JsonObject?, theKey: String?): String? {
         if (jsonObject!!.isString(theKey)) {
             return jsonObject.getString(theKey)
         } else {
@@ -1069,7 +1069,7 @@ object YoutubeParsingHelper {
         }
     }
 
-    fun fixThumbnailUrl(@Nonnull thumbnailUrl: String?): String? {
+    fun fixThumbnailUrl(thumbnailUrl: String?): String? {
         var result: String? = thumbnailUrl
         if (result!!.startsWith("//")) {
             result = result.substring(2)
@@ -1101,7 +1101,7 @@ object YoutubeParsingHelper {
      */
     @Nonnull
     @Throws(ParsingException::class)
-    fun getThumbnailsFromInfoItem(@Nonnull infoItem: JsonObject): List<Image> {
+    fun getThumbnailsFromInfoItem(infoItem: JsonObject): List<Image> {
         try {
             return getImagesFromThumbnailsArray(infoItem.getObject("thumbnail")
                     .getArray("thumbnails"))
@@ -1124,7 +1124,7 @@ object YoutubeParsingHelper {
      */
     @Nonnull
     fun getImagesFromThumbnailsArray(
-            @Nonnull thumbnails: JsonArray?): List<Image> {
+            thumbnails: JsonArray?): List<Image> {
         return thumbnails!!.stream()
                 .filter(Predicate<Any>({ o: Any? -> JsonObject::class.java.isInstance(o) }))
                 .map<JsonObject>(Function<Any, JsonObject>({ obj: Any? -> JsonObject::class.java.cast(obj) }))
@@ -1141,7 +1141,7 @@ object YoutubeParsingHelper {
 
     @Nonnull
     @Throws(ParsingException::class, MalformedURLException::class)
-    fun getValidJsonResponseBody(@Nonnull response: Response?): String? {
+    fun getValidJsonResponseBody(response: Response?): String? {
         if (response!!.responseCode() == 404) {
             throw ContentNotAvailableException(("Not found"
                     + " (\"" + response.responseCode() + " " + response.responseMessage() + "\")"))
@@ -1182,7 +1182,7 @@ object YoutubeParsingHelper {
     fun getJsonAndroidPostResponse(
             endpoint: String,
             body: ByteArray,
-            @Nonnull localization: Localization?,
+            localization: Localization?,
             endPartOfUrlRequest: String?): JsonObject? {
         return getMobilePostResponse(endpoint, body, localization,
                 getAndroidUserAgent(localization), ANDROID_YOUTUBE_KEY, endPartOfUrlRequest)
@@ -1192,7 +1192,7 @@ object YoutubeParsingHelper {
     fun getJsonIosPostResponse(
             endpoint: String,
             body: ByteArray,
-            @Nonnull localization: Localization?,
+            localization: Localization?,
             endPartOfUrlRequest: String?): JsonObject? {
         return getMobilePostResponse(endpoint, body, localization, getIosUserAgent(localization),
                 IOS_YOUTUBE_KEY, endPartOfUrlRequest)
@@ -1202,9 +1202,9 @@ object YoutubeParsingHelper {
     private fun getMobilePostResponse(
             endpoint: String,
             body: ByteArray,
-            @Nonnull localization: Localization?,
-            @Nonnull userAgent: String,
-            @Nonnull innerTubeApiKey: String,
+            localization: Localization?,
+            userAgent: String,
+            innerTubeApiKey: String,
             endPartOfUrlRequest: String?): JsonObject? {
         val headers: Map<String?, List<String?>?> = java.util.Map.of("User-Agent", java.util.List.of(userAgent),
                 "X-Goog-Api-Format-Version", listOf("2"))
@@ -1219,8 +1219,8 @@ object YoutubeParsingHelper {
     @Nonnull
     @Throws(IOException::class, ExtractionException::class)
     fun prepareDesktopJsonBuilder(
-            @Nonnull localization: Localization?,
-            @Nonnull contentCountry: ContentCountry?): JsonBuilder<JsonObject?> {
+            localization: Localization?,
+            contentCountry: ContentCountry?): JsonBuilder<JsonObject?> {
         return prepareDesktopJsonBuilder(localization, contentCountry, null)
     }
 
@@ -1228,8 +1228,8 @@ object YoutubeParsingHelper {
     @Nonnull
     @Throws(IOException::class, ExtractionException::class)
     fun prepareDesktopJsonBuilder(
-            @Nonnull localization: Localization?,
-            @Nonnull contentCountry: ContentCountry?,
+            localization: Localization?,
+            contentCountry: ContentCountry?,
             visitorData: String?): JsonBuilder<JsonObject?> {
         // @formatter:off
      val builder: JsonBuilder<JsonObject?> = JsonObject.builder()
@@ -1261,8 +1261,8 @@ object YoutubeParsingHelper {
 
     @Nonnull
     fun prepareAndroidMobileJsonBuilder(
-            @Nonnull localization: Localization?,
-            @Nonnull contentCountry: ContentCountry?): JsonBuilder<JsonObject?> {
+            localization: Localization?,
+            contentCountry: ContentCountry?): JsonBuilder<JsonObject?> {
         // @formatter:off
     return JsonObject.builder()
         .`object`("context")
@@ -1302,8 +1302,8 @@ object YoutubeParsingHelper {
 
     @Nonnull
     fun prepareIosMobileJsonBuilder(
-            @Nonnull localization: Localization?,
-            @Nonnull contentCountry: ContentCountry?): JsonBuilder<JsonObject?> {
+            localization: Localization?,
+            contentCountry: ContentCountry?): JsonBuilder<JsonObject?> {
         // @formatter:off
     return JsonObject.builder()
         .`object`("context")
@@ -1340,9 +1340,9 @@ object YoutubeParsingHelper {
 
     @Nonnull
     fun prepareTvHtml5EmbedJsonBuilder(
-            @Nonnull localization: Localization?,
-            @Nonnull contentCountry: ContentCountry?,
-            @Nonnull videoId: String?): JsonBuilder<JsonObject> {
+            localization: Localization?,
+            contentCountry: ContentCountry?,
+            videoId: String?): JsonBuilder<JsonObject> {
         // @formatter:off
     return JsonObject.builder()
         .`object`("context")
@@ -1374,12 +1374,12 @@ object YoutubeParsingHelper {
     @Nonnull
     @Throws(IOException::class, ExtractionException::class)
     fun createDesktopPlayerBody(
-            @Nonnull localization: Localization?,
-            @Nonnull contentCountry: ContentCountry?,
-            @Nonnull videoId: String?,
-            @Nonnull sts: Int?,
+            localization: Localization?,
+            contentCountry: ContentCountry?,
+            videoId: String?,
+            sts: Int?,
             isTvHtml5DesktopJsonBuilder: Boolean,
-            @Nonnull contentPlaybackNonce: String?): ByteArray {
+            contentPlaybackNonce: String?): ByteArray {
         // @formatter:off
     return JsonWriter.string((if (isTvHtml5DesktopJsonBuilder)prepareTvHtml5EmbedJsonBuilder(localization, contentCountry, videoId) else prepareDesktopJsonBuilder(localization, contentCountry))
         .`object`("playbackContext")
@@ -1485,7 +1485,7 @@ object YoutubeParsingHelper {
      *
      * @param url The URL to be set as the origin and referrer.
      */
-    private fun getOriginReferrerHeaders(@Nonnull url: String): Map<String?, List<String?>?> {
+    private fun getOriginReferrerHeaders(url: String): Map<String?, List<String?>?> {
         val urlList: List<String?> = java.util.List.of(url)
         return java.util.Map.of("Origin", urlList, "Referer", urlList)
     }
@@ -1497,8 +1497,8 @@ object YoutubeParsingHelper {
      * @param name The X-YouTube-Client-Name value.
      * @param version X-YouTube-Client-Version value.
      */
-    private fun getClientHeaders(@Nonnull name: String?,
-                                 @Nonnull version: String?): Map<String?, List<String?>?> {
+    private fun getClientHeaders(name: String?,
+                                 version: String?): Map<String?, List<String?>?> {
         return java.util.Map.of("X-YouTube-Client-Name", java.util.List.of(name),
                 "X-YouTube-Client-Version", java.util.List.of(version))
     }
@@ -1524,7 +1524,7 @@ object YoutubeParsingHelper {
     }
 
     fun extractCookieValue(cookieName: String,
-                           @Nonnull response: Response?): String {
+                           response: Response?): String {
         val cookies: List<String?>? = response!!.responseHeaders().get("set-cookie")
         if (cookies == null) {
             return ""
@@ -1551,7 +1551,7 @@ object YoutubeParsingHelper {
      * @throws ContentNotAvailableException if an alert is detected
      */
     @Throws(ParsingException::class)
-    fun defaultAlertsCheck(@Nonnull initialData: JsonObject?) {
+    fun defaultAlertsCheck(initialData: JsonObject?) {
         val alerts: JsonArray = initialData!!.getArray("alerts")
         if (!Utils.isNullOrEmpty(alerts)) {
             val alertRenderer: JsonObject = alerts.getObject(0).getObject("alertRenderer")
@@ -1663,7 +1663,7 @@ object YoutubeParsingHelper {
      * @param url the streaming URL to be checked.
      * @return true if it's a `WEB` streaming URL, false otherwise
      */
-    fun isWebStreamingUrl(@Nonnull url: String?): Boolean {
+    fun isWebStreamingUrl(url: String?): Boolean {
         return Parser.isMatch(C_WEB_PATTERN, url)
     }
 
@@ -1675,7 +1675,7 @@ object YoutubeParsingHelper {
      * streaming URL.
      * @return true if it's a `TVHTML5_SIMPLY_EMBEDDED_PLAYER` streaming URL, false otherwise
      */
-    fun isTvHtml5SimplyEmbeddedPlayerStreamingUrl(@Nonnull url: String?): Boolean {
+    fun isTvHtml5SimplyEmbeddedPlayerStreamingUrl(url: String?): Boolean {
         return Parser.isMatch(C_TVHTML5_SIMPLY_EMBEDDED_PLAYER_PATTERN, url)
     }
 
@@ -1685,7 +1685,7 @@ object YoutubeParsingHelper {
      * @param url the streaming URL to be checked.
      * @return true if it's a `ANDROID` streaming URL, false otherwise
      */
-    fun isAndroidStreamingUrl(@Nonnull url: String?): Boolean {
+    fun isAndroidStreamingUrl(url: String?): Boolean {
         return Parser.isMatch(C_ANDROID_PATTERN, url)
     }
 
@@ -1695,7 +1695,7 @@ object YoutubeParsingHelper {
      * @param url the streaming URL on which check if it's a `IOS` streaming URL.
      * @return true if it's a `IOS` streaming URL, false otherwise
      */
-    fun isIosStreamingUrl(@Nonnull url: String?): Boolean {
+    fun isIosStreamingUrl(url: String?): Boolean {
         return Parser.isMatch(C_IOS_PATTERN, url)
     }
 

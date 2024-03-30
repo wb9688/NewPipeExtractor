@@ -362,7 +362,7 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
 
     @Nonnull
     @Throws(UnsupportedEncodingException::class)
-    private fun getRelatedItemsUrl(@Nonnull tags: List<String?>?): String {
+    private fun getRelatedItemsUrl(tags: List<String?>?): String {
         val url: String = baseUrl + PeertubeSearchQueryHandlerFactory.Companion.SEARCH_ENDPOINT_VIDEOS
         val params: StringBuilder = StringBuilder()
         params.append("start=0&count=8&sort=-createdAt")
@@ -409,7 +409,7 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
     }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val response: Response? = downloader!!.get(
                 baseUrl + PeertubeStreamLinkHandlerFactory.Companion.VIDEO_API_ENDPOINT + getId())
         if (response != null) {
@@ -509,7 +509,7 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
         }
 
     @Throws(ParsingException::class)
-    private fun getStreamsFromArray(@Nonnull streams: JsonArray,
+    private fun getStreamsFromArray(streams: JsonArray,
                                     playlistUrl: String) {
         try {
             /*
@@ -553,28 +553,28 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
     @Nonnull
     @Throws(ParsingException::class)
     private fun getHlsPlaylistUrlFromFragmentedFileUrl(
-            @Nonnull streamJsonObject: JsonObject,
-            @Nonnull idSuffix: String,
-            @Nonnull format: String,
-            @Nonnull url: String?): String {
+            streamJsonObject: JsonObject,
+            idSuffix: String,
+            format: String,
+            url: String?): String {
         val streamUrl: String? = if ((FILE_DOWNLOAD_URL == idSuffix)) JsonUtils.getString(streamJsonObject, FILE_URL) else url
         return streamUrl!!.replace("-fragmented." + format, ".m3u8")
     }
 
     @Nonnull
     @Throws(ParsingException::class)
-    private fun getHlsPlaylistUrlFromMasterPlaylist(@Nonnull streamJsonObject: JsonObject,
-                                                    @Nonnull playlistUrl: String?): String {
+    private fun getHlsPlaylistUrlFromMasterPlaylist(streamJsonObject: JsonObject,
+                                                    playlistUrl: String?): String {
         return playlistUrl!!.replace("master", JsonUtils.getNumber(streamJsonObject,
                 RESOLUTION_ID).toString())
     }
 
     @Throws(ParsingException::class)
-    private fun addNewAudioStream(@Nonnull streamJsonObject: JsonObject,
+    private fun addNewAudioStream(streamJsonObject: JsonObject,
                                   isInstanceUsingRandomUuidsForHlsStreams: Boolean,
-                                  @Nonnull resolution: String?,
-                                  @Nonnull idSuffix: String,
-                                  @Nonnull url: String?,
+                                  resolution: String?,
+                                  idSuffix: String,
+                                  url: String?,
                                   playlistUrl: String?) {
         val extension: String = url!!.substring(url.lastIndexOf(".") + 1)
         val format: MediaFormat? = MediaFormat.Companion.getFromSuffix(extension)
@@ -624,11 +624,11 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
     }
 
     @Throws(ParsingException::class)
-    private fun addNewVideoStream(@Nonnull streamJsonObject: JsonObject,
+    private fun addNewVideoStream(streamJsonObject: JsonObject,
                                   isInstanceUsingRandomUuidsForHlsStreams: Boolean,
-                                  @Nonnull resolution: String?,
-                                  @Nonnull idSuffix: String,
-                                  @Nonnull url: String?,
+                                  resolution: String?,
+                                  idSuffix: String,
+                                  url: String?,
                                   playlistUrl: String?) {
         val extension: String = url!!.substring(url.lastIndexOf(".") + 1)
         val format: MediaFormat? = MediaFormat.Companion.getFromSuffix(extension)
@@ -686,7 +686,7 @@ class PeertubeStreamExtractor(service: StreamingService, linkHandler: LinkHandle
      * @throws ReCaptchaException if the API response is a reCaptcha
      */
     @Throws(ParsingException::class, IOException::class, ReCaptchaException::class)
-    private fun fetchSubApiContent(@Nonnull subPath: String): JsonObject? {
+    private fun fetchSubApiContent(subPath: String): JsonObject? {
         val apiUrl: String = (baseUrl + PeertubeStreamLinkHandlerFactory.Companion.VIDEO_API_ENDPOINT
                 + getId() + "/" + subPath)
         val response: Response? = getDownloader().get(apiUrl)

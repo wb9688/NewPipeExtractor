@@ -8,7 +8,7 @@ object PatternsManager {
      *
      * @return an object containing the patterns. If not existent, `null`.
      */
-    fun getPatterns(@Nonnull languageCode: String, countryCode: String?): PatternsHolder? {
+    fun getPatterns(languageCode: String, countryCode: String?): PatternsHolder? {
         val targetLocalizationClassName = languageCode +
                 if (countryCode == null || countryCode.isEmpty()) "" else "_$countryCode"
         try {

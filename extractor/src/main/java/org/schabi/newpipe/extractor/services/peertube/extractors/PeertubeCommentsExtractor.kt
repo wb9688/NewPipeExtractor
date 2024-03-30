@@ -51,8 +51,8 @@ class PeertubeCommentsExtractor(service: StreamingService,
     }
 
     @Throws(ParsingException::class)
-    private fun collectCommentsFrom(@Nonnull collector: CommentsInfoItemsCollector,
-                                    @Nonnull json: JsonObject) {
+    private fun collectCommentsFrom(collector: CommentsInfoItemsCollector,
+                                    json: JsonObject) {
         val contents: JsonArray = json.getArray("data")
         for (c: Any in contents) {
             if (c is JsonObject) {
@@ -66,8 +66,8 @@ class PeertubeCommentsExtractor(service: StreamingService,
     }
 
     @Throws(ParsingException::class)
-    private fun collectRepliesFrom(@Nonnull collector: CommentsInfoItemsCollector,
-                                   @Nonnull json: JsonObject?) {
+    private fun collectRepliesFrom(collector: CommentsInfoItemsCollector,
+                                   json: JsonObject?) {
         val contents: JsonArray = json!!.getArray(CHILDREN)
         for (c: Any in contents) {
             if (c is JsonObject) {
@@ -126,7 +126,7 @@ class PeertubeCommentsExtractor(service: StreamingService,
                 PeertubeParsingHelper.getNextPage(page.getUrl(), total))
     }
 
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {}
+    public override fun onFetchPage(downloader: Downloader?) {}
 
     companion object {
         val CHILDREN: String = "children"

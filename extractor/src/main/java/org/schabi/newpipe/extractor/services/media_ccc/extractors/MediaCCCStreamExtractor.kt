@@ -172,7 +172,7 @@ class MediaCCCStreamExtractor(service: StreamingService, linkHandler: LinkHandle
         }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val videoUrl: String = MediaCCCStreamLinkHandlerFactory.Companion.VIDEO_API_ENDPOINT + getId()
         try {
             data = JsonParser.`object`().from(downloader!!.get(videoUrl).responseBody())

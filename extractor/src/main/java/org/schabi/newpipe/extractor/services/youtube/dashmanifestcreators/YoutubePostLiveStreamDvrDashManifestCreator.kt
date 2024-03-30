@@ -98,8 +98,8 @@ object YoutubePostLiveStreamDvrDashManifestCreator {
     @Nonnull
     @Throws(CreationException::class)
     fun fromPostLiveStreamDvrStreamingUrl(
-            @Nonnull postLiveStreamDvrStreamingUrl: String,
-            @Nonnull itagItem: ItagItem,
+            postLiveStreamDvrStreamingUrl: String,
+            itagItem: ItagItem,
             targetDurationSec: Int,
             durationSecondsFallback: Long): String? {
         if (cache.containsKey(postLiveStreamDvrStreamingUrl)) {
@@ -171,9 +171,9 @@ object YoutubePostLiveStreamDvrDashManifestCreator {
      */
     @Throws(CreationException::class)
     private fun generateSegmentElementForPostLiveDvrStreams(
-            @Nonnull doc: Document?,
+            doc: Document?,
             targetDurationSeconds: Int,
-            @Nonnull segmentCount: String?) {
+            segmentCount: String?) {
         try {
             val segmentTimelineElement: Element = doc!!.getElementsByTagName(
                     YoutubeDashManifestCreatorsUtils.SEGMENT_TIMELINE).item(0) as Element

@@ -55,7 +55,7 @@ class Image(@JvmField @field:Nonnull
              * @return the [Image]'s width or [.WIDTH_UNKNOWN]
              */
             @JvmField val width: Int,
-            @Nonnull estimatedResolutionLevel: ResolutionLevel?) : Serializable {
+            estimatedResolutionLevel: ResolutionLevel?) : Serializable {
 
     /**
      * Get the estimated resolution level of this image.

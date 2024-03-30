@@ -46,7 +46,7 @@ class YoutubeMixPlaylistExtractor(service: StreamingService,
     private var playlistData: JsonObject? = null
     private var cookieValue: String? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val localization: Localization? = getExtractorLocalization()
         val url: URL? = Utils.stringToURL(getUrl())
         val mixPlaylistId: String? = getId()
@@ -161,7 +161,7 @@ class YoutubeMixPlaylistExtractor(service: StreamingService,
 
     @Nonnull
     @Throws(IOException::class, ExtractionException::class)
-    private fun getNextPageFrom(@Nonnull playlistJson: JsonObject?,
+    private fun getNextPageFrom(playlistJson: JsonObject?,
                                 cookies: Map<String?, String?>?): Page {
         val lastStream: JsonObject? = (playlistJson!!.getArray("contents")
                 .get(playlistJson.getArray("contents").size - 1) as JsonObject?)
@@ -209,7 +209,7 @@ class YoutubeMixPlaylistExtractor(service: StreamingService,
         return InfoItemsPage(collector, getNextPageFrom(playlistJson, page.getCookies()))
     }
 
-    private fun collectStreamsFrom(@Nonnull collector: StreamInfoItemsCollector,
+    private fun collectStreamsFrom(collector: StreamInfoItemsCollector,
                                    streams: List<Any>?) {
         if (streams == null) {
             return
@@ -226,12 +226,12 @@ class YoutubeMixPlaylistExtractor(service: StreamingService,
 
     @Nonnull
     @Throws(ParsingException::class)
-    private fun getThumbnailsFromPlaylistId(@Nonnull playlistId: String): List<Image?> {
+    private fun getThumbnailsFromPlaylistId(playlistId: String): List<Image?> {
         return getThumbnailsFromVideoId(YoutubeParsingHelper.extractVideoIdFromMixId(playlistId))
     }
 
     @Nonnull
-    private fun getThumbnailsFromVideoId(@Nonnull videoId: String?): List<Image?> {
+    private fun getThumbnailsFromVideoId(videoId: String?): List<Image?> {
         val baseUrl: String = "https://i.ytimg.com/vi/" + videoId + "/"
         return IMAGE_URL_SUFFIXES_AND_RESOLUTIONS.stream()
                 .map(Function({ imageSuffix: ImageSuffix ->

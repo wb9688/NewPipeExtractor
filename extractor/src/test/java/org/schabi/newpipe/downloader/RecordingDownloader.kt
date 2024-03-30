@@ -58,7 +58,7 @@ internal class RecordingDownloader(private val path: String) : Downloader() {
     }
 
     @Throws(IOException::class, ReCaptchaException::class)
-    override fun execute(@Nonnull request: Request?): Response {
+    override fun execute(request: Request?): Response {
         val downloader: Downloader = DownloaderTestImpl.Companion.getInstance()
         var response = downloader.execute(request)
         val cleanedResponseBody = response.responseBody().replace(IP_V4_PATTERN.toRegex(), "127.0.0.1")

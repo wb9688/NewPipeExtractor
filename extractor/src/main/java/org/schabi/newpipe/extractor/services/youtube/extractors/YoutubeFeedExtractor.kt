@@ -20,7 +20,7 @@ import java.io.IOException
 class YoutubeFeedExtractor(service: StreamingService, linkHandler: ListLinkHandler?) : FeedExtractor(service, linkHandler) {
     private var document: Document? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val channelIdOrUser: String? = getLinkHandler().getId()
         val feedUrl: String? = YoutubeParsingHelper.getFeedUrlFrom(channelIdOrUser)
         val response: Response? = downloader!!.get(feedUrl)

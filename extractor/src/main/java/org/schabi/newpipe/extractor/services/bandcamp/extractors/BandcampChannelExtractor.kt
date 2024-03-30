@@ -141,7 +141,7 @@ class BandcampChannelExtractor(service: StreamingService,
         }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         channelInfo = BandcampExtractorHelper.getArtistDetails(getId())
     }
 
@@ -153,8 +153,8 @@ class BandcampChannelExtractor(service: StreamingService,
 
     private class TabExtractorBuilder internal constructor(private val discography: JsonArray) : ChannelTabExtractorBuilder {
         @Nonnull
-        public override fun build(@Nonnull service: StreamingService,
-                                  @Nonnull linkHandler: ListLinkHandler?): ChannelTabExtractor {
+        public override fun build(service: StreamingService,
+                                  linkHandler: ListLinkHandler?): ChannelTabExtractor {
             return BandcampChannelTabExtractor.Companion.fromDiscography(service, linkHandler, discography)
         }
     }

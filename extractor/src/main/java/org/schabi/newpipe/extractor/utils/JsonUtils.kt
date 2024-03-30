@@ -13,8 +13,8 @@ object JsonUtils {
     @JvmStatic
     @Nonnull
     @Throws(ParsingException::class)
-    fun getValue(@Nonnull `object`: JsonObject?,
-                 @Nonnull path: String): Any {
+    fun getValue(`object`: JsonObject?,
+                 path: String): Any {
         val keys = Arrays.asList(*path.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
         val parentObject = getObject(`object`, keys.subList(0, keys.size - 1))
                 ?: throw ParsingException("Unable to get $path")
@@ -23,9 +23,9 @@ object JsonUtils {
     }
 
     @Throws(ParsingException::class)
-    private fun <T> getInstanceOf(@Nonnull `object`: JsonObject?,
-                                  @Nonnull path: String,
-                                  @Nonnull klass: Class<T>): T {
+    private fun <T> getInstanceOf(`object`: JsonObject?,
+                                  path: String,
+                                  klass: Class<T>): T {
         val value = getValue(`object`, path)
         return if (klass.isInstance(value)) {
             klass.cast(value)
@@ -36,41 +36,41 @@ object JsonUtils {
 
     @Nonnull
     @Throws(ParsingException::class)
-    fun getString(@Nonnull `object`: JsonObject?, @Nonnull path: String): String {
+    fun getString(`object`: JsonObject?, path: String): String {
         return getInstanceOf(`object`, path, String::class.java)
     }
 
     @Nonnull
     @Throws(ParsingException::class)
-    fun getBoolean(@Nonnull `object`: JsonObject?,
-                   @Nonnull path: String): Boolean {
+    fun getBoolean(`object`: JsonObject?,
+                   path: String): Boolean {
         return getInstanceOf(`object`, path, Boolean::class.java)
     }
 
     @Nonnull
     @Throws(ParsingException::class)
-    fun getNumber(@Nonnull `object`: JsonObject?,
-                  @Nonnull path: String): Number {
+    fun getNumber(`object`: JsonObject?,
+                  path: String): Number {
         return getInstanceOf(`object`, path, Number::class.java)
     }
 
     @Nonnull
     @Throws(ParsingException::class)
-    fun getObject(@Nonnull `object`: JsonObject?,
-                  @Nonnull path: String): JsonObject {
+    fun getObject(`object`: JsonObject?,
+                  path: String): JsonObject {
         return getInstanceOf(`object`, path, JsonObject::class.java)
     }
 
     @Nonnull
     @Throws(ParsingException::class)
-    fun getArray(@Nonnull `object`: JsonObject?, @Nonnull path: String): JsonArray {
+    fun getArray(`object`: JsonObject?, path: String): JsonArray {
         return getInstanceOf(`object`, path, JsonArray::class.java)
     }
 
     @JvmStatic
     @Nonnull
     @Throws(ParsingException::class)
-    fun getValues(@Nonnull array: JsonArray, @Nonnull path: String): List<Any> {
+    fun getValues(array: JsonArray, path: String): List<Any> {
         val result: MutableList<Any> = ArrayList()
         for (i in array.indices) {
             val obj = array.getObject(i)
@@ -79,8 +79,8 @@ object JsonUtils {
         return result
     }
 
-    private fun getObject(@Nonnull `object`: JsonObject?,
-                          @Nonnull keys: List<String>): JsonObject? {
+    private fun getObject(`object`: JsonObject?,
+                          keys: List<String>): JsonObject? {
         var result = `object`
         for (key in keys) {
             result = result!!.getObject(key)
@@ -145,7 +145,7 @@ object JsonUtils {
         return JsonParser.`object`().from(json)
     }
 
-    fun getStringListFromJsonArray(@Nonnull array: JsonArray): List<String> {
+    fun getStringListFromJsonArray(array: JsonArray): List<String> {
         return array.stream()
                 .filter { o: Any? -> String::class.java.isInstance(o) }
                 .map { obj: Any? -> String::class.java.cast(obj) }

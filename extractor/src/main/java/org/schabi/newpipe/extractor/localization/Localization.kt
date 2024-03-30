@@ -82,7 +82,7 @@ class Localization @JvmOverloads constructor(@field:Nonnull @get:Nonnull
         }
 
         @JvmStatic
-        fun fromLocale(@Nonnull locale: Locale?): Localization {
+        fun fromLocale(locale: Locale?): Localization {
             return Localization(locale!!.getLanguage(), locale.getCountry())
         }
 
@@ -94,7 +94,7 @@ class Localization @JvmOverloads constructor(@field:Nonnull @get:Nonnull
          * @return the Locale corresponding
          */
         @Throws(ParsingException::class)
-        fun getLocaleFromThreeLetterCode(@Nonnull code: String): Locale? {
+        fun getLocaleFromThreeLetterCode(code: String): Locale? {
             val languages: Array<String> = Locale.getISOLanguages()
             val localeMap: MutableMap<String, Locale> = HashMap(languages.size)
             for (language: String? in languages) {

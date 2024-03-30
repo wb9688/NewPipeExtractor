@@ -26,13 +26,13 @@ class YoutubeSubscriptionExtractor(youtubeService: YoutubeService) : Subscriptio
         }
 
     @Throws(ExtractionException::class)
-    public override fun fromInputStream(@Nonnull contentInputStream: InputStream?): List<SubscriptionItem> {
+    public override fun fromInputStream(contentInputStream: InputStream?): List<SubscriptionItem> {
         return fromJsonInputStream(contentInputStream)
     }
 
     @Throws(ExtractionException::class)
-    public override fun fromInputStream(@Nonnull contentInputStream: InputStream?,
-                                        @Nonnull contentType: String): List<SubscriptionItem> {
+    public override fun fromInputStream(contentInputStream: InputStream?,
+                                        contentType: String): List<SubscriptionItem> {
         when (contentType) {
             "json", "application/json" -> return fromJsonInputStream(contentInputStream)
             "csv", "text/csv", "text/comma-separated-values" -> return fromCsvInputStream(contentInputStream)
@@ -42,7 +42,7 @@ class YoutubeSubscriptionExtractor(youtubeService: YoutubeService) : Subscriptio
     }
 
     @Throws(ExtractionException::class)
-    fun fromJsonInputStream(@Nonnull contentInputStream: InputStream?): List<SubscriptionItem> {
+    fun fromJsonInputStream(contentInputStream: InputStream?): List<SubscriptionItem> {
         val subscriptions: JsonArray
         try {
             subscriptions = JsonParser.array().from(contentInputStream)
@@ -72,7 +72,7 @@ class YoutubeSubscriptionExtractor(youtubeService: YoutubeService) : Subscriptio
     }
 
     @Throws(ExtractionException::class)
-    fun fromZipInputStream(@Nonnull contentInputStream: InputStream?): List<SubscriptionItem> {
+    fun fromZipInputStream(contentInputStream: InputStream?): List<SubscriptionItem> {
         try {
             ZipInputStream(contentInputStream).use({ zipInputStream ->
                 var zipEntry: ZipEntry
@@ -100,7 +100,7 @@ class YoutubeSubscriptionExtractor(youtubeService: YoutubeService) : Subscriptio
     }
 
     @Throws(ExtractionException::class)
-    fun fromCsvInputStream(@Nonnull contentInputStream: InputStream?): List<SubscriptionItem> {
+    fun fromCsvInputStream(contentInputStream: InputStream?): List<SubscriptionItem> {
         // Expected format of CSV file:
         // Channel Id,Channel Url,Channel Title
         //UC1JTQBa5QxZCpXrFSkMxmPw,http://www.youtube.com/channel/UC1JTQBa5QxZCpXrFSkMxmPw,Raycevick

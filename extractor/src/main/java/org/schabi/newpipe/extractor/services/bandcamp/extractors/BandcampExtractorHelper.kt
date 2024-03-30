@@ -215,7 +215,7 @@ object BandcampExtractorHelper {
      * case where no valid image URL was found
      */
     @Nonnull
-    fun getImagesFromSearchResult(@Nonnull searchResult: Element): List<Image> {
+    fun getImagesFromSearchResult(searchResult: Element): List<Image> {
         return getImagesFromImageUrl(searchResult.getElementsByClass("art")
                 .stream()
                 .flatMap(Function<Element, Stream<out Element>>({ element: Element -> element.getElementsByTag("img").stream() }))
@@ -286,7 +286,7 @@ object BandcampExtractorHelper {
      * @return an unmodifiable and non-empty list of [Image]s
      */
     @Nonnull
-    private fun getImagesFromImageBaseUrl(@Nonnull baseUrl: String): List<Image> {
+    private fun getImagesFromImageBaseUrl(baseUrl: String): List<Image> {
         return IMAGE_URL_SUFFIXES_AND_RESOLUTIONS.stream()
                 .map(Function({ imageSuffix: ImageSuffix ->
                     Image(baseUrl + imageSuffix.getSuffix(),

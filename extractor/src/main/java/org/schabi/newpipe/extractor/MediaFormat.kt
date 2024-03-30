@@ -100,7 +100,7 @@ enum class MediaFormat(// @formatter:on
  * @return the friendly name of the MediaFormat associated with this ids,
  * or an empty String if none match it.
  */
-        @Nonnull fun getNameById(id: Int): String {
+        fun getNameById(id: Int): String {
             return getById(id, Function ({ obj: MediaFormat -> obj.name }), "")
         }
          /**
@@ -110,7 +110,7 @@ enum class MediaFormat(// @formatter:on
  * @return the file extension of the MediaFormat associated with this ids,
  * or an empty String if none match it.
  */
-        @Nonnull fun getSuffixById(id: Int): String {
+        fun getSuffixById(id: Int): String {
             return getById(id, Function ({ obj: MediaFormat -> obj.suffix }), "")
         }
          /**
@@ -143,7 +143,7 @@ enum class MediaFormat(// @formatter:on
  * @return a modifiable [List] which contains the [MediaFormat]s
  * that have the given mime type.
  */
-        @Nonnull fun getAllFromMimeType(mimeType: String): List<MediaFormat> {
+        fun getAllFromMimeType(mimeType: String): List<MediaFormat> {
             return Arrays.stream(entries.toTypedArray())
             .filter(Predicate ({ mediaFormat: MediaFormat -> (mediaFormat.mimeType == mimeType)}))
             .collect(Collectors.toList())

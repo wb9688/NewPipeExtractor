@@ -68,7 +68,7 @@ class YoutubeChannelExtractor(service: StreamingService,
      */
     private var channelAgeGateRenderer: JsonObject? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val channelPath: String? = super.getId()
         val id: String? = YoutubeChannelHelper.resolveChannelId(channelPath)
         // Fetch Videos tab

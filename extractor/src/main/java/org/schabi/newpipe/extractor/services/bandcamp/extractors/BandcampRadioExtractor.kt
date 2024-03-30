@@ -21,7 +21,7 @@ class BandcampRadioExtractor(streamingService: StreamingService,
                              kioskId: String) : KioskExtractor<StreamInfoItem?>(streamingService, linkHandler, kioskId) {
     private var json: JsonObject? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         try {
             json = JsonParser.`object`().from(
                     getDownloader().get(RADIO_API_URL).responseBody())

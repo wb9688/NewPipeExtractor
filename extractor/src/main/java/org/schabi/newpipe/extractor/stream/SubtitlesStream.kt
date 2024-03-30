@@ -8,11 +8,11 @@ import org.schabi.newpipe.extractor.utils.LocaleCompat
 import java.util.Locale
 import java.util.function.Supplier
 
-class SubtitlesStream private constructor(@Nonnull id: String,
-                                          @Nonnull content: String,
+class SubtitlesStream private constructor(id: String,
+                                          content: String,
                                           isUrl: Boolean,
                                           private override val format: MediaFormat?,
-                                          @Nonnull deliveryMethod: DeliveryMethod,
+                                          deliveryMethod: DeliveryMethod,
                                           /**
                                            * Get the language tag of the subtitles.
                                            *
@@ -64,7 +64,7 @@ class SubtitlesStream private constructor(@Nonnull id: String,
          * the builder)
          * @return this [Builder] instance
          */
-        fun setId(@Nonnull id: String?): Builder {
+        fun setId(id: String?): Builder {
             this.id = id
             return this
         }
@@ -81,7 +81,7 @@ class SubtitlesStream private constructor(@Nonnull id: String,
          * @param isUrl   whether the content is a URL
          * @return this [Builder] instance
          */
-        fun setContent(@Nonnull content: String?,
+        fun setContent(content: String?,
                        isUrl: Boolean): Builder {
             this.content = content
             this.isUrl = isUrl
@@ -129,7 +129,7 @@ class SubtitlesStream private constructor(@Nonnull id: String,
          * must not be null
          * @return this [Builder] instance
          */
-        fun setDeliveryMethod(@Nonnull deliveryMethod: DeliveryMethod?): Builder {
+        fun setDeliveryMethod(deliveryMethod: DeliveryMethod?): Builder {
             this.deliveryMethod = deliveryMethod
             return this
         }
@@ -156,7 +156,7 @@ class SubtitlesStream private constructor(@Nonnull id: String,
          * @param languageCode the language code of the [SubtitlesStream]
          * @return this [Builder] instance
          */
-        fun setLanguageCode(@Nonnull languageCode: String?): Builder {
+        fun setLanguageCode(languageCode: String?): Builder {
             this.languageCode = languageCode
             return this
         }

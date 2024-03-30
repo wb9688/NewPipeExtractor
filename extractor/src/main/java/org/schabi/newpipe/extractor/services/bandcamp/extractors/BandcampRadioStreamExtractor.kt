@@ -31,7 +31,7 @@ class BandcampRadioStreamExtractor(service: StreamingService,
                                    linkHandler: LinkHandler?) : BandcampStreamExtractor(service, linkHandler) {
     private var showInfo: JsonObject? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         showInfo = query(getId().toInt())
     }
 

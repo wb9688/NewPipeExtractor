@@ -38,7 +38,7 @@ class BandcampPlaylistExtractor(service: StreamingService,
         private set
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val html: String? = downloader!!.get(getLinkHandler().getUrl()).responseBody()
         document = Jsoup.parse((html)!!)
         albumJson = BandcampStreamExtractor.Companion.getAlbumInfoJson(html)

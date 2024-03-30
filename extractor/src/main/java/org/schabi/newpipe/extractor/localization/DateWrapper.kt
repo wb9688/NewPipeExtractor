@@ -10,7 +10,7 @@ import java.util.GregorianCalendar
  * A wrapper class that provides a field to describe if the date/time is precise or just an
  * approximation.
  */
-class DateWrapper @JvmOverloads constructor(@Nonnull offsetDateTime: OffsetDateTime?,
+class DateWrapper @JvmOverloads constructor(offsetDateTime: OffsetDateTime?,
                                             /**
                                              * @return if the date is considered is precise or just an approximation (e.g. service only
                                              * returns an approximation like 2 weeks ago instead of a precise date).
@@ -20,10 +20,10 @@ class DateWrapper @JvmOverloads constructor(@Nonnull offsetDateTime: OffsetDateT
     private val offsetDateTime: OffsetDateTime
 
     @Deprecated("Use {@link #DateWrapper(OffsetDateTime)} instead.")
-    constructor(@Nonnull calendar: Calendar) : this(calendar, false)
+    constructor(calendar: Calendar) : this(calendar, false)
 
     @Deprecated("Use {@link #DateWrapper(OffsetDateTime, boolean)} instead.")
-    constructor(@Nonnull calendar: Calendar, isApproximation: Boolean) : this(OffsetDateTime.ofInstant(calendar.toInstant(), ZoneOffset.UTC), isApproximation)
+    constructor(calendar: Calendar, isApproximation: Boolean) : this(OffsetDateTime.ofInstant(calendar.toInstant(), ZoneOffset.UTC), isApproximation)
 
     init {
         this.offsetDateTime = offsetDateTime!!.withOffsetSameInstant(ZoneOffset.UTC)

@@ -108,7 +108,7 @@ class YoutubeCommentsExtractor(
         }
 
     @Throws(ExtractionException::class)
-    private fun getNextPage(@Nonnull jsonObject: JsonObject?): Page? {
+    private fun getNextPage(jsonObject: JsonObject?): Page? {
         val onResponseReceivedEndpoints: JsonArray = jsonObject!!.getArray("onResponseReceivedEndpoints")
 
         // Prevent ArrayIndexOutOfBoundsException
@@ -222,7 +222,7 @@ class YoutubeCommentsExtractor(
     }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val localization: Localization? = getExtractorLocalization()
         // @formatter:off
          val body: ByteArray = JsonWriter.string(

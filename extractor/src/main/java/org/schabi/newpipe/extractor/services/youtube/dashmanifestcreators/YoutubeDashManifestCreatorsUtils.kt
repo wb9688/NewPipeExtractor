@@ -136,7 +136,7 @@ object YoutubeDashManifestCreatorsUtils {
     @Nonnull
     @Throws(CreationException::class)
     fun generateDocumentAndDoCommonElementsGeneration(
-            @Nonnull itagItem: ItagItem,
+            itagItem: ItagItem,
             streamDuration: Long): Document {
         val doc: Document = generateDocumentAndMpdElement(streamDuration)
         generatePeriodElement(doc)
@@ -206,7 +206,7 @@ object YoutubeDashManifestCreatorsUtils {
      * @param doc the [Document] on which the `<Period>` element will be appended
      */
     @Throws(CreationException::class)
-    fun generatePeriodElement(@Nonnull doc: Document) {
+    fun generatePeriodElement(doc: Document) {
         try {
             val mpdElement: Element = doc.getElementsByTagName(MPD).item(0) as Element
             val periodElement: Element = doc.createElement(PERIOD)
@@ -230,8 +230,8 @@ object YoutubeDashManifestCreatorsUtils {
      * @param itagItem the [ItagItem] corresponding to the stream, which must not be null
      */
     @Throws(CreationException::class)
-    fun generateAdaptationSetElement(@Nonnull doc: Document,
-                                     @Nonnull itagItem: ItagItem) {
+    fun generateAdaptationSetElement(doc: Document,
+                                     itagItem: ItagItem) {
         try {
             val periodElement: Element = doc.getElementsByTagName(PERIOD)
                     .item(0) as Element
@@ -285,8 +285,8 @@ object YoutubeDashManifestCreatorsUtils {
      * @param itagItem the [ItagItem] corresponding to the stream, which must not be null
      */
     @Throws(CreationException::class)
-    fun generateRoleElement(@Nonnull doc: Document,
-                            @Nonnull itagItem: ItagItem) {
+    fun generateRoleElement(doc: Document,
+                            itagItem: ItagItem) {
         try {
             val adaptationSetElement: Element = doc.getElementsByTagName(
                     ADAPTATION_SET).item(0) as Element
@@ -332,8 +332,8 @@ object YoutubeDashManifestCreatorsUtils {
      * @param itagItem the [ItagItem] to use, which must not be null
      */
     @Throws(CreationException::class)
-    fun generateRepresentationElement(@Nonnull doc: Document,
-                                      @Nonnull itagItem: ItagItem) {
+    fun generateRepresentationElement(doc: Document,
+                                      itagItem: ItagItem) {
         try {
             val adaptationSetElement: Element = doc.getElementsByTagName(
                     ADAPTATION_SET).item(0) as Element
@@ -419,8 +419,8 @@ object YoutubeDashManifestCreatorsUtils {
      */
     @Throws(CreationException::class)
     fun generateAudioChannelConfigurationElement(
-            @Nonnull doc: Document,
-            @Nonnull itagItem: ItagItem) {
+            doc: Document,
+            itagItem: ItagItem) {
         try {
             val representationElement: Element = doc.getElementsByTagName(
                     REPRESENTATION).item(0) as Element
@@ -450,9 +450,9 @@ object YoutubeDashManifestCreatorsUtils {
      */
     @Throws(CreationException::class)
     fun buildAndCacheResult(
-            @Nonnull originalBaseStreamingUrl: String?,
-            @Nonnull doc: Document?,
-            @Nonnull manifestCreatorCache: ManifestCreatorCache<String, String>): String {
+            originalBaseStreamingUrl: String?,
+            doc: Document?,
+            manifestCreatorCache: ManifestCreatorCache<String, String>): String {
         try {
             val documentXml: String = documentToXml(doc)
             manifestCreatorCache.put((originalBaseStreamingUrl)!!, documentXml)
@@ -499,8 +499,8 @@ object YoutubeDashManifestCreatorsUtils {
      * [OTF][DeliveryType.OTF] or [LIVE][DeliveryType.LIVE]
      */
     @Throws(CreationException::class)
-    fun generateSegmentTemplateElement(@Nonnull doc: Document?,
-                                       @Nonnull baseUrl: String,
+    fun generateSegmentTemplateElement(doc: Document?,
+                                       baseUrl: String,
                                        deliveryType: DeliveryType) {
         if (deliveryType != DeliveryType.OTF && deliveryType != DeliveryType.LIVE) {
             throw CreationException.Companion.couldNotAddElement(SEGMENT_TEMPLATE, ("invalid delivery type: "
@@ -542,7 +542,7 @@ object YoutubeDashManifestCreatorsUtils {
      * appended
      */
     @Throws(CreationException::class)
-    fun generateSegmentTimelineElement(@Nonnull doc: Document?) {
+    fun generateSegmentTimelineElement(doc: Document?) {
         try {
             val segmentTemplateElement: Element = doc!!.getElementsByTagName(
                     SEGMENT_TEMPLATE).item(0) as Element
@@ -576,8 +576,8 @@ object YoutubeDashManifestCreatorsUtils {
      */
     @Nonnull
     @Throws(CreationException::class)
-    fun getInitializationResponse(@Nonnull baseStreamingUrl: String,
-                                  @Nonnull itagItem: ItagItem,
+    fun getInitializationResponse(baseStreamingUrl: String,
+                                  itagItem: ItagItem,
                                   deliveryType: DeliveryType): Response? {
         var baseStreamingUrl: String = baseStreamingUrl
         val isHtml5StreamingUrl: Boolean = (YoutubeParsingHelper.isWebStreamingUrl(baseStreamingUrl)
@@ -650,7 +650,7 @@ object YoutubeDashManifestCreatorsUtils {
      */
     // Sonar warning is suppressed because it is still shown even if we apply its solution
     @Throws(TransformerException::class)
-    private fun documentToXml(@Nonnull doc: Document?): String {
+    private fun documentToXml(doc: Document?): String {
         val transformerFactory: TransformerFactory = TransformerFactory.newInstance()
         try {
             transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "")
@@ -677,8 +677,8 @@ object YoutubeDashManifestCreatorsUtils {
      * [DeliveryType] of the stream
      */
     @Nonnull
-    private fun appendRnSqParamsIfNeeded(@Nonnull baseStreamingUrl: String,
-                                         @Nonnull deliveryType: DeliveryType): String {
+    private fun appendRnSqParamsIfNeeded(baseStreamingUrl: String,
+                                         deliveryType: DeliveryType): String {
         return baseStreamingUrl + (if (deliveryType == DeliveryType.PROGRESSIVE) "" else SQ_0) + RN_0
     }
 
@@ -714,9 +714,9 @@ object YoutubeDashManifestCreatorsUtils {
     @Nonnull
     @Throws(CreationException::class)
     private fun getStreamingWebUrlWithoutRedirects(
-            @Nonnull downloader: Downloader?,
-            @Nonnull streamingUrl: String,
-            @Nonnull responseMimeTypeExpected: String?): Response? {
+            downloader: Downloader?,
+            streamingUrl: String,
+            responseMimeTypeExpected: String?): Response? {
         var streamingUrl: String? = streamingUrl
         try {
             val headers: Map<String?, List<String?>?>? = YoutubeParsingHelper.getClientInfoHeaders()

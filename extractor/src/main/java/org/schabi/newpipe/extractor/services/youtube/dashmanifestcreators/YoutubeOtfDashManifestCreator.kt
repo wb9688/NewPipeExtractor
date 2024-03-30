@@ -91,8 +91,8 @@ object YoutubeOtfDashManifestCreator {
     @Nonnull
     @Throws(CreationException::class)
     fun fromOtfStreamingUrl(
-            @Nonnull otfBaseStreamingUrl: String,
-            @Nonnull itagItem: ItagItem,
+            otfBaseStreamingUrl: String,
+            itagItem: ItagItem,
             durationSecondsFallback: Long): String? {
         if (cache.containsKey(otfBaseStreamingUrl)) {
             return Objects.requireNonNull(cache.get(otfBaseStreamingUrl)).getSecond()
@@ -173,8 +173,8 @@ object YoutubeOtfDashManifestCreator {
      */
     @Throws(CreationException::class)
     private fun generateSegmentElementsForOtfStreams(
-            @Nonnull segmentDurations: Array<String?>,
-            @Nonnull doc: Document?) {
+            segmentDurations: Array<String?>,
+            doc: Document?) {
         try {
             val segmentTimelineElement: Element = doc!!.getElementsByTagName(
                     YoutubeDashManifestCreatorsUtils.SEGMENT_TIMELINE).item(0) as Element
@@ -218,7 +218,7 @@ object YoutubeOtfDashManifestCreator {
      * @return the duration of the OTF stream, in milliseconds
      */
     @Throws(CreationException::class)
-    private fun getStreamDuration(@Nonnull segmentDuration: Array<String?>): Long {
+    private fun getStreamDuration(segmentDuration: Array<String?>): Long {
         try {
             var streamLengthMs: Long = 0
             for (segDuration: String? in segmentDuration) {

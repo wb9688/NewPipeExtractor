@@ -27,7 +27,7 @@ class MediaCCCLiveStreamExtractor(service: StreamingService,
     private var group: String = ""
     private var room: JsonObject? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val doc: JsonArray? = MediaCCCParsingHelper.getLiveStreams(downloader,
                 getExtractorLocalization())
         // Find the correct room
@@ -134,7 +134,7 @@ class MediaCCCLiveStreamExtractor(service: StreamingService,
         }
 
     @Nonnull
-    private fun getManifestOfDeliveryMethodWanted(@Nonnull deliveryMethod: String): String {
+    private fun getManifestOfDeliveryMethodWanted(deliveryMethod: String): String {
         return room!!.getArray(STREAMS).stream()
                 .filter(Predicate({ o: Any? -> JsonObject::class.java.isInstance(o) }))
                 .map(Function({ obj: Any? -> JsonObject::class.java.cast(obj) }))
@@ -202,8 +202,8 @@ class MediaCCCLiveStreamExtractor(service: StreamingService,
                                                                    val urlValue: JsonObject)
 
     private fun <T : Stream?> getStreams(
-            @Nonnull streamType: String,
-            @Nonnull converter: Function<MediaCCCLiveStreamMapperDTO, T>): List<T> {
+            streamType: String,
+            converter: Function<MediaCCCLiveStreamMapperDTO, T>): List<T> {
         return room!!.getArray(STREAMS).stream() // Ensure that we use only process JsonObjects
                 .filter(Predicate({ o: Any? -> JsonObject::class.java.isInstance(o) }))
                 .map(Function({ obj: Any? -> JsonObject::class.java.cast(obj) })) // Only process streams of requested type

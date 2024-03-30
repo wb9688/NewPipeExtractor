@@ -150,8 +150,8 @@ object PeertubeParsingHelper {
      */
     @Nonnull
     fun getAvatarsFromOwnerAccountOrVideoChannelObject(
-            @Nonnull baseUrl: String?,
-            @Nonnull ownerAccountOrVideoChannelObject: JsonObject?): List<Image> {
+            baseUrl: String?,
+            ownerAccountOrVideoChannelObject: JsonObject?): List<Image> {
         return getImagesFromAvatarsOrBanners(baseUrl, ownerAccountOrVideoChannelObject,
                 "avatars", "avatar")
     }
@@ -183,8 +183,8 @@ object PeertubeParsingHelper {
      */
     @Nonnull
     fun getBannersFromAccountOrVideoChannelObject(
-            @Nonnull baseUrl: String?,
-            @Nonnull ownerAccountOrVideoChannelObject: JsonObject?): List<Image> {
+            baseUrl: String?,
+            ownerAccountOrVideoChannelObject: JsonObject?): List<Image> {
         return getImagesFromAvatarsOrBanners(baseUrl, ownerAccountOrVideoChannelObject,
                 "banners", "banner")
     }
@@ -213,8 +213,8 @@ object PeertubeParsingHelper {
      */
     @Nonnull
     fun getThumbnailsFromPlaylistOrVideoItem(
-            @Nonnull baseUrl: String?,
-            @Nonnull playlistOrVideoItemObject: JsonObject?): List<Image> {
+            baseUrl: String?,
+            playlistOrVideoItemObject: JsonObject?): List<Image> {
         val imageList: MutableList<Image> = ArrayList(2)
         val thumbnailPath: String = playlistOrVideoItemObject!!.getString("thumbnailPath")
         if (!Utils.isNullOrEmpty(thumbnailPath)) {
@@ -254,10 +254,10 @@ object PeertubeParsingHelper {
      */
     @Nonnull
     private fun getImagesFromAvatarsOrBanners(
-            @Nonnull baseUrl: String?,
-            @Nonnull ownerAccountOrVideoChannelObject: JsonObject?,
-            @Nonnull jsonArrayName: String,
-            @Nonnull jsonObjectName: String): List<Image> {
+            baseUrl: String?,
+            ownerAccountOrVideoChannelObject: JsonObject?,
+            jsonArrayName: String,
+            jsonObjectName: String): List<Image> {
         val images: JsonArray = ownerAccountOrVideoChannelObject!!.getArray(jsonArrayName)
         if (!Utils.isNullOrEmpty(images)) {
             return getImagesFromAvatarOrBannerArray(baseUrl, images)
@@ -293,8 +293,8 @@ object PeertubeParsingHelper {
      */
     @Nonnull
     private fun getImagesFromAvatarOrBannerArray(
-            @Nonnull baseUrl: String?,
-            @Nonnull avatarsOrBannersArray: JsonArray): List<Image> {
+            baseUrl: String?,
+            avatarsOrBannersArray: JsonArray): List<Image> {
         return avatarsOrBannersArray.stream()
                 .filter(Predicate<Any>({ o: Any? -> JsonObject::class.java.isInstance(o) }))
                 .map<JsonObject>(Function<Any, JsonObject>({ obj: Any? -> JsonObject::class.java.cast(obj) }))

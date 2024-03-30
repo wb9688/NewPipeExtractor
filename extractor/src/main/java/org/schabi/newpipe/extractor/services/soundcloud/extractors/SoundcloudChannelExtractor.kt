@@ -22,7 +22,7 @@ class SoundcloudChannelExtractor(service: StreamingService,
         private set
     private var user: JsonObject? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         id = getLinkHandler().getId()
         val apiUrl: String = (USERS_ENDPOINT + id + "?client_id="
                 + SoundcloudParsingHelper.clientId())

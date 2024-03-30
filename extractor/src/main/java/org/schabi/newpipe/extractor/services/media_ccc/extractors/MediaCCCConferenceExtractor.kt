@@ -73,7 +73,7 @@ class MediaCCCConferenceExtractor(service: StreamingService,
         }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         conferenceData = fetchConferenceData(downloader, getId())
     }
 
@@ -86,8 +86,8 @@ class MediaCCCConferenceExtractor(service: StreamingService,
 
     companion object {
         @Throws(IOException::class, ExtractionException::class)
-        fun fetchConferenceData(@Nonnull downloader: Downloader?,
-                                @Nonnull conferenceId: String?): JsonObject {
+        fun fetchConferenceData(downloader: Downloader?,
+                                conferenceId: String?): JsonObject {
             val conferenceUrl: String = MediaCCCConferenceLinkHandlerFactory.Companion.CONFERENCE_API_ENDPOINT + conferenceId
             try {
                 return JsonParser.`object`().from(downloader!!.get(conferenceUrl).responseBody())

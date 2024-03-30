@@ -289,7 +289,7 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
     @Throws(ParsingException::class)
-    private fun getDurationFromFirstAdaptiveFormat(@Nonnull streamingDatas: List<JsonObject?>): Int {
+    private fun getDurationFromFirstAdaptiveFormat(streamingDatas: List<JsonObject?>): Int {
         for (streamingData: JsonObject? in streamingDatas) {
             val adaptiveFormats: JsonArray = streamingData!!.getArray(ADAPTIVE_FORMATS)
             if (adaptiveFormats.isEmpty()) {
@@ -503,8 +503,8 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
      * there is one
      * @param videoId      the video ID to use when extracting JavaScript player code, if needed
      */
-    private fun tryDeobfuscateThrottlingParameterOfUrl(@Nonnull streamingUrl: String?,
-                                                       @Nonnull videoId: String?): String? {
+    private fun tryDeobfuscateThrottlingParameterOfUrl(streamingUrl: String?,
+                                                       videoId: String?): String? {
         try {
             return YoutubeJavaScriptPlayerManager.getUrlWithThrottlingParameterDeobfuscated(
                     videoId, streamingUrl)
@@ -621,7 +621,7 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val videoId: String? = getId()
         val localization: Localization? = getExtractorLocalization()
         val contentCountry: ContentCountry? = getExtractorContentCountry()
@@ -707,7 +707,7 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
 
     @Throws(ParsingException::class)
     private fun checkPlayabilityStatus(youtubePlayerResponse: JsonObject?,
-                                       @Nonnull playabilityStatus: JsonObject) {
+                                       playabilityStatus: JsonObject) {
         var status: String? = playabilityStatus.getString("status")
         if (status == null || status.equals("ok", ignoreCase = true)) {
             return
@@ -766,9 +766,9 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
      * object.
      */
     @Throws(IOException::class, ExtractionException::class)
-    private fun fetchAndroidMobileJsonPlayer(@Nonnull contentCountry: ContentCountry?,
-                                             @Nonnull localization: Localization?,
-                                             @Nonnull videoId: String?) {
+    private fun fetchAndroidMobileJsonPlayer(contentCountry: ContentCountry?,
+                                             localization: Localization?,
+                                             videoId: String?) {
         androidCpn = YoutubeParsingHelper.generateContentPlaybackNonce()
         val mobileBody: ByteArray = JsonWriter.string(
                 YoutubeParsingHelper.prepareAndroidMobileJsonBuilder(localization, contentCountry)
@@ -800,9 +800,9 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
      * object.
      */
     @Throws(IOException::class, ExtractionException::class)
-    private fun fetchIosMobileJsonPlayer(@Nonnull contentCountry: ContentCountry?,
-                                         @Nonnull localization: Localization?,
-                                         @Nonnull videoId: String?) {
+    private fun fetchIosMobileJsonPlayer(contentCountry: ContentCountry?,
+                                         localization: Localization?,
+                                         videoId: String?) {
         iosCpn = YoutubeParsingHelper.generateContentPlaybackNonce()
         val mobileBody: ByteArray = JsonWriter.string(
                 YoutubeParsingHelper.prepareIosMobileJsonBuilder(localization, contentCountry)
@@ -837,9 +837,9 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
      * @param videoId        the video id
      */
     @Throws(IOException::class, ExtractionException::class)
-    private fun fetchTvHtml5EmbedJsonPlayer(@Nonnull contentCountry: ContentCountry?,
-                                            @Nonnull localization: Localization?,
-                                            @Nonnull videoId: String?) {
+    private fun fetchTvHtml5EmbedJsonPlayer(contentCountry: ContentCountry?,
+                                            localization: Localization?,
+                                            videoId: String?) {
         // Because a cpn is unique to each request, we need to generate it again
         html5Cpn = YoutubeParsingHelper.generateContentPlaybackNonce()
         val tvHtml5EmbedPlayerResponse: JsonObject? = YoutubeParsingHelper.getJsonPostResponse(PLAYER,
@@ -870,7 +870,7 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
     }
 
     @Nonnull
-    private fun getVideoInfoRenderer(@Nonnull videoRendererName: String): JsonObject {
+    private fun getVideoInfoRenderer(videoRendererName: String): JsonObject {
         return nextResponse!!.getObject("contents")
                 .getObject("twoColumnWatchNextResults")
                 .getObject("results")
@@ -1036,8 +1036,8 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
             videoId: String?,
             streamingData: JsonObject?,
             streamingDataKey: String,
-            @Nonnull itagTypeWanted: ItagType,
-            @Nonnull contentPlaybackNonce: String?): Stream<ItagInfo?> {
+            itagTypeWanted: ItagType,
+            contentPlaybackNonce: String?): Stream<ItagInfo?> {
         if (streamingData == null || !streamingData.has(streamingDataKey)) {
             return Stream.empty()
         }
@@ -1062,11 +1062,11 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
 
     @Throws(IOException::class, ExtractionException::class)
     private fun buildAndAddItagInfoToList(
-            @Nonnull videoId: String?,
-            @Nonnull formatData: JsonObject,
-            @Nonnull itagItem: ItagItem,
-            @Nonnull itagType: ItagType?,
-            @Nonnull contentPlaybackNonce: String?): ItagInfo {
+            videoId: String?,
+            formatData: JsonObject,
+            itagItem: ItagItem,
+            itagType: ItagType?,
+            contentPlaybackNonce: String?): ItagInfo {
         var streamUrl: String?
         if (formatData.has("url")) {
             streamUrl = formatData.getString("url")
@@ -1323,7 +1323,7 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         private var isIosClientFetchForced: Boolean = false
         @Throws(ParsingException::class)
         private fun parseLikeCountFromLikeButtonRenderer(
-                @Nonnull topLevelButtons: JsonArray): Long {
+                topLevelButtons: JsonArray): Long {
             var likesString: String? = null
             val likeToggleButtonRenderer: JsonObject? = topLevelButtons.stream()
                     .filter(Predicate({ o: Any? -> JsonObject::class.java.isInstance(o) }))
@@ -1378,7 +1378,7 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
 
         @Throws(ParsingException::class)
         private fun parseLikeCountFromLikeButtonViewModel(
-                @Nonnull topLevelButtons: JsonArray): Long {
+                topLevelButtons: JsonArray): Long {
             // Try first with the current video actions buttons data structure
             val likeToggleButtonViewModel: JsonObject? = topLevelButtons.stream()
                     .filter(Predicate({ o: Any? -> JsonObject::class.java.isInstance(o) }))
@@ -1414,8 +1414,8 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
         }
 
         @Nonnull
-        private fun getManifestUrl(@Nonnull manifestType: String,
-                                   @Nonnull streamingDataObjects: List<JsonObject?>): String {
+        private fun getManifestUrl(manifestType: String,
+                                   streamingDataObjects: List<JsonObject?>): String {
             val manifestKey: String = manifestType + "ManifestUrl"
             return streamingDataObjects.stream()
                     .filter(Predicate({ obj: JsonObject? -> Objects.nonNull(obj) }))
@@ -1470,8 +1470,8 @@ class YoutubeStreamExtractor(service: StreamingService, linkHandler: LinkHandler
          * @return whether the video ID of the player response is not equal to the one requested
          */
         private fun isPlayerResponseNotValid(
-                @Nonnull playerResponse: JsonObject?,
-                @Nonnull videoId: String?): Boolean {
+                playerResponse: JsonObject?,
+                videoId: String?): Boolean {
             return !(videoId == playerResponse!!.getObject("videoDetails")
                     .getString("videoId"))
         }

@@ -25,11 +25,11 @@ import java.util.Objects
 * You should have received a copy of the GNU General Public License
 * along with NewPipe Extractor. If not, see <https://www.gnu.org/licenses/>.
 */
-class AudioStream private constructor(@Nonnull id: String,
-                                      @Nonnull content: String,
+class AudioStream private constructor(id: String,
+                                      content: String,
                                       isUrl: Boolean,
                                       format: MediaFormat?,
-                                      @Nonnull deliveryMethod: DeliveryMethod,
+                                      deliveryMethod: DeliveryMethod,
                                       averageBitrate: Int,
                                       manifestUrl: String?,
                                       audioTrackId: String?,
@@ -189,7 +189,7 @@ class AudioStream private constructor(@Nonnull id: String,
          * @param id the identifier of the [AudioStream], which must not be null
          * @return this [Builder] instance
          */
-        fun setId(@Nonnull id: String?): Builder {
+        fun setId(id: String?): Builder {
             this.id = id
             return this
         }
@@ -206,7 +206,7 @@ class AudioStream private constructor(@Nonnull id: String,
          * @param isUrl   whether the content is a URL
          * @return this [Builder] instance
          */
-        fun setContent(@Nonnull content: String?,
+        fun setContent(content: String?,
                        isUrl: Boolean): Builder {
             this.content = content
             this.isUrl = isUrl
@@ -253,7 +253,7 @@ class AudioStream private constructor(@Nonnull id: String,
          * not be null
          * @return this [Builder] instance
          */
-        fun setDeliveryMethod(@Nonnull deliveryMethod: DeliveryMethod?): Builder {
+        fun setDeliveryMethod(deliveryMethod: DeliveryMethod?): Builder {
             this.deliveryMethod = deliveryMethod
             return this
         }

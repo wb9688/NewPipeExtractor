@@ -17,7 +17,7 @@ import java.io.IOException
 class SoundcloudChartsExtractor(service: StreamingService,
                                 linkHandler: ListLinkHandler?,
                                 kioskId: String) : KioskExtractor<StreamInfoItem?>(service, linkHandler, kioskId) {
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {}
+    public override fun onFetchPage(downloader: Downloader?) {}
 
     @get:Nonnull
     override val name: String?

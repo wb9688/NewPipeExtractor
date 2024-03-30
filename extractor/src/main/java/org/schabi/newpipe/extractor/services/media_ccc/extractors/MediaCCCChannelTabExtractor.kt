@@ -29,7 +29,7 @@ class MediaCCCChannelTabExtractor
     linkHandler: ListLinkHandler?,
     private var conferenceData: JsonObject?) : ChannelTabExtractor(service, linkHandler) {
     @Throws(ExtractionException::class, IOException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         if (conferenceData == null) {
             // only fetch conference data if we don't have it already
             conferenceData = MediaCCCConferenceExtractor.Companion.fetchConferenceData(downloader, getId())

@@ -30,16 +30,16 @@ import java.util.List
 class ReadyChannelTabListLinkHandler(
         url: String?,
         channelId: String?,
-        @Nonnull channelTab: String?,
+        channelTab: String?,
         @param:Nonnull private val extractorBuilder: ChannelTabExtractorBuilder) : ListLinkHandler(url, url, channelId, List.of<String?>(channelTab), "") {
     open interface ChannelTabExtractorBuilder : Serializable {
         @Nonnull
-        fun build(@Nonnull service: StreamingService,
-                  @Nonnull linkHandler: ListLinkHandler?): ChannelTabExtractor
+        fun build(service: StreamingService,
+                  linkHandler: ListLinkHandler?): ChannelTabExtractor
     }
 
     @Nonnull
-    fun getChannelTabExtractor(@Nonnull service: StreamingService): ChannelTabExtractor {
+    fun getChannelTabExtractor(service: StreamingService): ChannelTabExtractor {
         return extractorBuilder.build(service, ListLinkHandler(this))
     }
 }

@@ -39,7 +39,7 @@ internal object YoutubeSignatureUtils {
      */
     @Nonnull
     @Throws(ParsingException::class)
-    fun getSignatureTimestamp(@Nonnull javaScriptPlayerCode: String?): String? {
+    fun getSignatureTimestamp(javaScriptPlayerCode: String?): String? {
         try {
             return Parser.matchGroup1(STS_REGEX, javaScriptPlayerCode)
         } catch (e: ParsingException) {
@@ -57,7 +57,7 @@ internal object YoutubeSignatureUtils {
      */
     @Nonnull
     @Throws(ParsingException::class)
-    fun getDeobfuscationCode(@Nonnull javaScriptPlayerCode: String?): String {
+    fun getDeobfuscationCode(javaScriptPlayerCode: String?): String {
         try {
             val deobfuscationFunctionName: String? = getDeobfuscationFunctionName(
                     javaScriptPlayerCode)
@@ -86,7 +86,7 @@ internal object YoutubeSignatureUtils {
 
     @Nonnull
     @Throws(ParsingException::class)
-    private fun getDeobfuscationFunctionName(@Nonnull javaScriptPlayerCode: String?): String? {
+    private fun getDeobfuscationFunctionName(javaScriptPlayerCode: String?): String? {
         var exception: RegexException? = null
         for (regex: String in FUNCTION_REGEXES) {
             try {
@@ -104,8 +104,8 @@ internal object YoutubeSignatureUtils {
     @Nonnull
     @Throws(ParsingException::class)
     private fun getDeobfuscateFunctionWithLexer(
-            @Nonnull javaScriptPlayerCode: String?,
-            @Nonnull deobfuscationFunctionName: String?): String {
+            javaScriptPlayerCode: String?,
+            deobfuscationFunctionName: String?): String {
         val functionBase: String = deobfuscationFunctionName + "=function"
         return functionBase + JavaScriptExtractor.matchToClosingBrace(
                 javaScriptPlayerCode, functionBase)
@@ -114,8 +114,8 @@ internal object YoutubeSignatureUtils {
     @Nonnull
     @Throws(ParsingException::class)
     private fun getDeobfuscateFunctionWithRegex(
-            @Nonnull javaScriptPlayerCode: String?,
-            @Nonnull deobfuscationFunctionName: String?): String {
+            javaScriptPlayerCode: String?,
+            deobfuscationFunctionName: String?): String {
         val functionPattern: String = (DEOBF_FUNC_REGEX_START
                 + Pattern.quote(deobfuscationFunctionName)
                 + DEOBF_FUNC_REGEX_END)
@@ -124,8 +124,8 @@ internal object YoutubeSignatureUtils {
 
     @Nonnull
     @Throws(ParsingException::class)
-    private fun getHelperObject(@Nonnull javaScriptPlayerCode: String?,
-                                @Nonnull helperObjectName: String?): String {
+    private fun getHelperObject(javaScriptPlayerCode: String?,
+                                helperObjectName: String?): String {
         val helperPattern: String = (SIG_DEOBF_HELPER_OBJ_REGEX_START
                 + Pattern.quote(helperObjectName)
                 + SIG_DEOBF_HELPER_OBJ_REGEX_END)

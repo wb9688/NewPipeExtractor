@@ -26,7 +26,7 @@ class PeertubeChannelTabExtractor(service: StreamingService,
         baseUrl = getBaseUrl()
     }
 
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {}
+    public override fun onFetchPage(downloader: Downloader?) {}
 
     @get:Throws(IOException::class, ExtractionException::class)
     @get:Nonnull

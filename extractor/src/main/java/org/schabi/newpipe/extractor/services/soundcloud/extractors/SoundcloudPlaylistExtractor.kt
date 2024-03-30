@@ -31,7 +31,7 @@ class SoundcloudPlaylistExtractor(service: StreamingService,
         private set
     private var playlist: JsonObject? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         id = getLinkHandler().getId()
         val apiUrl: String = (SoundcloudParsingHelper.SOUNDCLOUD_API_V2_URL + "playlists/" + id + "?client_id="
                 + SoundcloudParsingHelper.clientId() + "&representation=compact")

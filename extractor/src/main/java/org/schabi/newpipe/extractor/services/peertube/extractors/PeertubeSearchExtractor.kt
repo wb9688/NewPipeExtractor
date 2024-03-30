@@ -72,6 +72,6 @@ class PeertubeSearchExtractor @JvmOverloads constructor(service: StreamingServic
     }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
     }
 }

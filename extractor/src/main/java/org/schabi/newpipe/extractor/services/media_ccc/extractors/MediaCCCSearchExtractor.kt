@@ -87,7 +87,7 @@ class MediaCCCSearchExtractor(service: StreamingService,
     }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         if ((getLinkHandler().getContentFilters().contains(MediaCCCSearchQueryHandlerFactory.Companion.EVENTS)
                         || getLinkHandler().getContentFilters().contains(MediaCCCSearchQueryHandlerFactory.Companion.ALL)
                         || getLinkHandler().getContentFilters().isEmpty())) {

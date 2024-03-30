@@ -207,5 +207,5 @@ abstract class Downloader() {
      * @return the result of the request
      */
     @Throws(IOException::class, ReCaptchaException::class)
-    abstract fun execute(@Nonnull request: Request?): Response
+    abstract fun execute(request: Request?): Response
 }

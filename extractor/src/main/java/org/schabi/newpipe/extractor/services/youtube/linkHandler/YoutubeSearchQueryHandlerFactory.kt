@@ -8,7 +8,7 @@ import java.io.UnsupportedEncodingException
 class YoutubeSearchQueryHandlerFactory() : SearchQueryHandlerFactory() {
     @Throws(ParsingException::class, UnsupportedOperationException::class)
     public override fun getUrl(searchString: String?,
-                               @Nonnull contentFilters: List<String?>?,
+                               contentFilters: List<String?>?,
                                sortFilter: String?): String? {
         try {
             if (!contentFilters!!.isEmpty()) {

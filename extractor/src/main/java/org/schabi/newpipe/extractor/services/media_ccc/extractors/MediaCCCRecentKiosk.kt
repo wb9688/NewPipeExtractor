@@ -24,7 +24,7 @@ class MediaCCCRecentKiosk(streamingService: StreamingService,
                           kioskId: String) : KioskExtractor<StreamInfoItem?>(streamingService, linkHandler, kioskId) {
     private var doc: JsonObject? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val site: String? = downloader.get("https://api.media.ccc.de/public/events/recent",
                 getExtractorLocalization()).responseBody()
         try {

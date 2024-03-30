@@ -17,7 +17,7 @@ class DownloaderTestImpl private constructor(builder: OkHttpClient.Builder) : Do
     }
 
     @Throws(IOException::class, ReCaptchaException::class)
-    override fun execute(@Nonnull request: Request?): Response {
+    override fun execute(request: Request?): Response {
         val httpMethod = request!!.httpMethod()
         val url = request.url()
         val headers = request.headers()

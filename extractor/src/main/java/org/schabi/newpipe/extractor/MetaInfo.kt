@@ -18,10 +18,10 @@ class MetaInfo : Serializable {
     private var urls: MutableList<URL> = ArrayList()
     private var urlTexts: MutableList<String?> = ArrayList()
 
-    constructor(@Nonnull title: String?,
-                @Nonnull content: Description?,
-                @Nonnull urls: MutableList<URL>,
-                @Nonnull urlTexts: MutableList<String?>) {
+    constructor(title: String?,
+                content: Description?,
+                urls: MutableList<URL>,
+                urlTexts: MutableList<String?>) {
         this.title = title
         this.content = content
         this.urls = urls
@@ -35,11 +35,11 @@ class MetaInfo : Serializable {
         return urls
     }
 
-    fun setUrls(@Nonnull urls: MutableList<URL>) {
+    fun setUrls(urls: MutableList<URL>) {
         this.urls = urls
     }
 
-    fun addUrl(@Nonnull url: URL) {
+    fun addUrl(url: URL) {
         urls.add(url)
     }
 
@@ -48,11 +48,11 @@ class MetaInfo : Serializable {
         return urlTexts
     }
 
-    fun setUrlTexts(@Nonnull urlTexts: MutableList<String?>) {
+    fun setUrlTexts(urlTexts: MutableList<String?>) {
         this.urlTexts = urlTexts
     }
 
-    fun addUrlText(@Nonnull urlText: String?) {
+    fun addUrlText(urlText: String?) {
         urlTexts.add(urlText)
     }
 }

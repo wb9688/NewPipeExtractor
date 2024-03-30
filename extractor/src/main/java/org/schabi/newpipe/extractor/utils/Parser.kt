@@ -46,7 +46,7 @@ object Parser {
     }
 
     @Throws(RegexException::class)
-    fun matchGroup(@Nonnull pat: Pattern,
+    fun matchGroup(pat: Pattern,
                    input: String?,
                    group: Int): String {
         val matcher = pat.matcher(input)
@@ -70,14 +70,14 @@ object Parser {
         return mat.find()
     }
 
-    fun isMatch(@Nonnull pattern: Pattern, input: String?): Boolean {
+    fun isMatch(pattern: Pattern, input: String?): Boolean {
         val mat = pattern.matcher(input)
         return mat.find()
     }
 
     @Nonnull
     @Throws(UnsupportedEncodingException::class)
-    fun compatParseMap(@Nonnull input: String): Map<String?, String?> {
+    fun compatParseMap(input: String): Map<String?, String?> {
         val map: MutableMap<String?, String?> = HashMap()
         for (arg in input.split("&".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
             val splitArg = arg.split("=".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()

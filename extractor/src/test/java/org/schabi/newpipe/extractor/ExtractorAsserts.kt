@@ -140,8 +140,8 @@ object ExtractorAsserts {
                 "'$shouldBeContained' should be contained inside '$container'")
     }
 
-    fun assertTabsContain(@Nonnull tabs: List<ListLinkHandler>,
-                          @Nonnull vararg expectedTabs: String) {
+    fun assertTabsContain(tabs: List<ListLinkHandler>,
+                          vararg expectedTabs: String) {
         val tabSet = tabs.stream()
                 .map { linkHandler: ListLinkHandler -> linkHandler.contentFilters[0] }
                 .collect(Collectors.toUnmodifiableSet())

@@ -73,8 +73,8 @@ object YoutubeProgressiveDashManifestCreator {
     @Nonnull
     @Throws(CreationException::class)
     fun fromProgressiveStreamingUrl(
-            @Nonnull progressiveStreamingBaseUrl: String?,
-            @Nonnull itagItem: ItagItem,
+            progressiveStreamingBaseUrl: String?,
+            itagItem: ItagItem,
             durationSecondsFallback: Long): String? {
         if (cache.containsKey((progressiveStreamingBaseUrl)!!)) {
             return Objects.requireNonNull(
@@ -116,8 +116,8 @@ object YoutubeProgressiveDashManifestCreator {
      * content of the `<BaseURL>` element
      */
     @Throws(CreationException::class)
-    private fun generateBaseUrlElement(@Nonnull doc: Document?,
-                                       @Nonnull baseUrl: String?) {
+    private fun generateBaseUrlElement(doc: Document?,
+                                       baseUrl: String?) {
         try {
             val representationElement: Element = doc!!.getElementsByTagName(
                     YoutubeDashManifestCreatorsUtils.REPRESENTATION).item(0) as Element
@@ -155,8 +155,8 @@ object YoutubeProgressiveDashManifestCreator {
      * @param itagItem the [ItagItem] to use, which must not be null
      */
     @Throws(CreationException::class)
-    private fun generateSegmentBaseElement(@Nonnull doc: Document?,
-                                           @Nonnull itagItem: ItagItem) {
+    private fun generateSegmentBaseElement(doc: Document?,
+                                           itagItem: ItagItem) {
         try {
             val representationElement: Element = doc!!.getElementsByTagName(
                     YoutubeDashManifestCreatorsUtils.REPRESENTATION).item(0) as Element
@@ -198,8 +198,8 @@ object YoutubeProgressiveDashManifestCreator {
      * @param itagItem the [ItagItem] to use, which must not be null
      */
     @Throws(CreationException::class)
-    private fun generateInitializationElement(@Nonnull doc: Document?,
-                                              @Nonnull itagItem: ItagItem) {
+    private fun generateInitializationElement(doc: Document?,
+                                              itagItem: ItagItem) {
         try {
             val segmentBaseElement: Element = doc!!.getElementsByTagName(
                     YoutubeDashManifestCreatorsUtils.SEGMENT_BASE).item(0) as Element

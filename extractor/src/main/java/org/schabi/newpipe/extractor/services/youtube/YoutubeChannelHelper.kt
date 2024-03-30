@@ -29,7 +29,7 @@ object YoutubeChannelHelper {
      */
     @Nonnull
     @Throws(ExtractionException::class, IOException::class)
-    fun resolveChannelId(@Nonnull idOrPath: String?): String {
+    fun resolveChannelId(idOrPath: String?): String {
         val channelId: Array<String> = idOrPath!!.split("/".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
         if (channelId.get(0).startsWith("UC")) {
             return channelId.get(0)
@@ -91,10 +91,10 @@ object YoutubeChannelHelper {
      */
     @Nonnull
     @Throws(ExtractionException::class, IOException::class)
-    fun getChannelResponse(@Nonnull channelId: String?,
-                           @Nonnull parameters: String?,
-                           @Nonnull localization: Localization?,
-                           @Nonnull country: ContentCountry?): ChannelResponseData {
+    fun getChannelResponse(channelId: String?,
+                           parameters: String?,
+                           localization: Localization?,
+                           country: ContentCountry?): ChannelResponseData {
         var id: String? = channelId
         var ajaxJson: JsonObject? = null
         var level: Int = 0
@@ -144,7 +144,7 @@ object YoutubeChannelHelper {
      * @throws ContentNotAvailableException if the channel was not found
      */
     @Throws(ContentNotAvailableException::class)
-    private fun checkIfChannelResponseIsValid(@Nonnull jsonResponse: JsonObject?) {
+    private fun checkIfChannelResponseIsValid(jsonResponse: JsonObject?) {
         if (!Utils.isNullOrEmpty(jsonResponse!!.getObject("error"))) {
             val errorJsonObject: JsonObject = jsonResponse.getObject("error")
             val errorCode: Int = errorJsonObject.getInt("code")
@@ -167,7 +167,7 @@ object YoutubeChannelHelper {
      */
     @Nonnull
     fun getChannelHeader(
-            @Nonnull channelResponse: JsonObject?): Optional<ChannelHeader?> {
+            channelResponse: JsonObject?): Optional<ChannelHeader?> {
         val header: JsonObject = channelResponse!!.getObject("header")
         if (header.has("c4TabbedHeaderRenderer")) {
             return Optional.of(header.getObject("c4TabbedHeaderRenderer"))

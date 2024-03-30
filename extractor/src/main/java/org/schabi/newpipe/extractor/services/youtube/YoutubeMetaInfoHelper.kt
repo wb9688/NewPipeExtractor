@@ -17,7 +17,7 @@ import java.util.stream.Collectors
 object YoutubeMetaInfoHelper {
     @Nonnull
     @Throws(ParsingException::class)
-    fun getMetaInfo(@Nonnull contents: JsonArray): List<MetaInfo> {
+    fun getMetaInfo(contents: JsonArray): List<MetaInfo> {
         val metaInfo: MutableList<MetaInfo> = ArrayList()
         for (content: Any in contents) {
             val resultObject: JsonObject = content as JsonObject
@@ -45,7 +45,7 @@ object YoutubeMetaInfoHelper {
 
     @Nonnull
     @Throws(ParsingException::class)
-    private fun getInfoPanelContent(@Nonnull infoPanelContentRenderer: JsonObject): MetaInfo {
+    private fun getInfoPanelContent(infoPanelContentRenderer: JsonObject): MetaInfo {
         val metaInfo: MetaInfo = MetaInfo()
         val sb: StringBuilder = StringBuilder()
         for (paragraph: Any in infoPanelContentRenderer.getArray("paragraphs")) {
@@ -79,7 +79,7 @@ object YoutubeMetaInfoHelper {
     @Nonnull
     @Throws(ParsingException::class)
     private fun getClarificationRenderer(
-            @Nonnull clarificationRenderer: JsonObject): MetaInfo {
+            clarificationRenderer: JsonObject): MetaInfo {
         val metaInfo: MetaInfo = MetaInfo()
         val title: String? = YoutubeParsingHelper.getTextFromObject(clarificationRenderer
                 .getObject("contentTitle"))
@@ -130,7 +130,7 @@ object YoutubeMetaInfoHelper {
 
     @Throws(ParsingException::class)
     private fun getEmergencyOneboxRenderer(
-            @Nonnull emergencyOneboxRenderer: JsonObject,
+            emergencyOneboxRenderer: JsonObject,
             addMetaInfo: Consumer<MetaInfo>
     ) {
         val supportRenderers: List<JsonObject> = emergencyOneboxRenderer.values

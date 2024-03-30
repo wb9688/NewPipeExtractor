@@ -134,7 +134,7 @@ object SoundcloudParsingHelper {
      * See https://developers.soundcloud.com/docs/api/reference#resolve
      */
     @Throws(IOException::class, ExtractionException::class)
-    fun resolveFor(@Nonnull downloader: Downloader?, url: String?): JsonObject {
+    fun resolveFor(downloader: Downloader?, url: String?): JsonObject {
         val apiUrl: String = (SOUNDCLOUD_API_V2_URL + "resolve"
                 + "?url=" + Utils.encodeUrlUtf8(url)
                 + "&client_id=" + clientId())
@@ -301,7 +301,7 @@ object SoundcloudParsingHelper {
     }
 
     @Nonnull
-    private fun getNextPageUrl(@Nonnull response: JsonObject): String {
+    private fun getNextPageUrl(response: JsonObject): String {
         try {
             var nextPageUrl: String = response.getString("next_href")
             if (!nextPageUrl.contains("client_id=")) {
@@ -376,7 +376,7 @@ object SoundcloudParsingHelper {
 
     @Nonnull
     @Throws(ParsingException::class)
-    fun getAllImagesFromTrackObject(@Nonnull trackObject: JsonObject?): List<Image> {
+    fun getAllImagesFromTrackObject(trackObject: JsonObject?): List<Image> {
         val artworkUrl: String? = trackObject!!.getString("artwork_url")
         if (artworkUrl != null) {
             return getAllImagesFromArtworkOrAvatarUrl(artworkUrl)
@@ -413,8 +413,8 @@ object SoundcloudParsingHelper {
     }
 
     private fun getAllImagesFromImageUrlReturned(
-            @Nonnull baseImageUrlFormat: String,
-            @Nonnull imageSuffixes: List<ImageSuffix>): List<Image> {
+            baseImageUrlFormat: String,
+            imageSuffixes: List<ImageSuffix>): List<Image> {
         return imageSuffixes.stream()
                 .map(Function({ imageSuffix: ImageSuffix ->
                     Image(String.format(baseImageUrlFormat, imageSuffix.getSuffix()),

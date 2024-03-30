@@ -48,7 +48,7 @@ class BandcampChannelTabLinkHandlerFactory private constructor() : ListLinkHandl
          */
         @Nonnull
         @Throws(UnsupportedTabException::class)
-        fun getUrlSuffix(@Nonnull tab: String?): String {
+        fun getUrlSuffix(tab: String?): String {
             when (tab) {
                 ChannelTabs.TRACKS -> return "/track"
                 ChannelTabs.ALBUMS -> return "/album"

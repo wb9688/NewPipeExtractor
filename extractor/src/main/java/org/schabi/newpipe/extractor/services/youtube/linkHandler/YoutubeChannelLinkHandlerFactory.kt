@@ -48,7 +48,7 @@ private constructor() : ListLinkHandlerFactory() {
      * @param splitPath the path segments array
      * @return whether the value conform to short channel URLs
      */
-    private fun isCustomShortChannelUrl(@Nonnull splitPath: Array<String>): Boolean {
+    private fun isCustomShortChannelUrl(splitPath: Array<String>): Boolean {
         return splitPath.size == 1 && !EXCLUDED_SEGMENTS.matcher(splitPath.get(0)).matches()
     }
 
@@ -58,7 +58,7 @@ private constructor() : ListLinkHandlerFactory() {
      * @param splitPath the path segments array
      * @return whether the value conform to handle URLs
      */
-    private fun isHandle(@Nonnull splitPath: Array<String>): Boolean {
+    private fun isHandle(splitPath: Array<String>): Boolean {
         return splitPath.size > 0 && splitPath.get(0).startsWith("@")
     }
 

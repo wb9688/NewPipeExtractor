@@ -64,7 +64,7 @@ class YoutubeSearchExtractor(service: StreamingService,
     }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val query: String? = super.getSearchString()
         val localization: Localization? = getExtractorLocalization()
         val params: String = YoutubeSearchQueryHandlerFactory.Companion.getSearchParameter(searchType)
@@ -185,7 +185,7 @@ class YoutubeSearchExtractor(service: StreamingService,
 
     @Throws(NothingFoundException::class)
     private fun collectStreamsFrom(collector: MultiInfoItemsCollector,
-                                   @Nonnull contents: JsonArray) {
+                                   contents: JsonArray) {
         val timeAgoParser: TimeAgoParser? = getTimeAgoParser()
         for (content: Any in contents) {
             val item: JsonObject = content as JsonObject

@@ -32,7 +32,7 @@ class YoutubeMusicSearchExtractor(service: StreamingService,
                                   linkHandler: SearchQueryHandler?) : SearchExtractor(service, linkHandler) {
     private var initialData: JsonObject? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val youtubeMusicKeys: Array<String?>? = YoutubeParsingHelper.getYoutubeMusicKey()
         val url: String = ("https://music.youtube.com/youtubei/v1/search?key="
                 + youtubeMusicKeys!!.get(0) + YoutubeParsingHelper.DISABLE_PRETTY_PRINT_PARAMETER)
@@ -207,7 +207,7 @@ class YoutubeMusicSearchExtractor(service: StreamingService,
     }
 
     private fun collectMusicStreamsFrom(collector: MultiInfoItemsCollector,
-                                        @Nonnull videos: JsonArray) {
+                                        videos: JsonArray) {
         val searchType: String = getLinkHandler().getContentFilters().get(0)
         videos.stream()
                 .filter(Predicate<Any>({ o: Any? -> JsonObject::class.java.isInstance(o) }))

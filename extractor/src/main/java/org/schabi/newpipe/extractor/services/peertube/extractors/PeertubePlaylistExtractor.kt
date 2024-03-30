@@ -122,7 +122,7 @@ class PeertubePlaylistExtractor(service: StreamingService,
     }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val response: Response? = downloader!!.get(getUrl())
         try {
             playlistInfo = JsonParser.`object`().from(response!!.responseBody())

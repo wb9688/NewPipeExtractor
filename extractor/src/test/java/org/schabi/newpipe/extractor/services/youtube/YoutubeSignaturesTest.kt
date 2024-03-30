@@ -22,7 +22,7 @@ internal class YoutubeSignaturesTest {
     @ValueSource(strings = ["QzUGs1qRTEI", ""])
     @ParameterizedTest
     @Throws(Exception::class)
-    fun testSignatureTimestampExtraction(@Nonnull videoId: String?) {
+    fun testSignatureTimestampExtraction(videoId: String?) {
         val signatureTimestamp = getSignatureTimestamp(videoId)
         Assertions.assertTrue(signatureTimestamp!! > 0, "signatureTimestamp is <= 0")
     }
@@ -36,8 +36,8 @@ internal class YoutubeSignaturesTest {
     @CsvSource(value = ["QzUGs1qRTEI,5QjJrWzVcOutYYNyxkDJVkzQDZQxNbbxGi4hRoh2h4PomQMQq9vo2WPHVpHgxRn7qT3WyhRiJa1k1t1DL3lynZtupHmG3wW4qh59faKjtY4UVu", ",7vIK4hG6NbcIEQP4ZIRjonOzuPHh7wTrEgBdEMYyfE4F5Pq0FiGdv04kptb587c8aToH345ETJ8dMbXnpOmjanP3nzgJ0iNg8oHIm8oeQODPSP"])
     @ParameterizedTest
     @Throws(Exception::class)
-    fun testSignatureDeobfuscation(@Nonnull videoId: String?,
-                                   @Nonnull sampleString: String?) {
+    fun testSignatureDeobfuscation(videoId: String?,
+                                   sampleString: String?) {
         // As the signature deobfuscation changes frequently with player versions, we can only test
         // that we get a different string than the original one
         Assertions.assertNotEquals(sampleString,

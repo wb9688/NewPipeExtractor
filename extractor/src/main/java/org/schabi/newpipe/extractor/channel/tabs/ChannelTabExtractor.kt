@@ -8,8 +8,8 @@ import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler
 /**
  * A [ListExtractor] of [InfoItem]s for tabs of channels.
  */
-abstract class ChannelTabExtractor protected constructor(@Nonnull service: StreamingService,
-                                                         @Nonnull linkHandler: ListLinkHandler?) : ListExtractor<InfoItem?>(service, linkHandler) {
+abstract class ChannelTabExtractor protected constructor(service: StreamingService,
+                                                         linkHandler: ListLinkHandler?) : ListExtractor<InfoItem?>(service, linkHandler) {
     @get:Nonnull
     override val name: String?
         get() {

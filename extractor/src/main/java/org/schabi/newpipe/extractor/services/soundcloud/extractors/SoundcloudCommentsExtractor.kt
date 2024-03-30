@@ -38,7 +38,7 @@ class SoundcloudCommentsExtractor(service: StreamingService,
 
     @Nonnull
     @Throws(ParsingException::class, IOException::class, ReCaptchaException::class)
-    private fun getPage(@Nonnull url: String?): InfoItemsPage<CommentsInfoItem?> {
+    private fun getPage(url: String?): InfoItemsPage<CommentsInfoItem?> {
         val downloader: Downloader? = NewPipe.getDownloader()
         val response: Response? = downloader!!.get(url)
         val json: JsonObject
@@ -53,7 +53,7 @@ class SoundcloudCommentsExtractor(service: StreamingService,
         return InfoItemsPage(collector, Page(json.getString("next_href", null)))
     }
 
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {}
+    public override fun onFetchPage(downloader: Downloader?) {}
     @Throws(ParsingException::class)
     private fun collectStreamsFrom(collector: CommentsInfoItemsCollector,
                                    entries: JsonArray) {

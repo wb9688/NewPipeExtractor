@@ -60,7 +60,7 @@ class ItagItem : Serializable {
      *
      * @param itagItem the [ItagItem] to copy its properties into a new [ItagItem]
      */
-    constructor(@Nonnull itagItem: ItagItem) {
+    constructor(itagItem: ItagItem) {
         mediaFormat = itagItem.mediaFormat
         id = itagItem.id
         itagType = itagItem.itagType

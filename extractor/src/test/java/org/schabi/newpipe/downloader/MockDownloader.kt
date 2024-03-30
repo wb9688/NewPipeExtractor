@@ -36,7 +36,7 @@ internal class MockDownloader(@param:Nonnull private val path: String) : Downloa
         }
     }
 
-    override fun execute(@Nonnull request: Request?): Response {
+    override fun execute(request: Request?): Response {
         return mocks[request]
                 ?: throw NullPointerException("No mock response for request with url '" + request
                         .url() + "' exists in path '" + path + "'.\nPlease make sure to run the tests "

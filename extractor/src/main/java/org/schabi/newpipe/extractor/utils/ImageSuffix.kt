@@ -37,7 +37,7 @@ class ImageSuffix(@field:Nonnull
                    * @return the width corresponding to the image suffix, which may be unknown
                    */
                   val width: Int,
-                  @Nonnull estimatedResolutionLevel: ResolutionLevel) : Serializable {
+                  estimatedResolutionLevel: ResolutionLevel) : Serializable {
 
     /**
      * @return the estimated [ResolutionLevel] of the suffix, which is never null.

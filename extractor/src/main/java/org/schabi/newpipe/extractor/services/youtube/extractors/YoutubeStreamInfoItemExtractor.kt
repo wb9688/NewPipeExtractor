@@ -305,7 +305,7 @@ open class YoutubeStreamInfoItemExtractor
         }
 
     @Throws(NumberFormatException::class, ParsingException::class)
-    private fun getViewCountFromViewCountText(@Nonnull viewCountText: String?,
+    private fun getViewCountFromViewCountText(viewCountText: String?,
                                               isMixedNumber: Boolean): Long {
         // These approaches are language dependent
         if (viewCountText!!.lowercase(Locale.getDefault()).contains(NO_VIEWS_LOWERCASE)) {

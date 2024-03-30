@@ -78,7 +78,7 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
         }
 
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         channelId = YoutubeChannelHelper.resolveChannelId(super.getId())
         val params: String = channelTabsParameters
         val data: ChannelResponseData? = YoutubeChannelHelper.getChannelResponse(channelId,
@@ -249,9 +249,9 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
                     }))
         }
 
-    private fun collectItemsFrom(@Nonnull collector: MultiInfoItemsCollector,
-                                 @Nonnull items: JsonArray,
-                                 @Nonnull channelIds: List<String?>?): Optional<JsonObject?> {
+    private fun collectItemsFrom(collector: MultiInfoItemsCollector,
+                                 items: JsonArray,
+                                 channelIds: List<String?>?): Optional<JsonObject?> {
         return items.stream()
                 .filter(Predicate({ o: Any? -> JsonObject::class.java.isInstance(o) }))
                 .map(Function({ obj: Any? -> JsonObject::class.java.cast(obj) }))
@@ -259,9 +259,9 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
                 .reduce(Optional.empty(), BinaryOperator({ c1: Optional<JsonObject?>, c2: Optional<JsonObject?>? -> c1.or(Supplier<Optional<out JsonObject?>?>({ c2 })) }))
     }
 
-    private fun collectItem(@Nonnull collector: MultiInfoItemsCollector,
-                            @Nonnull item: JsonObject,
-                            @Nonnull channelIds: List<String?>?): Optional<JsonObject?> {
+    private fun collectItem(collector: MultiInfoItemsCollector,
+                            item: JsonObject,
+                            channelIds: List<String?>?): Optional<JsonObject?> {
         val timeAgoParser: TimeAgoParser? = getTimeAgoParser()
         if (item.has("richItemRenderer")) {
             val richItem: JsonObject = item.getObject("richItemRenderer")
@@ -300,10 +300,10 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
         return Optional.empty()
     }
 
-    private fun getCommitVideoConsumer(@Nonnull collector: MultiInfoItemsCollector,
-                                       @Nonnull timeAgoParser: TimeAgoParser?,
-                                       @Nonnull channelIds: List<String?>?,
-                                       @Nonnull jsonObject: JsonObject) {
+    private fun getCommitVideoConsumer(collector: MultiInfoItemsCollector,
+                                       timeAgoParser: TimeAgoParser?,
+                                       channelIds: List<String?>?,
+                                       jsonObject: JsonObject) {
         collector.commit(
                 object : YoutubeStreamInfoItemExtractor(jsonObject, timeAgoParser) {
                     @get:Throws(ParsingException::class)
@@ -326,9 +326,9 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
                 })
     }
 
-    private fun getCommitReelItemConsumer(@Nonnull collector: MultiInfoItemsCollector,
-                                          @Nonnull channelIds: List<String?>?,
-                                          @Nonnull jsonObject: JsonObject) {
+    private fun getCommitReelItemConsumer(collector: MultiInfoItemsCollector,
+                                          channelIds: List<String?>?,
+                                          jsonObject: JsonObject) {
         collector.commit(
                 object : YoutubeReelInfoItemExtractor(jsonObject) {
                     @get:Throws(ParsingException::class)
@@ -351,9 +351,9 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
                 })
     }
 
-    private fun getCommitPlaylistConsumer(@Nonnull collector: MultiInfoItemsCollector,
-                                          @Nonnull channelIds: List<String?>?,
-                                          @Nonnull jsonObject: JsonObject) {
+    private fun getCommitPlaylistConsumer(collector: MultiInfoItemsCollector,
+                                          channelIds: List<String?>?,
+                                          jsonObject: JsonObject) {
         collector.commit(
                 object : YoutubePlaylistInfoItemExtractor(jsonObject) {
                     @get:Throws(ParsingException::class)
@@ -405,7 +405,7 @@ open class YoutubeChannelTabExtractor(service: StreamingService,
                                                   override val channelName: String?,
                                                   private val channelId: String?,
                                                   private val channelUrl: String?) : YoutubeChannelTabExtractor(service, linkHandler) {
-        public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+        public override fun onFetchPage(downloader: Downloader?) {
             // Nothing to do, the initial data was already fetched and is stored in the link handler
         }
 

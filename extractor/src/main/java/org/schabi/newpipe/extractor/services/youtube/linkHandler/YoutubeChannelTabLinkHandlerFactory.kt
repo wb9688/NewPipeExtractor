@@ -43,7 +43,7 @@ class YoutubeChannelTabLinkHandlerFactory private constructor() : ListLinkHandle
         val instance: YoutubeChannelTabLinkHandlerFactory = YoutubeChannelTabLinkHandlerFactory()
         @Nonnull
         @Throws(UnsupportedTabException::class)
-        fun getUrlSuffix(@Nonnull tab: String?): String {
+        fun getUrlSuffix(tab: String?): String {
             when (tab) {
                 ChannelTabs.VIDEOS -> return "/videos"
                 ChannelTabs.SHORTS -> return "/shorts"

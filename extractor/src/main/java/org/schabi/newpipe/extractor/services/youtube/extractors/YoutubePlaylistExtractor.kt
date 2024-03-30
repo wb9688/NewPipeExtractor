@@ -70,7 +70,7 @@ class YoutubePlaylistExtractor(service: StreamingService,
         }
     private var isNewPlaylistInterface: Boolean = false
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         val localization: Localization? = getExtractorLocalization()
         val body: ByteArray = JsonWriter.string(YoutubeParsingHelper.prepareDesktopJsonBuilder(localization,
                 getExtractorContentCountry())
@@ -350,8 +350,8 @@ class YoutubePlaylistExtractor(service: StreamingService,
         }
     }
 
-    private fun collectStreamsFrom(@Nonnull collector: StreamInfoItemsCollector,
-                                   @Nonnull videos: JsonArray) {
+    private fun collectStreamsFrom(collector: StreamInfoItemsCollector,
+                                   videos: JsonArray) {
         val timeAgoParser: TimeAgoParser? = getTimeAgoParser()
         videos.stream()
                 .filter(Predicate({ o: Any? -> JsonObject::class.java.isInstance(o) }))

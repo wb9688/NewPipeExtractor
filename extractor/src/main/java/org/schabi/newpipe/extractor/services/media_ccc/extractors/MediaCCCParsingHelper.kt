@@ -108,7 +108,7 @@ object MediaCCCParsingHelper {
      * @return an unmodifiable list, which is never null but can be empty.
      */
     @Nonnull
-    fun getThumbnailsFromStreamItem(@Nonnull streamItem: JsonObject?): List<Image> {
+    fun getThumbnailsFromStreamItem(streamItem: JsonObject?): List<Image> {
         return getThumbnailsFromObject(streamItem, "thumb_url", "poster_url")
     }
 
@@ -126,7 +126,7 @@ object MediaCCCParsingHelper {
      */
     @Nonnull
     fun getThumbnailsFromLiveStreamItem(
-            @Nonnull liveStreamItem: JsonObject?): List<Image> {
+            liveStreamItem: JsonObject?): List<Image> {
         return getThumbnailsFromObject(liveStreamItem, "thumb", "poster")
     }
 
@@ -151,9 +151,9 @@ object MediaCCCParsingHelper {
      */
     @Nonnull
     private fun getThumbnailsFromObject(
-            @Nonnull streamOrLivestreamItem: JsonObject?,
-            @Nonnull thumbUrlKey: String,
-            @Nonnull posterUrlKey: String): List<Image> {
+            streamOrLivestreamItem: JsonObject?,
+            thumbUrlKey: String,
+            posterUrlKey: String): List<Image> {
         val imageList: MutableList<Image> = ArrayList(2)
         val thumbUrl: String = streamOrLivestreamItem!!.getString(thumbUrlKey)
         if (!Utils.isNullOrEmpty(thumbUrl)) {

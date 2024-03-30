@@ -40,7 +40,7 @@ class SoundcloudStreamExtractor(service: StreamingService,
     private var track: JsonObject? = null
     private var isAvailable: Boolean = true
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         track = SoundcloudParsingHelper.resolveFor(downloader, getUrl())
         val policy: String = track!!.getString("policy", "")
         if (!(policy == "ALLOW") && !(policy == "MONETIZE")) {
@@ -178,7 +178,7 @@ class SoundcloudStreamExtractor(service: StreamingService,
     }
 
     @Throws(IOException::class, ExtractionException::class)
-    private fun getDownloadUrl(@Nonnull trackId: String?): String? {
+    private fun getDownloadUrl(trackId: String?): String? {
         val response: String? = NewPipe.getDownloader().get((SoundcloudParsingHelper.SOUNDCLOUD_API_V2_URL + "tracks/"
                 + trackId + "/download" + "?client_id=" + SoundcloudParsingHelper.clientId())).responseBody()
         val downloadJsonObject: JsonObject
@@ -194,7 +194,7 @@ class SoundcloudStreamExtractor(service: StreamingService,
         return null
     }
 
-    private fun extractAudioStreams(@Nonnull transcodings: JsonArray,
+    private fun extractAudioStreams(transcodings: JsonArray,
                                     mp3ProgressiveInStreams: Boolean,
                                     audioStreams: MutableList<AudioStream?>) {
         transcodings.stream()
@@ -346,7 +346,7 @@ class SoundcloudStreamExtractor(service: StreamingService,
         }
 
     companion object {
-        private fun checkMp3ProgressivePresence(@Nonnull transcodings: JsonArray): Boolean {
+        private fun checkMp3ProgressivePresence(transcodings: JsonArray): Boolean {
             return transcodings.stream()
                     .filter(Predicate({ o: Any? -> JsonObject::class.java.isInstance(o) }))
                     .map(Function({ obj: Any? -> JsonObject::class.java.cast(obj) }))

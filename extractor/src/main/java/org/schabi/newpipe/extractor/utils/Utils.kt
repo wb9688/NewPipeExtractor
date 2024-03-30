@@ -63,7 +63,7 @@ object Utils {
      * @return a string that contains only digits
      */
     @Nonnull
-    fun removeNonDigitCharacters(@Nonnull toRemove: String?): String {
+    fun removeNonDigitCharacters(toRemove: String?): String {
         return toRemove!!.replace("\\D+".toRegex(), "")
     }
 
@@ -138,7 +138,7 @@ object Utils {
      * @return a string that contains the value of the query parameter or `null` if nothing
      * was found
      */
-    fun getQueryValue(@Nonnull url: URL?,
+    fun getQueryValue(url: URL?,
                       parameterName: String): String? {
         val urlQuery = url!!.query
         if (urlQuery != null) {
@@ -189,7 +189,7 @@ object Utils {
         }
     }
 
-    fun isHTTP(@Nonnull url: URL?): Boolean {
+    fun isHTTP(url: URL?): Boolean {
         // Make sure it's HTTP or HTTPS
         val protocol = url!!.protocol
         if (protocol != "http" && protocol != "https") {
@@ -210,7 +210,7 @@ object Utils {
     }
 
     @Nonnull
-    fun removeUTF8BOM(@Nonnull s: String?): String? {
+    fun removeUTF8BOM(s: String?): String? {
         var result = s
         if (result!!.startsWith("\uFEFF")) {
             result = result.substring(1)
@@ -304,7 +304,7 @@ object Utils {
     fun join(
             delimiter: String?,
             mapJoin: String,
-            @Nonnull elements: Map<out CharSequence, CharSequence>): String {
+            elements: Map<out CharSequence, CharSequence>): String {
         return elements.entries.stream()
                 .map { (key, value): Map.Entry<CharSequence, CharSequence> -> key.toString() + mapJoin + value }
                 .collect(Collectors.joining(delimiter))
@@ -333,8 +333,8 @@ object Utils {
      */
     @Nonnull
     @Throws(RegexException::class)
-    fun getStringResultFromRegexArray(@Nonnull input: String?,
-                                      @Nonnull regexes: Array<String?>?): String {
+    fun getStringResultFromRegexArray(input: String?,
+                                      regexes: Array<String?>?): String {
         return getStringResultFromRegexArray(input, regexes, 0)
     }
 
@@ -349,8 +349,8 @@ object Utils {
      */
     @Nonnull
     @Throws(RegexException::class)
-    fun getStringResultFromRegexArray(@Nonnull input: String?,
-                                      @Nonnull regexes: Array<Pattern>): String {
+    fun getStringResultFromRegexArray(input: String?,
+                                      regexes: Array<Pattern>): String {
         return getStringResultFromRegexArray(input, regexes, 0)
     }
 
@@ -367,8 +367,8 @@ object Utils {
      */
     @Nonnull
     @Throws(RegexException::class)
-    fun getStringResultFromRegexArray(@Nonnull input: String?,
-                                      @Nonnull regexes: Array<String?>?,
+    fun getStringResultFromRegexArray(input: String?,
+                                      regexes: Array<String?>?,
                                       group: Int): String {
         return getStringResultFromRegexArray(input,
                 Arrays.stream<String?>(regexes)
@@ -391,8 +391,8 @@ object Utils {
      */
     @Nonnull
     @Throws(RegexException::class)
-    fun getStringResultFromRegexArray(@Nonnull input: String?,
-                                      @Nonnull regexes: Array<Pattern>,
+    fun getStringResultFromRegexArray(input: String?,
+                                      regexes: Array<Pattern>,
                                       group: Int): String {
         for (regex in regexes) {
             try {

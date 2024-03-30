@@ -153,7 +153,7 @@ class YoutubeStreamLinkHandlerFactory private constructor() : LinkHandlerFactory
     }
 
     @Throws(ParsingException::class)
-    private fun getIdFromSubpathsInPath(@Nonnull path: String): String? {
+    private fun getIdFromSubpathsInPath(path: String): String? {
         for (subpath: String in SUBPATHS) {
             if (path.startsWith(subpath)) {
                 val id: String = path.substring(subpath.length)

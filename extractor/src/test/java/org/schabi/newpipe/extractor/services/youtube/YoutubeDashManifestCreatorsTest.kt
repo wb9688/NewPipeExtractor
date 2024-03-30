@@ -124,7 +124,7 @@ internal class YoutubeDashManifestCreatorsTest {
 
     @Nonnull
     private fun assertFilterStreams(
-            @Nonnull streams: List<Stream?>,
+            streams: List<Stream?>,
             deliveryMethod: DeliveryMethod): List<Stream> {
         val filteredStreams: List<Stream> = streams.stream()
                 .filter { stream: Stream? -> stream!!.deliveryMethod == deliveryMethod }
@@ -165,7 +165,7 @@ internal class YoutubeDashManifestCreatorsTest {
         )
     }
 
-    private fun assertMpdElement(@Nonnull document: Document) {
+    private fun assertMpdElement(document: Document) {
         val element = document.getElementsByTagName(MPD).item(0) as Element
         Assertions.assertNotNull(element)
         Assertions.assertNull(element.parentNode.nodeValue)
@@ -174,12 +174,12 @@ internal class YoutubeDashManifestCreatorsTest {
         Assertions.assertTrue(mediaPresentationDuration.startsWith("PT"))
     }
 
-    private fun assertPeriodElement(@Nonnull document: Document) {
+    private fun assertPeriodElement(document: Document) {
         assertGetElement(document, PERIOD, MPD)
     }
 
-    private fun assertAdaptationSetElement(@Nonnull document: Document,
-                                           @Nonnull itagItem: ItagItem?) {
+    private fun assertAdaptationSetElement(document: Document,
+                                           itagItem: ItagItem?) {
         val element = assertGetElement(document, ADAPTATION_SET, PERIOD)
         assertAttrEquals(itagItem!!.mediaFormat.mimeType, element, "mimeType")
         if (itagItem.itagType == ItagItem.ItagType.AUDIO) {
@@ -190,8 +190,8 @@ internal class YoutubeDashManifestCreatorsTest {
         }
     }
 
-    private fun assertRoleElement(@Nonnull document: Document,
-                                  @Nonnull itagItem: ItagItem?) {
+    private fun assertRoleElement(document: Document,
+                                  itagItem: ItagItem?) {
         val element = assertGetElement(document, ROLE, ADAPTATION_SET)
         val expect: String
         expect = if (itagItem!!.audioTrackType == null) {
@@ -207,8 +207,8 @@ internal class YoutubeDashManifestCreatorsTest {
         assertAttrEquals(expect, element, "value")
     }
 
-    private fun assertRepresentationElement(@Nonnull document: Document,
-                                            @Nonnull itagItem: ItagItem?) {
+    private fun assertRepresentationElement(document: Document,
+                                            itagItem: ItagItem?) {
         val element = assertGetElement(document, REPRESENTATION, ADAPTATION_SET)
         assertAttrEquals(itagItem!!.bitrate, element, "bandwidth")
         assertAttrEquals(itagItem.codec, element, "codecs")
@@ -221,14 +221,14 @@ internal class YoutubeDashManifestCreatorsTest {
         assertAttrEquals(itagItem.id, element, "id")
     }
 
-    private fun assertAudioChannelConfigurationElement(@Nonnull document: Document,
-                                                       @Nonnull itagItem: ItagItem?) {
+    private fun assertAudioChannelConfigurationElement(document: Document,
+                                                       itagItem: ItagItem?) {
         val element = assertGetElement(document, AUDIO_CHANNEL_CONFIGURATION,
                 REPRESENTATION)
         assertAttrEquals(itagItem!!.getAudioChannels(), element, "value")
     }
 
-    private fun assertSegmentTemplateElement(@Nonnull document: Document) {
+    private fun assertSegmentTemplateElement(document: Document) {
         val element = assertGetElement(document, SEGMENT_TEMPLATE, REPRESENTATION)
         val initializationValue = element.getAttribute("initialization")
         ExtractorAsserts.assertIsValidUrl(initializationValue)
@@ -239,7 +239,7 @@ internal class YoutubeDashManifestCreatorsTest {
         Assertions.assertEquals("1", element.getAttribute("startNumber"))
     }
 
-    private fun assertSegmentTimelineAndSElements(@Nonnull document: Document) {
+    private fun assertSegmentTimelineAndSElements(document: Document) {
         val element = assertGetElement(document, SEGMENT_TIMELINE, SEGMENT_TEMPLATE)
         val childNodes = element.childNodes
         assertGreater(0, childNodes.length.toLong())
@@ -263,25 +263,25 @@ internal class YoutubeDashManifestCreatorsTest {
         )
     }
 
-    private fun assertBaseUrlElement(@Nonnull document: Document) {
+    private fun assertBaseUrlElement(document: Document) {
         val element = assertGetElement(document, BASE_URL, REPRESENTATION)
         ExtractorAsserts.assertIsValidUrl(element.textContent)
     }
 
-    private fun assertSegmentBaseElement(@Nonnull document: Document,
-                                         @Nonnull itagItem: ItagItem?) {
+    private fun assertSegmentBaseElement(document: Document,
+                                         itagItem: ItagItem?) {
         val element = assertGetElement(document, SEGMENT_BASE, REPRESENTATION)
         assertRangeEquals(itagItem!!.indexStart, itagItem.indexEnd, element, "indexRange")
     }
 
-    private fun assertInitializationElement(@Nonnull document: Document,
-                                            @Nonnull itagItem: ItagItem?) {
+    private fun assertInitializationElement(document: Document,
+                                            itagItem: ItagItem?) {
         val element = assertGetElement(document, INITIALIZATION, SEGMENT_BASE)
         assertRangeEquals(itagItem!!.initStart, itagItem.initEnd, element, "range")
     }
 
     private fun assertAttrEquals(expected: Int,
-                                 @Nonnull element: Element,
+                                 element: Element,
                                  attribute: String) {
         val actual = element.getAttribute(attribute).toInt()
         Assertions.assertAll(
@@ -291,7 +291,7 @@ internal class YoutubeDashManifestCreatorsTest {
     }
 
     private fun assertAttrEquals(expected: String?,
-                                 @Nonnull element: Element,
+                                 element: Element,
                                  attribute: String) {
         val actual = element.getAttribute(attribute)
         Assertions.assertAll(
@@ -302,7 +302,7 @@ internal class YoutubeDashManifestCreatorsTest {
 
     private fun assertRangeEquals(expectedStart: Int,
                                   expectedEnd: Int,
-                                  @Nonnull element: Element,
+                                  element: Element,
                                   attribute: String) {
         val range = element.getAttribute(attribute)
         assertNotBlank(range)
@@ -319,7 +319,7 @@ internal class YoutubeDashManifestCreatorsTest {
     }
 
     @Nonnull
-    private fun assertGetElement(@Nonnull document: Document,
+    private fun assertGetElement(document: Document,
                                  tagName: String,
                                  expectedParentTagName: String): Element {
         val element = document.getElementsByTagName(tagName).item(0) as Element

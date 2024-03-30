@@ -12,7 +12,7 @@ import org.schabi.newpipe.extractor.utils.ExtractorHelper
 import java.io.IOException
 
 class ChannelTabInfo(serviceId: Int,
-                     @Nonnull linkHandler: ListLinkHandler?) : ListInfo<InfoItem?>(serviceId, linkHandler, linkHandler.getContentFilters().get(0)) {
+                     linkHandler: ListLinkHandler?) : ListInfo<InfoItem?>(serviceId, linkHandler, linkHandler.getContentFilters().get(0)) {
     companion object {
         /**
          * Get a [ChannelTabInfo] instance from the given service and tab handler.
@@ -23,8 +23,8 @@ class ChannelTabInfo(serviceId: Int,
          */
         @Nonnull
         @Throws(ExtractionException::class, IOException::class)
-        fun getInfo(@Nonnull service: StreamingService,
-                    @Nonnull linkHandler: ListLinkHandler?): ChannelTabInfo {
+        fun getInfo(service: StreamingService,
+                    linkHandler: ListLinkHandler?): ChannelTabInfo {
             val extractor: ChannelTabExtractor? = service.getChannelTabExtractor(linkHandler)
             extractor!!.fetchPage()
             return getInfo(extractor)
@@ -37,7 +37,7 @@ class ChannelTabInfo(serviceId: Int,
          * @return the extracted [ChannelTabInfo]
          */
         @Nonnull
-        fun getInfo(@Nonnull extractor: ChannelTabExtractor?): ChannelTabInfo {
+        fun getInfo(extractor: ChannelTabExtractor?): ChannelTabInfo {
             val info: ChannelTabInfo = ChannelTabInfo(extractor.getServiceId(), extractor.getLinkHandler())
             try {
                 info.setOriginalUrl(extractor.getOriginalUrl())
@@ -52,9 +52,9 @@ class ChannelTabInfo(serviceId: Int,
 
         @Throws(ExtractionException::class, IOException::class)
         fun getMoreItems(
-                @Nonnull service: StreamingService,
-                @Nonnull linkHandler: ListLinkHandler?,
-                @Nonnull page: Page?): InfoItemsPage<InfoItem?>? {
+                service: StreamingService,
+                linkHandler: ListLinkHandler?,
+                page: Page?): InfoItemsPage<InfoItem?>? {
             return service.getChannelTabExtractor(linkHandler)!!.getPage(page)
         }
     }

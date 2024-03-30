@@ -22,7 +22,7 @@ class BandcampFeaturedExtractor(streamingService: StreamingService,
                                 kioskId: String) : KioskExtractor<PlaylistInfoItem?>(streamingService, listLinkHandler, kioskId) {
     private var json: JsonObject? = null
     @Throws(IOException::class, ExtractionException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         try {
             json = JsonParser.`object`().from(getDownloader().postWithContentTypeJson(
                     FEATURED_API_URL, emptyMap(),

@@ -43,7 +43,7 @@ class PeertubeChannelTabLinkHandlerFactory private constructor() : ListLinkHandl
         val instance: PeertubeChannelTabLinkHandlerFactory = PeertubeChannelTabLinkHandlerFactory()
         @Nonnull
         @Throws(UnsupportedTabException::class)
-        fun getUrlSuffix(@Nonnull tab: String?): String {
+        fun getUrlSuffix(tab: String?): String {
             when (tab) {
                 ChannelTabs.VIDEOS -> return "/videos"
                 ChannelTabs.CHANNELS -> return "/video-channels"

@@ -30,7 +30,7 @@ class BandcampChannelTabExtractor(service: StreamingService,
     }
 
     @Throws(ParsingException::class)
-    public override fun onFetchPage(@Nonnull downloader: Downloader?) {
+    public override fun onFetchPage(downloader: Downloader?) {
         if (discography == null) {
             discography = BandcampExtractorHelper.getArtistDetails(getId())
                     .getArray("discography")
