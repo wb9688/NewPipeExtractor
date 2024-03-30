@@ -38,7 +38,7 @@ public class SoundcloudChannelExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(SoundCloud.getServiceId(), extractor.getServiceId());
+            assertEquals(SoundCloud.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -126,7 +126,7 @@ public class SoundcloudChannelExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(SoundCloud.getServiceId(), extractor.getServiceId());
+            assertEquals(SoundCloud.serviceId, extractor.getServiceId());
         }
 
         @Test

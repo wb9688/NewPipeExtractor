@@ -58,7 +58,7 @@ public class YoutubeCommentsExtractorTest {
             boolean result = findInComments(comments, commentContent);
 
             while (comments.hasNextPage() && !result) {
-                comments = extractor.getPage(comments.getNextPage());
+                comments = extractor.getPage(comments.nextPage);
                 result = findInComments(comments, commentContent);
             }
 
@@ -73,15 +73,15 @@ public class YoutubeCommentsExtractorTest {
         private boolean getCommentsFromCommentsInfoHelper(final String url) throws IOException, ExtractionException {
             final CommentsInfo commentsInfo = CommentsInfo.getInfo(url);
 
-            assertEquals("Comments", commentsInfo.getName());
-            boolean result = findInComments(commentsInfo.getRelatedItems(), commentContent);
+            assertEquals("Comments", commentsInfo.name);
+            boolean result = findInComments(commentsInfo.relatedItems, commentContent);
 
-            Page nextPage = commentsInfo.getNextPage();
+            Page nextPage = commentsInfo.nextPage;
             InfoItemsPage<CommentsInfoItem> moreItems = new InfoItemsPage<>(null, nextPage, null);
             while (moreItems.hasNextPage() && !result) {
                 moreItems = CommentsInfo.getMoreItems(YouTube, commentsInfo, nextPage);
                 result = findInComments(moreItems.getItems(), commentContent);
-                nextPage = moreItems.getNextPage();
+                nextPage = moreItems.nextPage;
             }
             return result;
         }
@@ -91,19 +91,19 @@ public class YoutubeCommentsExtractorTest {
             InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
             assertTrue(extractor.getCommentsCount() > 5); // at least 5 comments
 
-            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.getErrors());
+            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.errors);
             for (final CommentsInfoItem c : comments.getItems()) {
-                assertFalse(Utils.isBlank(c.getUploaderUrl()));
-                assertFalse(Utils.isBlank(c.getUploaderName()));
-                YoutubeTestsUtils.testImages(c.getUploaderAvatars());
-                assertFalse(Utils.isBlank(c.getCommentId()));
-                assertFalse(Utils.isBlank(c.getCommentText().getContent()));
-                assertFalse(Utils.isBlank(c.getName()));
-                assertFalse(Utils.isBlank(c.getTextualUploadDate()));
-                assertNotNull(c.getUploadDate());
-                YoutubeTestsUtils.testImages(c.getThumbnails());
-                assertFalse(Utils.isBlank(c.getUrl()));
-                assertTrue(c.getLikeCount() >= 0);
+                assertFalse(Utils.isBlank(c.uploaderUrl));
+                assertFalse(Utils.isBlank(c.uploaderName));
+                YoutubeTestsUtils.testImages(c.uploaderAvatars);
+                assertFalse(Utils.isBlank(c.commentId));
+                assertFalse(Utils.isBlank(c.commentText.content));
+                assertFalse(Utils.isBlank(c.name));
+                assertFalse(Utils.isBlank(c.textualUploadDate));
+                assertNotNull(c.uploadDate);
+                YoutubeTestsUtils.testImages(c.thumbnails);
+                assertFalse(Utils.isBlank(c.url));
+                assertTrue(c.likeCount >= 0);
             }
         }
 
@@ -113,7 +113,7 @@ public class YoutubeCommentsExtractorTest {
 
         private boolean findInComments(List<CommentsInfoItem> comments, String comment) {
             for (CommentsInfoItem c : comments) {
-                if (c.getCommentText().getContent().contains(comment)) {
+                if (c.commentText.content.contains(comment)) {
                     return true;
                 }
             }
@@ -141,22 +141,22 @@ public class YoutubeCommentsExtractorTest {
         void testGetCommentsAllData() throws IOException, ExtractionException {
             final InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
 
-            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.getErrors());
+            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.errors);
             for (final CommentsInfoItem c : comments.getItems()) {
-                assertFalse(Utils.isBlank(c.getUploaderUrl()));
-                assertFalse(Utils.isBlank(c.getUploaderName()));
-                YoutubeTestsUtils.testImages(c.getUploaderAvatars());
-                assertFalse(Utils.isBlank(c.getCommentId()));
-                assertFalse(Utils.isBlank(c.getName()));
-                assertFalse(Utils.isBlank(c.getTextualUploadDate()));
-                assertNotNull(c.getUploadDate());
-                YoutubeTestsUtils.testImages(c.getThumbnails());
-                assertFalse(Utils.isBlank(c.getUrl()));
-                assertTrue(c.getLikeCount() >= 0);
-                if (c.getCommentId().equals("Ugga_h1-EXdHB3gCoAEC")) { // comment without text
-                    assertTrue(Utils.isBlank(c.getCommentText().getContent()));
+                assertFalse(Utils.isBlank(c.uploaderUrl));
+                assertFalse(Utils.isBlank(c.uploaderName));
+                YoutubeTestsUtils.testImages(c.uploaderAvatars);
+                assertFalse(Utils.isBlank(c.commentId));
+                assertFalse(Utils.isBlank(c.name));
+                assertFalse(Utils.isBlank(c.textualUploadDate));
+                assertNotNull(c.uploadDate);
+                YoutubeTestsUtils.testImages(c.thumbnails);
+                assertFalse(Utils.isBlank(c.url));
+                assertTrue(c.likeCount >= 0);
+                if (c.commentId.equals("Ugga_h1-EXdHB3gCoAEC")) { // comment without text
+                    assertTrue(Utils.isBlank(c.commentText.content));
                 } else {
-                    assertFalse(Utils.isBlank(c.getCommentText().getContent()));
+                    assertFalse(Utils.isBlank(c.commentText.content));
                 }
             }
         }
@@ -180,22 +180,22 @@ public class YoutubeCommentsExtractorTest {
         void testGetCommentsAllData() throws IOException, ExtractionException {
             final InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
 
-            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.getErrors());
+            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.errors);
 
             boolean heartedByUploader = false;
 
             for (final CommentsInfoItem c : comments.getItems()) {
-                assertFalse(Utils.isBlank(c.getUploaderUrl()));
-                assertFalse(Utils.isBlank(c.getUploaderName()));
-                YoutubeTestsUtils.testImages(c.getUploaderAvatars());
-                assertFalse(Utils.isBlank(c.getCommentId()));
-                assertFalse(Utils.isBlank(c.getName()));
-                assertFalse(Utils.isBlank(c.getTextualUploadDate()));
-                assertNotNull(c.getUploadDate());
-                YoutubeTestsUtils.testImages(c.getThumbnails());
-                assertFalse(Utils.isBlank(c.getUrl()));
-                assertTrue(c.getLikeCount() >= 0);
-                assertFalse(Utils.isBlank(c.getCommentText().getContent()));
+                assertFalse(Utils.isBlank(c.uploaderUrl));
+                assertFalse(Utils.isBlank(c.uploaderName));
+                YoutubeTestsUtils.testImages(c.uploaderAvatars);
+                assertFalse(Utils.isBlank(c.commentId));
+                assertFalse(Utils.isBlank(c.name));
+                assertFalse(Utils.isBlank(c.textualUploadDate));
+                assertNotNull(c.uploadDate);
+                YoutubeTestsUtils.testImages(c.thumbnails);
+                assertFalse(Utils.isBlank(c.url));
+                assertTrue(c.likeCount >= 0);
+                assertFalse(Utils.isBlank(c.commentText.content));
                 if (c.isHeartedByUploader()) {
                     heartedByUploader = true;
                 }
@@ -222,20 +222,20 @@ public class YoutubeCommentsExtractorTest {
         void testGetCommentsAllData() throws IOException, ExtractionException {
             final InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
 
-            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.getErrors());
+            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.errors);
 
             for (final CommentsInfoItem c : comments.getItems()) {
-                assertFalse(Utils.isBlank(c.getUploaderUrl()));
-                assertFalse(Utils.isBlank(c.getUploaderName()));
-                YoutubeTestsUtils.testImages(c.getUploaderAvatars());
-                assertFalse(Utils.isBlank(c.getCommentId()));
-                assertFalse(Utils.isBlank(c.getName()));
-                assertFalse(Utils.isBlank(c.getTextualUploadDate()));
-                assertNotNull(c.getUploadDate());
-                YoutubeTestsUtils.testImages(c.getThumbnails());
-                assertFalse(Utils.isBlank(c.getUrl()));
-                assertTrue(c.getLikeCount() >= 0);
-                assertFalse(Utils.isBlank(c.getCommentText().getContent()));
+                assertFalse(Utils.isBlank(c.uploaderUrl));
+                assertFalse(Utils.isBlank(c.uploaderName));
+                YoutubeTestsUtils.testImages(c.uploaderAvatars);
+                assertFalse(Utils.isBlank(c.commentId));
+                assertFalse(Utils.isBlank(c.name));
+                assertFalse(Utils.isBlank(c.textualUploadDate));
+                assertNotNull(c.uploadDate);
+                YoutubeTestsUtils.testImages(c.thumbnails);
+                assertFalse(Utils.isBlank(c.url));
+                assertTrue(c.likeCount >= 0);
+                assertFalse(Utils.isBlank(c.commentText.content));
             }
 
             assertTrue(comments.getItems().get(0).isPinned(), "First comment isn't pinned");
@@ -263,13 +263,13 @@ public class YoutubeCommentsExtractorTest {
         void testGetCommentsFirst() throws IOException, ExtractionException {
             final InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
 
-            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.getErrors());
+            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.errors);
 
             CommentsInfoItem pinnedComment = comments.getItems().get(0);
 
             assertTrue(pinnedComment.isPinned(), "First comment isn't pinned");
-            assertTrue(pinnedComment.getLikeCount() > 0, "The first pinned comment has no likes");
-            assertFalse(Utils.isBlank(pinnedComment.getTextualLikeCount()), "The first pinned comment has no vote count");
+            assertTrue(pinnedComment.likeCount > 0, "The first pinned comment has no likes");
+            assertFalse(Utils.isBlank(pinnedComment.textualLikeCount), "The first pinned comment has no vote count");
         }
     }
 
@@ -296,12 +296,12 @@ public class YoutubeCommentsExtractorTest {
         void testGetCommentsFirst() throws IOException, ExtractionException {
             final InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
 
-            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.getErrors());
+            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.errors);
 
             CommentsInfoItem pinnedComment = comments.getItems().get(0);
 
             assertTrue(pinnedComment.isPinned(), "First comment isn't pinned");
-            assertFalse(Utils.isBlank(pinnedComment.getTextualLikeCount()), "The first pinned comment has no vote count");
+            assertFalse(Utils.isBlank(pinnedComment.textualLikeCount), "The first pinned comment has no vote count");
         }
     }
 
@@ -322,15 +322,15 @@ public class YoutubeCommentsExtractorTest {
         void testGetCommentsFirstReplies() throws IOException, ExtractionException {
             final InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
 
-            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.getErrors());
+            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.errors);
 
             CommentsInfoItem firstComment = comments.getItems().get(0);
 
             assertTrue(firstComment.isPinned(), "First comment isn't pinned");
 
-            InfoItemsPage<CommentsInfoItem> replies = extractor.getPage(firstComment.getReplies());
+            InfoItemsPage<CommentsInfoItem> replies = extractor.getPage(firstComment.replies);
 
-            assertEquals("First", replies.getItems().get(0).getCommentText().getContent(),
+            assertEquals("First", replies.getItems().get(0).commentText.content,
                     "First reply comment did not match");
         }
 
@@ -338,12 +338,12 @@ public class YoutubeCommentsExtractorTest {
         public void testGetCommentsReplyCount() throws IOException, ExtractionException {
             final InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
 
-            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.getErrors());
+            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.errors);
 
             final CommentsInfoItem firstComment = comments.getItems().get(0);
 
-            assertNotEquals(UNKNOWN_REPLY_COUNT, firstComment.getReplyCount(), "Could not get the reply count of the first comment");
-            assertGreater(300, firstComment.getReplyCount());
+            assertNotEquals(UNKNOWN_REPLY_COUNT, firstComment.replyCount, "Could not get the reply count of the first comment");
+            assertGreater(300, firstComment.replyCount);
         }
 
         @Test
@@ -369,23 +369,23 @@ public class YoutubeCommentsExtractorTest {
         void testGetCommentsAllData() throws IOException, ExtractionException {
             final InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
 
-            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.getErrors());
+            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.errors);
 
             boolean channelOwner = false;
 
             for (final CommentsInfoItem c : comments.getItems()) {
-                assertFalse(Utils.isBlank(c.getUploaderUrl()));
-                assertFalse(Utils.isBlank(c.getUploaderName()));
-                YoutubeTestsUtils.testImages(c.getUploaderAvatars());
-                assertFalse(Utils.isBlank(c.getCommentId()));
-                assertFalse(Utils.isBlank(c.getName()));
-                assertFalse(Utils.isBlank(c.getTextualUploadDate()));
-                assertNotNull(c.getUploadDate());
-                YoutubeTestsUtils.testImages(c.getThumbnails());
-                assertFalse(Utils.isBlank(c.getUrl()));
-                assertTrue(c.getLikeCount() >= 0);
-                assertFalse(Utils.isBlank(c.getCommentText().getContent()));
-                if (c.isChannelOwner()) {
+                assertFalse(Utils.isBlank(c.uploaderUrl));
+                assertFalse(Utils.isBlank(c.uploaderName));
+                YoutubeTestsUtils.testImages(c.uploaderAvatars);
+                assertFalse(Utils.isBlank(c.commentId));
+                assertFalse(Utils.isBlank(c.name));
+                assertFalse(Utils.isBlank(c.textualUploadDate));
+                assertNotNull(c.uploadDate);
+                YoutubeTestsUtils.testImages(c.thumbnails);
+                assertFalse(Utils.isBlank(c.url));
+                assertTrue(c.likeCount >= 0);
+                assertFalse(Utils.isBlank(c.commentText.content));
+                if (c.isChannelOwner) {
                     channelOwner = true;
                 }
             }
@@ -412,22 +412,22 @@ public class YoutubeCommentsExtractorTest {
         void testGetCommentsAllData() throws IOException, ExtractionException {
             final InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
 
-            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.getErrors());
+            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.errors);
 
             boolean creatorReply = false;
 
             for (final CommentsInfoItem c : comments.getItems()) {
-                assertFalse(Utils.isBlank(c.getUploaderUrl()));
-                assertFalse(Utils.isBlank(c.getUploaderName()));
-                YoutubeTestsUtils.testImages(c.getUploaderAvatars());
-                assertFalse(Utils.isBlank(c.getCommentId()));
-                assertFalse(Utils.isBlank(c.getName()));
-                assertFalse(Utils.isBlank(c.getTextualUploadDate()));
-                assertNotNull(c.getUploadDate());
-                YoutubeTestsUtils.testImages(c.getThumbnails());
-                assertFalse(Utils.isBlank(c.getUrl()));
-                assertTrue(c.getLikeCount() >= 0);
-                assertFalse(Utils.isBlank(c.getCommentText().getContent()));
+                assertFalse(Utils.isBlank(c.uploaderUrl));
+                assertFalse(Utils.isBlank(c.uploaderName));
+                YoutubeTestsUtils.testImages(c.uploaderAvatars);
+                assertFalse(Utils.isBlank(c.commentId));
+                assertFalse(Utils.isBlank(c.name));
+                assertFalse(Utils.isBlank(c.textualUploadDate));
+                assertNotNull(c.uploadDate);
+                YoutubeTestsUtils.testImages(c.thumbnails);
+                assertFalse(Utils.isBlank(c.url));
+                assertTrue(c.likeCount >= 0);
+                assertFalse(Utils.isBlank(c.commentText.content));
                 if (c.hasCreatorReply()) {
                     creatorReply = true;
                 }
@@ -457,12 +457,12 @@ public class YoutubeCommentsExtractorTest {
         public void testGetCommentsFormatting() throws IOException, ExtractionException {
             final InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
 
-            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.getErrors());
+            DefaultTests.defaultTestListOfItems(YouTube, comments.getItems(), comments.errors);
 
             final CommentsInfoItem firstComment = comments.getItems().get(0);
 
-            assertContains("<s>", firstComment.getCommentText().getContent());
-            assertContains("<b>", firstComment.getCommentText().getContent());
+            assertContains("<s>", firstComment.commentText.content);
+            assertContains("<b>", firstComment.commentText.content);
         }
     }
 }

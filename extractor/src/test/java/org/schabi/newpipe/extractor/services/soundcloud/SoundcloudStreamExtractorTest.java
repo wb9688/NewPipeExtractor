@@ -187,18 +187,18 @@ public class SoundcloudStreamExtractorTest {
         @Test
         public void testAudioStreams() throws Exception {
             super.testAudioStreams();
-            final List<AudioStream> audioStreams = extractor.getAudioStreams();
+            final List<AudioStream> audioStreams = extractor.audioStreams;
             assertEquals(2, audioStreams.size());
             audioStreams.forEach(audioStream -> {
-                final DeliveryMethod deliveryMethod = audioStream.getDeliveryMethod();
-                final String mediaUrl = audioStream.getContent();
+                final DeliveryMethod deliveryMethod = audioStream.deliveryMethod;
+                final String mediaUrl = audioStream.content;
                 if (audioStream.getFormat() == MediaFormat.OPUS) {
                     // Assert that it's an OPUS 64 kbps media URL with a single range which comes
                     // from an HLS SoundCloud CDN
                     ExtractorAsserts.assertContains("-hls-opus-media.sndcdn.com", mediaUrl);
                     ExtractorAsserts.assertContains(".64.opus", mediaUrl);
                     assertSame(DeliveryMethod.HLS, deliveryMethod,
-                            "Wrong delivery method for stream " + audioStream.getId() + ": "
+                            "Wrong delivery method for stream " + audioStream.id + ": "
                                     + deliveryMethod);
                 } else if (audioStream.getFormat() == MediaFormat.MP3) {
                     // Assert that it's a MP3 128 kbps media URL which comes from a progressive
@@ -206,7 +206,7 @@ public class SoundcloudStreamExtractorTest {
                     ExtractorAsserts.assertContains("-media.sndcdn.com/bKOA7Pwbut93.128.mp3",
                             mediaUrl);
                     assertSame(DeliveryMethod.PROGRESSIVE_HTTP, deliveryMethod,
-                            "Wrong delivery method for stream " + audioStream.getId() + ": "
+                            "Wrong delivery method for stream " + audioStream.id + ": "
                                     + deliveryMethod);
                 }
             });

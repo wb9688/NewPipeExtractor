@@ -56,7 +56,7 @@ public class YoutubeMixPlaylistExtractorTest {
 
         @Test
         void getServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -70,7 +70,7 @@ public class YoutubeMixPlaylistExtractorTest {
         void getThumbnails() throws Exception {
             YoutubeTestsUtils.testImages(extractor.getThumbnails());
             extractor.getThumbnails().forEach(thumbnail ->
-                    ExtractorAsserts.assertContains(VIDEO_ID, thumbnail.getUrl()));
+                    ExtractorAsserts.assertContains(VIDEO_ID, thumbnail.url));
         }
 
         @Test
@@ -110,10 +110,10 @@ public class YoutubeMixPlaylistExtractorTest {
                 for (final StreamInfoItem item : streams.getItems()) {
                     // TODO Duplicates are appearing
                     // assertFalse(urls.contains(item.getUrl()));
-                    urls.add(item.getUrl());
+                    urls.add(item.url);
                 }
 
-                streams = extractor.getPage(streams.getNextPage());
+                streams = extractor.getPage(streams.nextPage);
             }
             assertTrue(streams.hasNextPage());
             assertFalse(streams.getItems().isEmpty());
@@ -158,7 +158,7 @@ public class YoutubeMixPlaylistExtractorTest {
         void getThumbnails() throws Exception {
             YoutubeTestsUtils.testImages(extractor.getThumbnails());
             extractor.getThumbnails().forEach(thumbnail ->
-                    ExtractorAsserts.assertContains(VIDEO_ID, thumbnail.getUrl()));
+                    ExtractorAsserts.assertContains(VIDEO_ID, thumbnail.url));
         }
 
         @Test
@@ -198,10 +198,10 @@ public class YoutubeMixPlaylistExtractorTest {
                 for (final StreamInfoItem item : streams.getItems()) {
                     // TODO Duplicates are appearing
                     // assertFalse(urls.contains(item.getUrl()));
-                    urls.add(item.getUrl());
+                    urls.add(item.url);
                 }
 
-                streams = extractor.getPage(streams.getNextPage());
+                streams = extractor.getPage(streams.nextPage);
             }
             assertTrue(streams.hasNextPage());
             assertFalse(streams.getItems().isEmpty());
@@ -234,7 +234,7 @@ public class YoutubeMixPlaylistExtractorTest {
 
         @Test
         void getServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -247,7 +247,7 @@ public class YoutubeMixPlaylistExtractorTest {
         void getThumbnails() throws Exception {
             YoutubeTestsUtils.testImages(extractor.getThumbnails());
             extractor.getThumbnails().forEach(thumbnail ->
-                    ExtractorAsserts.assertContains(VIDEO_ID, thumbnail.getUrl()));
+                    ExtractorAsserts.assertContains(VIDEO_ID, thumbnail.url));
         }
 
         @Test
@@ -287,10 +287,10 @@ public class YoutubeMixPlaylistExtractorTest {
                 for (final StreamInfoItem item : streams.getItems()) {
                     // TODO Duplicates are appearing
                     // assertFalse(urls.contains(item.getUrl()));
-                    urls.add(item.getUrl());
+                    urls.add(item.url);
                 }
 
-                streams = extractor.getPage(streams.getNextPage());
+                streams = extractor.getPage(streams.nextPage);
             }
             assertTrue(streams.hasNextPage());
             assertFalse(streams.getItems().isEmpty());
@@ -365,7 +365,7 @@ public class YoutubeMixPlaylistExtractorTest {
         void getThumbnails() throws Exception {
             YoutubeTestsUtils.testImages(extractor.getThumbnails());
             extractor.getThumbnails().forEach(thumbnail ->
-                    ExtractorAsserts.assertContains(VIDEO_ID_OF_CHANNEL, thumbnail.getUrl()));
+                    ExtractorAsserts.assertContains(VIDEO_ID_OF_CHANNEL, thumbnail.url));
         }
 
         @Test
@@ -420,7 +420,7 @@ public class YoutubeMixPlaylistExtractorTest {
 
         @Test
         void getServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -432,7 +432,7 @@ public class YoutubeMixPlaylistExtractorTest {
         void getThumbnails() throws Exception {
             YoutubeTestsUtils.testImages(extractor.getThumbnails());
             extractor.getThumbnails().forEach(thumbnail ->
-                    ExtractorAsserts.assertContains(VIDEO_ID, thumbnail.getUrl()));
+                    ExtractorAsserts.assertContains(VIDEO_ID, thumbnail.url));
         }
 
         @Test
@@ -472,10 +472,10 @@ public class YoutubeMixPlaylistExtractorTest {
                 for (final StreamInfoItem item : streams.getItems()) {
                     // TODO Duplicates are appearing
                     // assertFalse(urls.contains(item.getUrl()));
-                    urls.add(item.getUrl());
+                    urls.add(item.url);
                 }
 
-                streams = extractor.getPage(streams.getNextPage());
+                streams = extractor.getPage(streams.nextPage);
             }
             assertTrue(streams.hasNextPage());
             assertFalse(streams.getItems().isEmpty());
@@ -509,7 +509,7 @@ public class YoutubeMixPlaylistExtractorTest {
 
         @Test
         void getServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -521,7 +521,7 @@ public class YoutubeMixPlaylistExtractorTest {
         void getThumbnailUrl() throws Exception {
             YoutubeTestsUtils.testImages(extractor.getThumbnails());
             extractor.getThumbnails().forEach(thumbnail ->
-                    ExtractorAsserts.assertContains(VIDEO_ID, thumbnail.getUrl()));
+                    ExtractorAsserts.assertContains(VIDEO_ID, thumbnail.url));
         }
 
         @Test
@@ -561,10 +561,10 @@ public class YoutubeMixPlaylistExtractorTest {
                 for (final StreamInfoItem item : streams.getItems()) {
                     // TODO Duplicates are appearing
                     // assertFalse(urls.contains(item.getUrl()));
-                    urls.add(item.getUrl());
+                    urls.add(item.url);
                 }
 
-                streams = extractor.getPage(streams.getNextPage());
+                streams = extractor.getPage(streams.nextPage);
             }
             assertTrue(streams.hasNextPage());
             assertFalse(streams.getItems().isEmpty());

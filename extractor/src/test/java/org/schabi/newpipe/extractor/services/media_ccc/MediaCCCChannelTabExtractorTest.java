@@ -43,7 +43,7 @@ public class MediaCCCChannelTabExtractorTest {
 
         @Test
         void testGetInitalPage() throws Exception {
-            assertEquals(177, extractor.getInitialPage().getItems().size());
+            assertEquals(177, extractor.initialPage.getItems().size());
         }
     }
 }

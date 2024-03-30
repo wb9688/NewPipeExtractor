@@ -46,7 +46,7 @@ public class YoutubeServiceTest {
     public static void setUp() throws Exception {
         NewPipe.init(DownloaderTestImpl.getInstance());
         service = YouTube;
-        kioskList = service.getKioskList();
+        kioskList = service.kioskList;
     }
 
     @Test

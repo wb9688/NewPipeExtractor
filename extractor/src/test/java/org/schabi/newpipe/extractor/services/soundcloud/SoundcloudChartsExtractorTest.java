@@ -30,7 +30,7 @@ public class SoundcloudChartsExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(SoundCloud.getServiceId(), extractor.getServiceId());
+            assertEquals(SoundCloud.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -85,7 +85,7 @@ public class SoundcloudChartsExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(SoundCloud.getServiceId(), extractor.getServiceId());
+            assertEquals(SoundCloud.serviceId, extractor.getServiceId());
         }
 
         @Test

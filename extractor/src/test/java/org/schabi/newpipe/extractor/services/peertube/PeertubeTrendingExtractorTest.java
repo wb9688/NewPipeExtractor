@@ -21,7 +21,7 @@ public class PeertubeTrendingExtractorTest {
         public static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
             // setting instance might break test when running in parallel
-            PeerTube.setInstance(new PeertubeInstance("https://framatube.org", "Framatube"));
+            PeerTube.instance = new PeertubeInstance("https://framatube.org", "Framatube");
             extractor = (PeertubeTrendingExtractor) PeerTube.getKioskList()
                     .getExtractorById("Trending", null);
             extractor.fetchPage();
@@ -33,7 +33,7 @@ public class PeertubeTrendingExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(PeerTube.getServiceId(), extractor.getServiceId());
+            assertEquals(PeerTube.serviceId, extractor.getServiceId());
         }
 
         @Test

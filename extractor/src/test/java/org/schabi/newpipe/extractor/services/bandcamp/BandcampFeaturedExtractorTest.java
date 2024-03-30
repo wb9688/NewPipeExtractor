@@ -45,14 +45,14 @@ public class BandcampFeaturedExtractorTest implements BaseListExtractorTest {
     @Test
     public void testHttps() throws ExtractionException, IOException {
         final List<PlaylistInfoItem> list = extractor.getInitialPage().getItems();
-        assertTrue(list.get(0).getUrl().contains("https://"));
+        assertTrue(list.get(0).url.contains("https://"));
     }
 
     @Test
     public void testMorePages() throws ExtractionException, IOException {
 
-        final Page page2 = extractor.getInitialPage().getNextPage();
-        final Page page3 = extractor.getPage(page2).getNextPage();
+        final Page page2 = extractor.getInitialPage().nextPage;
+        final Page page3 = extractor.getPage(page2).nextPage;
 
         assertTrue(extractor.getPage(page2).getItems().size() > 5);
 
@@ -75,7 +75,7 @@ public class BandcampFeaturedExtractorTest implements BaseListExtractorTest {
 
     @Override
     public void testServiceId() {
-        assertEquals(Bandcamp.getServiceId(), extractor.getServiceId());
+        assertEquals(Bandcamp.serviceId, extractor.getServiceId());
     }
 
     @Override

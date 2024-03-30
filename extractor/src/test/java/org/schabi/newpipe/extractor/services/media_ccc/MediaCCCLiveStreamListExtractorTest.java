@@ -23,7 +23,7 @@ public class MediaCCCLiveStreamListExtractorTest {
 
     @Test
     public void getConferencesListTest() throws Exception {
-        final List<InfoItem> items = extractor.getInitialPage().getItems();
+        final List<InfoItem> items = extractor.initialPage.getItems();
         // just test if there is an exception thrown
     }
 

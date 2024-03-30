@@ -39,7 +39,7 @@ public class PeertubeCommentsExtractorTest {
             boolean result = findInComments(comments, comment);
 
             while (comments.hasNextPage() && !result) {
-                comments = extractor.getPage(comments.getNextPage());
+                comments = extractor.getPage(comments.nextPage);
                 result = findInComments(comments, comment);
             }
 
@@ -52,16 +52,16 @@ public class PeertubeCommentsExtractorTest {
 
             final CommentsInfo commentsInfo =
                     CommentsInfo.getInfo("https://framatube.org/w/kkGMgK9ZtnKfYAgnEtQxbv");
-            assertEquals("Comments", commentsInfo.getName());
+            assertEquals("Comments", commentsInfo.name);
 
-            boolean result = findInComments(commentsInfo.getRelatedItems(), comment);
+            boolean result = findInComments(commentsInfo.relatedItems, comment);
 
-            Page nextPage = commentsInfo.getNextPage();
+            Page nextPage = commentsInfo.nextPage;
             InfoItemsPage<CommentsInfoItem> moreItems = new InfoItemsPage<>(null, nextPage, null);
             while (moreItems.hasNextPage() && !result) {
                 moreItems = CommentsInfo.getMoreItems(PeerTube, commentsInfo, nextPage);
                 result = findInComments(moreItems.getItems(), comment);
-                nextPage = moreItems.getNextPage();
+                nextPage = moreItems.nextPage;
             }
 
             assertTrue(result);
@@ -72,17 +72,17 @@ public class PeertubeCommentsExtractorTest {
             extractor.getInitialPage()
                     .getItems()
                     .forEach(commentsInfoItem -> {
-                        assertFalse(Utils.isBlank(commentsInfoItem.getUploaderUrl()));
-                        assertFalse(Utils.isBlank(commentsInfoItem.getUploaderName()));
-                        defaultTestImageCollection(commentsInfoItem.getUploaderAvatars());
-                        assertFalse(Utils.isBlank(commentsInfoItem.getCommentId()));
-                        assertFalse(Utils.isBlank(commentsInfoItem.getCommentText().getContent()));
-                        assertFalse(Utils.isBlank(commentsInfoItem.getName()));
-                        assertFalse(Utils.isBlank(commentsInfoItem.getTextualUploadDate()));
-                        defaultTestImageCollection(commentsInfoItem.getThumbnails());
-                        assertFalse(Utils.isBlank(commentsInfoItem.getUrl()));
-                        assertEquals(-1, commentsInfoItem.getLikeCount());
-                        assertTrue(Utils.isBlank(commentsInfoItem.getTextualLikeCount()));
+                        assertFalse(Utils.isBlank(commentsInfoItem.uploaderUrl));
+                        assertFalse(Utils.isBlank(commentsInfoItem.uploaderName));
+                        defaultTestImageCollection(commentsInfoItem.uploaderAvatars);
+                        assertFalse(Utils.isBlank(commentsInfoItem.commentId));
+                        assertFalse(Utils.isBlank(commentsInfoItem.commentText.content));
+                        assertFalse(Utils.isBlank(commentsInfoItem.name));
+                        assertFalse(Utils.isBlank(commentsInfoItem.textualUploadDate));
+                        defaultTestImageCollection(commentsInfoItem.thumbnails);
+                        assertFalse(Utils.isBlank(commentsInfoItem.url));
+                        assertEquals(-1, commentsInfoItem.likeCount);
+                        assertTrue(Utils.isBlank(commentsInfoItem.textualLikeCount));
                     });
         }
 
@@ -95,7 +95,7 @@ public class PeertubeCommentsExtractorTest {
                                        final String comment) {
             return comments.stream()
                     .anyMatch(commentsInfoItem ->
-                            commentsInfoItem.getCommentText().getContent().contains(comment));
+                            commentsInfoItem.commentText.content.contains(comment));
         }
     }
 
@@ -112,7 +112,7 @@ public class PeertubeCommentsExtractorTest {
         @Test
         void testGetComments() throws IOException, ExtractionException {
             final InfoItemsPage<CommentsInfoItem> comments = extractor.getInitialPage();
-            assertTrue(comments.getErrors().isEmpty());
+            assertTrue(comments.errors.isEmpty());
         }
 
         @Test
@@ -165,18 +165,18 @@ public class PeertubeCommentsExtractorTest {
             final String id, final List<CommentsInfoItem> comments) {
         return comments
                 .stream()
-                .filter(c -> c.getCommentId().equals(id))
+                .filter(c -> c.commentId.equals(id))
                 .findFirst();
     }
 
     private static boolean findNestedCommentWithId(final String id, final CommentsInfoItem comment)
             throws IOException, ExtractionException {
-        if (comment.getCommentId().equals(id)) {
+        if (comment.commentId.equals(id)) {
             return true;
         }
         return PeerTube
-                .getCommentsExtractor(comment.getUrl())
-                .getPage(comment.getReplies())
+                .getCommentsExtractor(comment.url)
+                .getPage(comment.replies)
                 .getItems()
                 .stream()
                 .map(c -> {

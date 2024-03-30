@@ -70,7 +70,7 @@ public class MediaCCCStreamExtractorTest {
             super.testThumbnails();
             assertContainsImageUrlInImageCollection(
                     "https://static.media.ccc.de/media/events/gpn/gpn18/105-hd_preview.jpg",
-                    extractor.getThumbnails());
+                    extractor.thumbnails);
         }
 
         @Override
@@ -86,18 +86,18 @@ public class MediaCCCStreamExtractorTest {
         @Test
         public void testVideoStreams() throws Exception {
             super.testVideoStreams();
-            assertEquals(4, extractor.getVideoStreams().size());
+            assertEquals(4, extractor.videoStreams.size());
         }
 
         @Override
         @Test
         public void testAudioStreams() throws Exception {
             super.testAudioStreams();
-            final List<AudioStream> audioStreams = extractor.getAudioStreams();
+            final List<AudioStream> audioStreams = extractor.audioStreams;
             assertEquals(2, audioStreams.size());
             final Locale expectedLocale = Locale.forLanguageTag("deu");
             assertTrue(audioStreams.stream().allMatch(audioStream ->
-                    Objects.equals(audioStream.getAudioLocale(), expectedLocale)));
+                    Objects.equals(audioStream.audioLocale, expectedLocale)));
         }
     }
 
@@ -148,7 +148,7 @@ public class MediaCCCStreamExtractorTest {
             super.testThumbnails();
             assertContainsImageUrlInImageCollection(
                     "https://static.media.ccc.de/media/congress/2019/10565-hd_preview.jpg",
-                    extractor.getThumbnails());
+                    extractor.thumbnails);
         }
 
         @Override
@@ -164,18 +164,18 @@ public class MediaCCCStreamExtractorTest {
         @Test
         public void testVideoStreams() throws Exception {
             super.testVideoStreams();
-            assertEquals(8, extractor.getVideoStreams().size());
+            assertEquals(8, extractor.videoStreams.size());
         }
 
         @Override
         @Test
         public void testAudioStreams() throws Exception {
             super.testAudioStreams();
-            final List<AudioStream> audioStreams = extractor.getAudioStreams();
+            final List<AudioStream> audioStreams = extractor.audioStreams;
             assertEquals(2, audioStreams.size());
             final Locale expectedLocale = Locale.forLanguageTag("eng");
             assertTrue(audioStreams.stream().allMatch(audioStream ->
-                    Objects.equals(audioStream.getAudioLocale(), expectedLocale)));
+                    Objects.equals(audioStream.audioLocale, expectedLocale)));
         }
 
         @Override

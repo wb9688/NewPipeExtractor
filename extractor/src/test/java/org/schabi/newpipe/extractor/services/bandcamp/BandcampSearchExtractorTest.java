@@ -43,14 +43,14 @@ public class BandcampSearchExtractorTest {
     void testStreamSearch() throws ExtractionException, IOException {
         final SearchExtractor extractor = Bandcamp.getSearchExtractor("best friend's basement");
 
-        final ListExtractor.InfoItemsPage<InfoItem> page = extractor.getInitialPage();
+        final ListExtractor.InfoItemsPage<InfoItem> page = extractor.initialPage;
         final StreamInfoItem bestFriendsBasement = (StreamInfoItem) page.getItems().get(0);
 
         // The track by Zach Benson should be the first result, no?
-        assertEquals("Best Friend's Basement", bestFriendsBasement.getName());
-        assertEquals("Zach Benson", bestFriendsBasement.getUploaderName());
-        BandcampTestUtils.testImages(bestFriendsBasement.getThumbnails());
-        assertEquals(InfoItem.InfoType.STREAM, bestFriendsBasement.getInfoType());
+        assertEquals("Best Friend's Basement", bestFriendsBasement.name);
+        assertEquals("Zach Benson", bestFriendsBasement.uploaderName);
+        BandcampTestUtils.testImages(bestFriendsBasement.thumbnails);
+        assertEquals(InfoItem.InfoType.STREAM, bestFriendsBasement.infoType);
     }
 
     /**
@@ -59,13 +59,13 @@ public class BandcampSearchExtractorTest {
     @Test
     void testChannelSearch() throws ExtractionException, IOException {
         final SearchExtractor extractor = Bandcamp.getSearchExtractor("C418");
-        final InfoItem c418 = extractor.getInitialPage()
+        final InfoItem c418 = extractor.initialPage
                 .getItems().get(0);
 
         // C418's artist profile should be the first result, no?
-        assertEquals("C418", c418.getName());
-        BandcampTestUtils.testImages(c418.getThumbnails());
-        assertEquals("https://c418.bandcamp.com", c418.getUrl());
+        assertEquals("C418", c418.name);
+        BandcampTestUtils.testImages(c418.thumbnails);
+        assertEquals("https://c418.bandcamp.com", c418.url);
     }
 
     /**
@@ -74,17 +74,17 @@ public class BandcampSearchExtractorTest {
     @Test
     void testAlbumSearch() throws ExtractionException, IOException {
         final SearchExtractor extractor = Bandcamp.getSearchExtractor("minecraft volume alpha");
-        final InfoItem minecraft = extractor.getInitialPage().getItems().get(0);
+        final InfoItem minecraft = extractor.initialPage.getItems().get(0);
 
         // Minecraft volume alpha should be the first result, no?
-        assertEquals("Minecraft - Volume Alpha", minecraft.getName());
-        BandcampTestUtils.testImages(minecraft.getThumbnails());
+        assertEquals("Minecraft - Volume Alpha", minecraft.name);
+        BandcampTestUtils.testImages(minecraft.thumbnails);
         assertEquals(
                 "https://c418.bandcamp.com/album/minecraft-volume-alpha",
-                minecraft.getUrl());
+                minecraft.url);
 
         // Verify that playlist tracks counts get extracted correctly
-        assertEquals(24, ((PlaylistInfoItem) minecraft).getStreamCount());
+        assertEquals(24, ((PlaylistInfoItem) minecraft).streamCount);
     }
 
     /**
@@ -95,11 +95,11 @@ public class BandcampSearchExtractorTest {
         // A query practically guaranteed to have the maximum amount of pages
         final SearchExtractor extractor = Bandcamp.getSearchExtractor("e");
 
-        final Page page2 = extractor.getInitialPage().getNextPage();
-        assertEquals("https://bandcamp.com/search?q=e&page=2", page2.getUrl());
+        final Page page2 = extractor.initialPage.nextPage;
+        assertEquals("https://bandcamp.com/search?q=e&page=2", page2.url);
 
-        final Page page3 = extractor.getPage(page2).getNextPage();
-        assertEquals("https://bandcamp.com/search?q=e&page=3", page3.getUrl());
+        final Page page3 = extractor.getPage(page2).nextPage;
+        assertEquals("https://bandcamp.com/search?q=e&page=3", page3.url);
     }
 
     public static class DefaultTest extends DefaultSearchExtractorTest {

@@ -32,7 +32,7 @@ public class PeertubeAccountExtractorTest {
         public static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
             // setting instance might break test when running in parallel
-            PeerTube.setInstance(new PeertubeInstance("https://framatube.org", "Framatube"));
+            PeerTube.instance = new PeertubeInstance("https://framatube.org", "Framatube");
             extractor = (PeertubeAccountExtractor) PeerTube
                     .getChannelExtractor("https://framatube.org/accounts/framasoft");
             extractor.fetchPage();
@@ -44,7 +44,7 @@ public class PeertubeAccountExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(PeerTube.getServiceId(), extractor.getServiceId());
+            assertEquals(PeerTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -122,7 +122,7 @@ public class PeertubeAccountExtractorTest {
         public static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
             // setting instance might break test when running in parallel
-            PeerTube.setInstance(new PeertubeInstance("https://framatube.org", "Framatube"));
+            PeerTube.instance = new PeertubeInstance("https://framatube.org", "Framatube");
             extractor = (PeertubeAccountExtractor) PeerTube
                     .getChannelExtractor("https://framatube.org/api/v1/accounts/fsf");
             extractor.fetchPage();
@@ -134,7 +134,7 @@ public class PeertubeAccountExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(PeerTube.getServiceId(), extractor.getServiceId());
+            assertEquals(PeerTube.serviceId, extractor.getServiceId());
         }
 
         @Test

@@ -55,7 +55,7 @@ public class MediaCCCConferenceExtractorTest {
 
         @Test
         void testGetInitalPage() throws Exception {
-            assertEquals(97, tabExtractor.getInitialPage().getItems().size());
+            assertEquals(97, tabExtractor.initialPage.getItems().size());
         }
     }
 
@@ -97,7 +97,7 @@ public class MediaCCCConferenceExtractorTest {
 
         @Test
         void testGetInitalPage() throws Exception {
-            assertTrue(tabExtractor.getInitialPage().getItems().size() >= 21);
+            assertTrue(tabExtractor.initialPage.getItems().size() >= 21);
         }
     }
 }

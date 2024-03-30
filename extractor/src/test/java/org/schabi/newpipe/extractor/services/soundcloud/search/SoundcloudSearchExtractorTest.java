@@ -132,8 +132,8 @@ public class SoundcloudSearchExtractorTest {
             final SearchExtractor extractor = SoundCloud.getSearchExtractor("cirque du soleil", singletonList(TRACKS), "");
             extractor.fetchPage();
 
-            final InfoItemsPage<InfoItem> page1 = extractor.getInitialPage();
-            final InfoItemsPage<InfoItem> page2 = extractor.getPage(page1.getNextPage());
+            final InfoItemsPage<InfoItem> page1 = extractor.initialPage;
+            final InfoItemsPage<InfoItem> page2 = extractor.getPage(page1.nextPage);
 
             assertNoDuplicatedItems(SoundCloud, page1, page2);
         }
@@ -171,10 +171,10 @@ public class SoundcloudSearchExtractorTest {
 
         @Test
         void testIsVerified() throws IOException, ExtractionException {
-            final List<InfoItem> items = extractor.getInitialPage().getItems();
+            final List<InfoItem> items = extractor.initialPage.getItems();
             boolean verified = false;
             for (InfoItem item : items) {
-                if (item.getUrl().equals("https://soundcloud.com/davidguetta")) {
+                if (item.url.equals("https://soundcloud.com/davidguetta")) {
                     verified = ((ChannelInfoItem) item).isVerified();
                     break;
                 }

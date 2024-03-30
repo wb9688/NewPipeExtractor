@@ -27,7 +27,7 @@ class PeertubeAccountTabExtractorTest {
         static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
             // setting instance might break test when running in parallel
-            PeerTube.setInstance(new PeertubeInstance("https://framatube.org", "Framatube"));
+            PeerTube.instance = new PeertubeInstance("https://framatube.org", "Framatube");
             extractor = (PeertubeChannelTabExtractor) PeerTube
                     .getChannelTabExtractorFromId("accounts/framasoft", ChannelTabs.VIDEOS);
             extractor.fetchPage();
@@ -50,7 +50,7 @@ class PeertubeAccountTabExtractorTest {
         static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
             // setting instance might break test when running in parallel
-            PeerTube.setInstance(new PeertubeInstance("https://framatube.org", "Framatube"));
+            PeerTube.instance = new PeertubeInstance("https://framatube.org", "Framatube");
             extractor = (PeertubeChannelTabExtractor) PeerTube
                     .getChannelTabExtractorFromId("accounts/framasoft", ChannelTabs.CHANNELS);
             extractor.fetchPage();

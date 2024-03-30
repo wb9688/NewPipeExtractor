@@ -58,7 +58,7 @@ public class YoutubeChannelLocalizationTest {
 
                 // Use Videos tab only
                 final ChannelTabExtractor tabExtractor = YouTube.getChannelTabExtractor(
-                        extractor.getTabs().get(0));
+                        extractor.tabs.get(0));
                 tabExtractor.fetchPage();
                 itemsPage = defaultTestRelatedItems(tabExtractor);
             } catch (final Throwable e) {
@@ -75,12 +75,12 @@ public class YoutubeChannelLocalizationTest {
                 final StreamInfoItem item = items.get(i);
 
                 String debugMessage = "[" + String.format("%02d", i) + "] "
-                        + currentLocalization.getLocalizationCode() + " → " + item.getName()
-                        + "\n:::: " + item.getStreamType() + ", views = " + item.getViewCount();
-                final DateWrapper uploadDate = item.getUploadDate();
+                        + currentLocalization.getLocalizationCode() + " → " + item.name
+                        + "\n:::: " + item.streamType + ", views = " + item.viewCount;
+                final DateWrapper uploadDate = item.uploadDate;
                 if (uploadDate != null) {
                     String dateAsText = dateTimeFormatter.format(uploadDate.offsetDateTime());
-                    debugMessage += "\n:::: " + item.getTextualUploadDate() +
+                    debugMessage += "\n:::: " + item.textualUploadDate +
                             "\n:::: " + dateAsText;
                 }
                 if (DEBUG) System.out.println(debugMessage + "\n");
@@ -118,8 +118,8 @@ public class YoutubeChannelLocalizationTest {
                 final StreamInfoItem referenceItem = referenceList.get(i);
                 final StreamInfoItem currentItem = currentList.get(i);
 
-                final DateWrapper referenceUploadDate = referenceItem.getUploadDate();
-                final DateWrapper currentUploadDate = currentItem.getUploadDate();
+                final DateWrapper referenceUploadDate = referenceItem.uploadDate;
+                final DateWrapper currentUploadDate = currentItem.uploadDate;
 
                 final String referenceDateString = referenceUploadDate == null ? "null" :
                         dateTimeFormatter.format(referenceUploadDate.offsetDateTime());
@@ -137,9 +137,9 @@ public class YoutubeChannelLocalizationTest {
                     System.out.println("" +
                             "      [!] " + currentLocalizationCode + " → [" + i + "] dates are not equal\n" +
                             "          " + referenceLocalizationCode + ": " +
-                            referenceDateString + " → " + referenceItem.getTextualUploadDate() +
+                            referenceDateString + " → " + referenceItem.textualUploadDate +
                             "\n          " + currentLocalizationCode + ": " +
-                            currentDateString + " → " + currentItem.getTextualUploadDate());
+                            currentDateString + " → " + currentItem.textualUploadDate);
                 }
 
             }

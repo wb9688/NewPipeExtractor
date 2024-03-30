@@ -221,12 +221,12 @@ public class YoutubeSearchExtractorTest {
 
         @Test
         public void testMoreRelatedItems() throws Exception {
-            final ListExtractor.InfoItemsPage<InfoItem> initialPage = extractor().getInitialPage();
+            final ListExtractor.InfoItemsPage<InfoItem> initialPage = extractor().initialPage;
             // YouTube actually gives us an empty next page, but after that, no more pages.
             assertTrue(initialPage.hasNextPage());
-            final ListExtractor.InfoItemsPage<InfoItem> nextEmptyPage = extractor.getPage(initialPage.getNextPage());
+            final ListExtractor.InfoItemsPage<InfoItem> nextEmptyPage = extractor.getPage(initialPage.nextPage);
             assertEquals(0, nextEmptyPage.getItems().size());
-            assertEmptyErrors("Empty page has errors", nextEmptyPage.getErrors());
+            assertEmptyErrors("Empty page has errors", nextEmptyPage.errors);
 
             assertFalse(nextEmptyPage.hasNextPage(), "More items available when it shouldn't");
         }
@@ -240,8 +240,8 @@ public class YoutubeSearchExtractorTest {
             final SearchExtractor extractor = YouTube.getSearchExtractor("cirque du soleil", singletonList(VIDEOS), "");
             extractor.fetchPage();
 
-            final ListExtractor.InfoItemsPage<InfoItem> page1 = extractor.getInitialPage();
-            final ListExtractor.InfoItemsPage<InfoItem> page2 = extractor.getPage(page1.getNextPage());
+            final ListExtractor.InfoItemsPage<InfoItem> page1 = extractor.initialPage;
+            final ListExtractor.InfoItemsPage<InfoItem> page2 = extractor.getPage(page1.nextPage);
 
             assertNoDuplicatedItems(YouTube, page1, page2);
         }
@@ -306,7 +306,7 @@ public class YoutubeSearchExtractorTest {
 
         @Test
         void testAtLeastOneVerified() throws IOException, ExtractionException {
-            final List<InfoItem> items = extractor.getInitialPage().getItems();
+            final List<InfoItem> items = extractor.initialPage.getItems();
             boolean verified = false;
             for (InfoItem item : items) {
                 if (((ChannelInfoItem) item).isVerified()) {
@@ -343,13 +343,13 @@ public class YoutubeSearchExtractorTest {
 
         @Test
         void testUploaderAvatars() throws IOException, ExtractionException {
-            extractor.getInitialPage()
+            extractor.initialPage
                     .getItems()
                     .stream()
                     .filter(StreamInfoItem.class::isInstance)
                     .map(StreamInfoItem.class::cast)
                     .forEach(streamInfoItem ->
-                            YoutubeTestsUtils.testImages(streamInfoItem.getUploaderAvatars()));
+                            YoutubeTestsUtils.testImages(streamInfoItem.uploaderAvatars));
         }
     }
 
@@ -377,8 +377,8 @@ public class YoutubeSearchExtractorTest {
 
         @Test
         void testVideoDescription() throws IOException, ExtractionException {
-            final List<InfoItem> items = extractor.getInitialPage().getItems();
-            assertNotNull(((StreamInfoItem) items.get(0)).getShortDescription());
+            final List<InfoItem> items = extractor.initialPage.getItems();
+            assertNotNull(((StreamInfoItem) items.get(0)).shortDescription);
         }
     }
 
@@ -406,7 +406,7 @@ public class YoutubeSearchExtractorTest {
 
         @Test
         void testShortFormContent() throws IOException, ExtractionException {
-            assertTrue(extractor.getInitialPage()
+            assertTrue(extractor.initialPage
                     .getItems()
                     .stream()
                     .filter(StreamInfoItem.class::isInstance)
@@ -450,7 +450,7 @@ public class YoutubeSearchExtractorTest {
         @Test
         @Override
         public void testMetaInfo() throws Exception {
-            final List<MetaInfo> metaInfoList = extractor().getMetaInfo();
+            final List<MetaInfo> metaInfoList = extractor().metaInfo;
 
             // the meta info will have different text and language depending on where in the world
             // the connection is established from, so we can't check the actual content

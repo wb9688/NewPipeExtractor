@@ -30,7 +30,7 @@ public class PeertubeSearchExtractorTest {
         public static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
             // setting instance might break test when running in parallel
-            PeerTube.setInstance(new PeertubeInstance("https://framatube.org", "Framatube"));
+            PeerTube.instance = new PeertubeInstance("https://framatube.org", "Framatube");
             extractor = PeerTube.getSearchExtractor(QUERY);
             extractor.fetchPage();
         }
@@ -53,7 +53,7 @@ public class PeertubeSearchExtractorTest {
         public static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
             // setting instance might break test when running in parallel
-            PeerTube.setInstance(new PeertubeInstance("https://framatube.org", "Framatube"));
+            PeerTube.instance = new PeertubeInstance("https://framatube.org", "Framatube");
             extractor = PeerTube.getSearchExtractor(QUERY, singletonList(PeertubeSearchQueryHandlerFactory.SEPIA_VIDEOS), "");
             extractor.fetchPage();
         }
@@ -76,8 +76,8 @@ public class PeertubeSearchExtractorTest {
             final SearchExtractor extractor = PeerTube.getSearchExtractor("internet", singletonList(VIDEOS), "");
             extractor.fetchPage();
 
-            final InfoItemsPage<InfoItem> page1 = extractor.getInitialPage();
-            final InfoItemsPage<InfoItem> page2 = extractor.getPage(page1.getNextPage());
+            final InfoItemsPage<InfoItem> page1 = extractor.initialPage;
+            final InfoItemsPage<InfoItem> page2 = extractor.getPage(page1.nextPage);
 
             assertNoDuplicatedItems(PeerTube, page1, page2);
         }

@@ -26,7 +26,7 @@ class PeertubeChannelTabExtractorTest {
         static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
             // setting instance might break test when running in parallel
-            PeerTube.setInstance(new PeertubeInstance("https://framatube.org", "Framatube"));
+            PeerTube.instance = new PeertubeInstance("https://framatube.org", "Framatube");
             extractor = (PeertubeChannelTabExtractor) PeerTube.getChannelTabExtractorFromId(
                     "video-channels/lqdn_channel@video.lqdn.fr", ChannelTabs.VIDEOS);
             extractor.fetchPage();

@@ -28,7 +28,7 @@ public final class BandcampTestUtils {
         // by DefaultTests.defaultTestImageCollection
         //noinspection DataFlowIssue
         assertTrue(images.stream()
-                .allMatch(image -> image.getUrl().contains("f4.bcbits.com/img")
-                        && (image.getUrl().endsWith(".jpg") || image.getUrl().endsWith(".png"))));
+                .allMatch(image -> image.url.contains("f4.bcbits.com/img")
+                        && (image.url.endsWith(".jpg") || image.url.endsWith(".png"))));
     }
 }

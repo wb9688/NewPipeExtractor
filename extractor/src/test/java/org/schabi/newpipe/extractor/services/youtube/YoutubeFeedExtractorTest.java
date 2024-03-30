@@ -40,7 +40,7 @@ public class YoutubeFeedExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test

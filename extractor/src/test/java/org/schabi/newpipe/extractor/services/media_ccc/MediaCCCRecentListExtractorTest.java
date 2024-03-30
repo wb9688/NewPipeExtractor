@@ -29,7 +29,7 @@ public class MediaCCCRecentListExtractorTest {
 
     @Test
     void testStreamList() throws Exception {
-        final List<StreamInfoItem> items = extractor.getInitialPage().getItems();
+        final List<StreamInfoItem> items = extractor.initialPage.getItems();
         assertFalse(items.isEmpty(), "No items returned");
 
         assertAll(items.stream().flatMap(this::getAllConditionsForItem));
@@ -38,12 +38,12 @@ public class MediaCCCRecentListExtractorTest {
     private Stream<Executable> getAllConditionsForItem(final StreamInfoItem item) {
         return Stream.of(
                 () -> assertFalse(
-                        isNullOrEmpty(item.getName()),
-                        "Name=[" + item.getName() + "] of " + item + " is empty or null"
+                        isNullOrEmpty(item.name),
+                        "Name=[" + item.name + "] of " + item + " is empty or null"
                 ),
                 () -> assertGreater(0,
-                        item.getDuration(),
-                        "Duration[=" + item.getDuration() + "] of " + item + " is <= 0"
+                        item.duration,
+                        "Duration[=" + item.duration + "] of " + item + " is <= 0"
                 )
         );
     }

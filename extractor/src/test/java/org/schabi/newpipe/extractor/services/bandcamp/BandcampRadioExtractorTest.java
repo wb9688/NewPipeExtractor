@@ -53,7 +53,7 @@ public class BandcampRadioExtractorTest implements BaseListExtractorTest {
 
     @Test
     public void testServiceId() {
-        assertEquals(Bandcamp.getServiceId(), extractor.getServiceId());
+        assertEquals(Bandcamp.serviceId, extractor.getServiceId());
     }
 
     @Test

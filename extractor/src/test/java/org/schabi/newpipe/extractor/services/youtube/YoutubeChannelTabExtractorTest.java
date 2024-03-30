@@ -154,7 +154,7 @@ class YoutubeChannelTabExtractorTest {
             channelExtractor.fetchPage();
 
             // the videos tab is the first one
-            extractor = YouTube.getChannelTabExtractor(channelExtractor.getTabs().get(0));
+            extractor = YouTube.getChannelTabExtractor(channelExtractor.tabs.get(0));
             extractor.fetchPage();
         }
 
@@ -180,7 +180,7 @@ class YoutubeChannelTabExtractorTest {
             channelExtractor.fetchPage();
 
             // the shorts tab is the second one
-            extractor = YouTube.getChannelTabExtractor(channelExtractor.getTabs().get(1));
+            extractor = YouTube.getChannelTabExtractor(channelExtractor.tabs.get(1));
             extractor.fetchPage();
         }
 
@@ -196,8 +196,8 @@ class YoutubeChannelTabExtractorTest {
         @Override
         public void testRelatedItems() throws Exception {
             // this channel has no shorts, so an empty page is returned by the playlist extractor
-            assertTrue(extractor.getInitialPage().getItems().isEmpty());
-            assertTrue(extractor.getInitialPage().getErrors().isEmpty());
+            assertTrue(extractor.initialPage.getItems().isEmpty());
+            assertTrue(extractor.initialPage.errors.isEmpty());
         }
     }
 }

@@ -21,16 +21,16 @@ public class NewPipeTest {
         final HashSet<Integer> servicesId = new HashSet<>();
         for (final StreamingService streamingService : NewPipe.getServices()) {
             final String errorMsg =
-                    "There are services with the same id = " + streamingService.getServiceId()
-                            + " (current service > " + streamingService.getServiceInfo().getName() + ")";
+                    "There are services with the same id = " + streamingService.serviceId
+                            + " (current service > " + streamingService.serviceInfo.name + ")";
 
-            assertTrue(servicesId.add(streamingService.getServiceId()), errorMsg);
+            assertTrue(servicesId.add(streamingService.serviceId), errorMsg);
         }
     }
 
     @Test
     public void getServiceWithId() throws Exception {
-        assertEquals(NewPipe.getService(YouTube.getServiceId()), YouTube);
+        assertEquals(NewPipe.getService(YouTube.serviceId), YouTube);
     }
 
     @Test

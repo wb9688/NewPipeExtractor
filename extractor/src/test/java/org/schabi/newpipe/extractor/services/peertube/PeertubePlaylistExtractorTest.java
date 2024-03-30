@@ -57,7 +57,7 @@ public class PeertubePlaylistExtractorTest {
 
         @Test
         void testGetDescription() throws ParsingException {
-            ExtractorAsserts.assertContains("épisodes de Shocking", extractor.getDescription().getContent());
+            ExtractorAsserts.assertContains("épisodes de Shocking", extractor.getDescription().content);
         }
 
         @Test

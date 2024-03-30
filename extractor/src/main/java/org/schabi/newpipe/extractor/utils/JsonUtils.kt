@@ -1,0 +1,154 @@
+package org.schabi.newpipe.extractor.utils
+
+import com.grack.nanojson.JsonArray
+import com.grack.nanojson.JsonObject
+import com.grack.nanojson.JsonParser
+import com.grack.nanojson.JsonParserException
+import org.jsoup.Jsoup
+import org.schabi.newpipe.extractor.exceptions.ParsingException
+import java.util.Arrays
+import java.util.stream.Collectors
+
+object JsonUtils {
+    @JvmStatic
+    @Nonnull
+    @Throws(ParsingException::class)
+    fun getValue(@Nonnull `object`: JsonObject?,
+                 @Nonnull path: String): Any {
+        val keys = Arrays.asList(*path.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
+        val parentObject = getObject(`object`, keys.subList(0, keys.size - 1))
+                ?: throw ParsingException("Unable to get $path")
+        return parentObject[keys[keys.size - 1]]
+                ?: throw ParsingException("Unable to get $path")
+    }
+
+    @Throws(ParsingException::class)
+    private fun <T> getInstanceOf(@Nonnull `object`: JsonObject?,
+                                  @Nonnull path: String,
+                                  @Nonnull klass: Class<T>): T {
+        val value = getValue(`object`, path)
+        return if (klass.isInstance(value)) {
+            klass.cast(value)
+        } else {
+            throw ParsingException("Wrong data type at path $path")
+        }
+    }
+
+    @Nonnull
+    @Throws(ParsingException::class)
+    fun getString(@Nonnull `object`: JsonObject?, @Nonnull path: String): String {
+        return getInstanceOf(`object`, path, String::class.java)
+    }
+
+    @Nonnull
+    @Throws(ParsingException::class)
+    fun getBoolean(@Nonnull `object`: JsonObject?,
+                   @Nonnull path: String): Boolean {
+        return getInstanceOf(`object`, path, Boolean::class.java)
+    }
+
+    @Nonnull
+    @Throws(ParsingException::class)
+    fun getNumber(@Nonnull `object`: JsonObject?,
+                  @Nonnull path: String): Number {
+        return getInstanceOf(`object`, path, Number::class.java)
+    }
+
+    @Nonnull
+    @Throws(ParsingException::class)
+    fun getObject(@Nonnull `object`: JsonObject?,
+                  @Nonnull path: String): JsonObject {
+        return getInstanceOf(`object`, path, JsonObject::class.java)
+    }
+
+    @Nonnull
+    @Throws(ParsingException::class)
+    fun getArray(@Nonnull `object`: JsonObject?, @Nonnull path: String): JsonArray {
+        return getInstanceOf(`object`, path, JsonArray::class.java)
+    }
+
+    @JvmStatic
+    @Nonnull
+    @Throws(ParsingException::class)
+    fun getValues(@Nonnull array: JsonArray, @Nonnull path: String): List<Any> {
+        val result: MutableList<Any> = ArrayList()
+        for (i in array.indices) {
+            val obj = array.getObject(i)
+            result.add(getValue(obj, path))
+        }
+        return result
+    }
+
+    private fun getObject(@Nonnull `object`: JsonObject?,
+                          @Nonnull keys: List<String>): JsonObject? {
+        var result = `object`
+        for (key in keys) {
+            result = result!!.getObject(key)
+            if (result == null) {
+                break
+            }
+        }
+        return result
+    }
+
+    @Throws(ParsingException::class)
+    fun toJsonArray(responseBody: String?): JsonArray {
+        return try {
+            JsonParser.array().from(responseBody)
+        } catch (e: JsonParserException) {
+            throw ParsingException("Could not parse JSON", e)
+        }
+    }
+
+    @Throws(ParsingException::class)
+    fun toJsonObject(responseBody: String?): JsonObject {
+        return try {
+            JsonParser.`object`().from(responseBody)
+        } catch (e: JsonParserException) {
+            throw ParsingException("Could not parse JSON", e)
+        }
+    }
+
+    /**
+     *
+     * Get an attribute of a web page as JSON
+     *
+     *
+     * Originally a part of bandcampDirect.
+     *
+     * Example HTML:
+     * <pre>
+     * `<p data-town="{&quot;name&quot;:&quot;Mycenae&quot;,&quot;country&quot;:&quot;Greece&quot;}">
+     * This is Sparta!</p>
+    ` *
+    </pre> *
+     *
+     * Calling this function to get the attribute `data-town` returns the JsonObject
+     * for
+     * <pre>
+     * `{
+     * "name": "Mycenae",
+     * "country": "Greece"
+     * }
+    ` *
+    </pre> *
+     *
+     * @param html     The HTML where the JSON we're looking for is stored inside a
+     * variable inside some JavaScript block
+     * @param variable Name of the variable
+     * @return The JsonObject stored in the variable with this name
+     */
+    @Throws(JsonParserException::class, ArrayIndexOutOfBoundsException::class)
+    fun getJsonData(html: String?, variable: String?): JsonObject {
+        val document = Jsoup.parse(html!!)
+        val json = document.getElementsByAttribute(variable!!).attr(variable)
+        return JsonParser.`object`().from(json)
+    }
+
+    fun getStringListFromJsonArray(@Nonnull array: JsonArray): List<String> {
+        return array.stream()
+                .filter { o: Any? -> String::class.java.isInstance(o) }
+                .map { obj: Any? -> String::class.java.cast(obj) }
+                .collect(Collectors.toList())
+    }
+}

@@ -148,7 +148,7 @@ public class YoutubeChannelExtractorTest {
             final ChannelExtractor extractor = YouTube.getChannelExtractor("https://invidio.us/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ");
 
             extractor.fetchPage();
-            assertTrue(extractor.getTabs().isEmpty());
+            assertTrue(extractor.tabs.isEmpty());
         }
     }
 
@@ -170,7 +170,7 @@ public class YoutubeChannelExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -234,7 +234,7 @@ public class YoutubeChannelExtractorTest {
             assertTabsContain(extractor.getTabs(), ChannelTabs.VIDEOS,
                     ChannelTabs.LIVESTREAMS, ChannelTabs.PLAYLISTS);
             assertTrue(extractor.getTabs().stream()
-                    .filter(it -> ChannelTabs.VIDEOS.equals(it.getContentFilters().get(0)))
+                    .filter(it -> ChannelTabs.VIDEOS.equals(it.contentFilters.get(0)))
                     .allMatch(ReadyChannelTabListLinkHandler.class::isInstance));
         }
 
@@ -264,7 +264,7 @@ public class YoutubeChannelExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -327,7 +327,7 @@ public class YoutubeChannelExtractorTest {
             assertTabsContain(extractor.getTabs(), ChannelTabs.VIDEOS, ChannelTabs.LIVESTREAMS,
                     ChannelTabs.SHORTS, ChannelTabs.PLAYLISTS);
             assertTrue(extractor.getTabs().stream()
-                    .filter(it -> ChannelTabs.VIDEOS.equals(it.getContentFilters().get(0)))
+                    .filter(it -> ChannelTabs.VIDEOS.equals(it.contentFilters.get(0)))
                     .allMatch(ReadyChannelTabListLinkHandler.class::isInstance));
         }
 
@@ -357,7 +357,7 @@ public class YoutubeChannelExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -423,7 +423,7 @@ public class YoutubeChannelExtractorTest {
             assertTabsContain(extractor.getTabs(), ChannelTabs.VIDEOS, ChannelTabs.SHORTS,
                     ChannelTabs.PLAYLISTS);
             assertTrue(extractor.getTabs().stream()
-                    .filter(it -> ChannelTabs.VIDEOS.equals(it.getContentFilters().get(0)))
+                    .filter(it -> ChannelTabs.VIDEOS.equals(it.contentFilters.get(0)))
                     .allMatch(ReadyChannelTabListLinkHandler.class::isInstance));
         }
 
@@ -457,7 +457,7 @@ public class YoutubeChannelExtractorTest {
             final ChannelExtractor newExtractor = YouTube.getChannelExtractor(extractor.getUrl());
             newExtractor.fetchPage();
             final ChannelTabExtractor newTabExtractor = YouTube.getChannelTabExtractor(
-                    newExtractor.getTabs().get(0));
+                    newExtractor.tabs.get(0));
             defaultTestGetPageInNewExtractor(tabExtractor, newTabExtractor);
         }
     }
@@ -480,7 +480,7 @@ public class YoutubeChannelExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -542,7 +542,7 @@ public class YoutubeChannelExtractorTest {
         public void testTabs() throws Exception {
             assertTabsContain(extractor.getTabs(), ChannelTabs.VIDEOS, ChannelTabs.PLAYLISTS);
             assertTrue(extractor.getTabs().stream()
-                    .filter(it -> ChannelTabs.VIDEOS.equals(it.getContentFilters().get(0)))
+                    .filter(it -> ChannelTabs.VIDEOS.equals(it.contentFilters.get(0)))
                     .allMatch(ReadyChannelTabListLinkHandler.class::isInstance));
         }
 
@@ -572,7 +572,7 @@ public class YoutubeChannelExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -634,7 +634,7 @@ public class YoutubeChannelExtractorTest {
         public void testTabs() throws Exception {
             assertTabsContain(extractor.getTabs(), ChannelTabs.VIDEOS);
             assertTrue(extractor.getTabs().stream()
-                    .filter(it -> ChannelTabs.VIDEOS.equals(it.getContentFilters().get(0)))
+                    .filter(it -> ChannelTabs.VIDEOS.equals(it.contentFilters.get(0)))
                     .allMatch(ReadyChannelTabListLinkHandler.class::isInstance));
         }
 
@@ -663,7 +663,7 @@ public class YoutubeChannelExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -762,20 +762,20 @@ public class YoutubeChannelExtractorTest {
         @Override
         public void testDescription() throws Exception {
             // Description cannot be extracted from age-restricted channels
-            assertTrue(isNullOrEmpty(extractor.getDescription()));
+            assertTrue(isNullOrEmpty(extractor.description));
         }
 
         @Test
         @Override
         public void testAvatars() throws Exception {
-            YoutubeTestsUtils.testImages(extractor.getAvatars());
+            YoutubeTestsUtils.testImages(extractor.avatars);
         }
 
         @Test
         @Override
         public void testBanners() throws Exception {
             // Banners cannot be extracted from age-restricted channels
-            assertEmpty(extractor.getBanners());
+            assertEmpty(extractor.banners);
         }
 
         @Test
@@ -783,26 +783,26 @@ public class YoutubeChannelExtractorTest {
         public void testFeedUrl() throws Exception {
             assertEquals(
                     "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfnHqxXs_K3kvaH-WlNlig",
-                    extractor.getFeedUrl());
+                    extractor.feedUrl);
         }
 
         @Test
         @Override
         public void testSubscriberCount() throws Exception {
             // Subscriber count cannot be extracted from age-restricted channels
-            assertEquals(ChannelExtractor.UNKNOWN_SUBSCRIBER_COUNT, extractor.getSubscriberCount());
+            assertEquals(ChannelExtractor.UNKNOWN_SUBSCRIBER_COUNT, extractor.subscriberCount);
         }
 
         @Test
         @Override
         public void testServiceId() throws Exception {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
         @Override
         public void testName() throws Exception {
-            assertEquals("Laphroaig Whisky", extractor.getName());
+            assertEquals("Laphroaig Whisky", extractor.name);
         }
 
         @Test
@@ -829,7 +829,7 @@ public class YoutubeChannelExtractorTest {
         @Override
         public void testVerified() throws Exception {
             // Verification status cannot be extracted from age-restricted channels
-            assertFalse(extractor.isVerified());
+            assertFalse(extractor.isVerified);
         }
 
         @Test
@@ -837,17 +837,17 @@ public class YoutubeChannelExtractorTest {
         public void testTabs() throws Exception {
             // Channel tabs which may be available and which will be extracted from channel system
             // uploads playlists
-            assertTabsContain(extractor.getTabs(),
+            assertTabsContain(extractor.tabs,
                     ChannelTabs.VIDEOS, ChannelTabs.SHORTS, ChannelTabs.LIVESTREAMS);
 
             // Check if all tabs are not classic tabs, so that link handlers are of the appropriate
             // type and build YoutubeChannelTabPlaylistExtractor instances
-            assertTrue(extractor.getTabs()
+            assertTrue(extractor.tabs
                     .stream()
                     .allMatch(linkHandler ->
                             linkHandler.getClass() == ReadyChannelTabListLinkHandler.class
                     && ((ReadyChannelTabListLinkHandler) linkHandler)
-                                    .getChannelTabExtractor(extractor.getService())
+                                    .getChannelTabExtractor(extractor.service)
                                     .getClass() == YoutubeChannelTabPlaylistExtractor.class));
         }
 
@@ -877,19 +877,19 @@ public class YoutubeChannelExtractorTest {
         public void testDescription() throws Exception {
             // The description changes frequently and there is no significant common word, so only
             // check if it is not empty
-            assertNotEmpty(extractor.getDescription());
+            assertNotEmpty(extractor.description);
         }
 
         @Test
         @Override
         public void testAvatars() throws Exception {
-            YoutubeTestsUtils.testImages(extractor.getAvatars());
+            YoutubeTestsUtils.testImages(extractor.avatars);
         }
 
         @Test
         @Override
         public void testBanners() throws Exception {
-            YoutubeTestsUtils.testImages(extractor.getBanners());
+            YoutubeTestsUtils.testImages(extractor.banners);
         }
 
         @Test
@@ -897,27 +897,27 @@ public class YoutubeChannelExtractorTest {
         public void testFeedUrl() throws Exception {
             assertEquals(
                     "https://www.youtube.com/feeds/videos.xml?channel_id=UCQvWX73GQygcwXOTSf_VDVg",
-                    extractor.getFeedUrl());
+                    extractor.feedUrl);
         }
 
         @Test
         @Override
         public void testSubscriberCount() throws Exception {
             // Subscriber count is not available on channels with an interactiveTabbedHeaderRenderer
-            assertEquals(ChannelExtractor.UNKNOWN_SUBSCRIBER_COUNT, extractor.getSubscriberCount());
+            assertEquals(ChannelExtractor.UNKNOWN_SUBSCRIBER_COUNT, extractor.subscriberCount);
         }
 
         @Test
         @Override
         public void testVerified() throws Exception {
-            assertTrue(extractor.isVerified());
+            assertTrue(extractor.isVerified);
         }
 
         @Test
         @Override
         public void testTabs() throws Exception {
             // Gaming topic channels tabs are not yet supported, so an empty list should be returned
-            assertTrue(extractor.getTabs().isEmpty());
+            assertTrue(extractor.tabs.isEmpty());
         }
 
         @Test
@@ -929,13 +929,13 @@ public class YoutubeChannelExtractorTest {
         @Test
         @Override
         public void testServiceId() throws Exception {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
         @Override
         public void testName() throws Exception {
-            assertContains("Minecraft", extractor.getName());
+            assertContains("Minecraft", extractor.name);
         }
 
         @Test

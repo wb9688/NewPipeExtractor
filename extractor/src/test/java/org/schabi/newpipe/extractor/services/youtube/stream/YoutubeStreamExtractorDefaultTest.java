@@ -296,19 +296,19 @@ public class YoutubeStreamExtractorDefaultTest {
         @Test
         void testStreamSegment0() throws Exception {
             final StreamSegment segment = extractor.getStreamSegments().get(0);
-            assertEquals(0, segment.getStartTimeSeconds());
-            assertEquals("Guten Abend", segment.getTitle());
-            assertEquals(BASE_URL + ID + "?t=0", segment.getUrl());
-            assertNotNull(segment.getPreviewUrl());
+            assertEquals(0, segment.startTimeSeconds);
+            assertEquals("Guten Abend", segment.title);
+            assertEquals(BASE_URL + ID + "?t=0", segment.url);
+            assertNotNull(segment.previewUrl);
         }
 
         @Test
         void testStreamSegment3() throws Exception {
             final StreamSegment segment = extractor.getStreamSegments().get(3);
-            assertEquals(224, segment.getStartTimeSeconds());
-            assertEquals("Pandemie dämpft Konjunkturprognose für 2021", segment.getTitle());
-            assertEquals(BASE_URL + ID + "?t=224", segment.getUrl());
-            assertNotNull(segment.getPreviewUrl());
+            assertEquals(224, segment.startTimeSeconds);
+            assertEquals("Pandemie dämpft Konjunkturprognose für 2021", segment.title);
+            assertEquals(BASE_URL + ID + "?t=224", segment.url);
+            assertNotNull(segment.previewUrl);
         }
     }
 
@@ -362,10 +362,10 @@ public class YoutubeStreamExtractorDefaultTest {
         @Test
         void testStreamSegment() throws Exception {
             final StreamSegment segment = extractor.getStreamSegments().get(1);
-            assertEquals(164, segment.getStartTimeSeconds());
-            assertEquals("Was ist Vitamin D?", segment.getTitle());
-            assertEquals(BASE_URL + ID + "?t=164", segment.getUrl());
-            assertNotNull(segment.getPreviewUrl());
+            assertEquals(164, segment.startTimeSeconds);
+            assertEquals("Was ist Vitamin D?", segment.title);
+            assertEquals(BASE_URL + ID + "?t=164", segment.url);
+            assertNotNull(segment.previewUrl);
         }
 
         @Override
@@ -549,21 +549,21 @@ public class YoutubeStreamExtractorDefaultTest {
 
         @Test
         void testCheckAudioStreams() throws Exception {
-            final List<AudioStream> audioStreams = extractor.getAudioStreams();
+            final List<AudioStream> audioStreams = extractor.audioStreams;
             assertFalse(audioStreams.isEmpty());
 
             for (final AudioStream stream : audioStreams) {
-                assertNotNull(stream.getAudioTrackName());
+                assertNotNull(stream.audioTrackName);
             }
 
             assertTrue(audioStreams.stream()
                     .anyMatch(audioStream ->
-                            "English original".equals(audioStream.getAudioTrackName())));
+                            "English original".equals(audioStream.audioTrackName)));
 
             final Locale hindiLocale = Locale.forLanguageTag("hi");
             assertTrue(audioStreams.stream()
                     .anyMatch(audioStream ->
-                            Objects.equals(audioStream.getAudioLocale(), hindiLocale)));
+                            Objects.equals(audioStream.audioLocale, hindiLocale)));
         }
     }
 
@@ -582,25 +582,25 @@ public class YoutubeStreamExtractorDefaultTest {
 
         @Test
         void testCheckOriginalAudio() throws Exception {
-            assertFalse(extractor.getAudioStreams().isEmpty());
+            assertFalse(extractor.audioStreams.isEmpty());
 
-            assertTrue(extractor.getAudioStreams()
+            assertTrue(extractor.audioStreams
                     .stream()
-                    .anyMatch(s -> s.getAudioTrackType() == AudioTrackType.ORIGINAL));
+                    .anyMatch(s -> s.audioTrackType == AudioTrackType.ORIGINAL));
         }
 
         @Test
         void testCheckDubbedAudio() throws Exception {
-            assertTrue(extractor.getAudioStreams()
+            assertTrue(extractor.audioStreams
                     .stream()
-                    .anyMatch(s -> s.getAudioTrackType() == AudioTrackType.DUBBED));
+                    .anyMatch(s -> s.audioTrackType == AudioTrackType.DUBBED));
         }
 
         @Test
         void testCheckDescriptiveAudio() throws Exception {
-            assertTrue(extractor.getAudioStreams()
+            assertTrue(extractor.audioStreams
                     .stream()
-                    .anyMatch(s -> s.getAudioTrackType() == AudioTrackType.DESCRIPTIVE));
+                    .anyMatch(s -> s.audioTrackType == AudioTrackType.DESCRIPTIVE));
         }
     }
 }

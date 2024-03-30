@@ -31,49 +31,49 @@ public class BandcampChannelExtractorTest implements BaseChannelExtractorTest {
     @Test
     @Override
     public void testDescription() throws Exception {
-        assertEquals("making music:)", extractor.getDescription());
+        assertEquals("making music:)", extractor.description);
     }
 
     @Test
     @Override
     public void testAvatars() throws Exception {
-        BandcampTestUtils.testImages(extractor.getAvatars());
+        BandcampTestUtils.testImages(extractor.avatars);
     }
 
     @Test
     @Override
     public void testBanners() throws Exception {
-        BandcampTestUtils.testImages(extractor.getBanners());
+        BandcampTestUtils.testImages(extractor.banners);
     }
 
     @Test
     @Override
     public void testFeedUrl() throws Exception {
-        assertNull(extractor.getFeedUrl());
+        assertNull(extractor.feedUrl);
     }
 
     @Test
     @Override
     public void testSubscriberCount() throws Exception {
-        assertEquals(-1, extractor.getSubscriberCount());
+        assertEquals(-1, extractor.subscriberCount);
     }
 
     @Test
     @Override
     public void testVerified() throws Exception {
-        assertFalse(extractor.isVerified());
+        assertFalse(extractor.isVerified);
     }
 
     @Test
     @Override
     public void testServiceId() {
-        assertEquals(Bandcamp.getServiceId(), extractor.getServiceId());
+        assertEquals(Bandcamp.serviceId, extractor.getServiceId());
     }
 
     @Test
     @Override
     public void testName() throws Exception {
-        assertEquals("toupie", extractor.getName());
+        assertEquals("toupie", extractor.name);
     }
 
     @Test
@@ -97,7 +97,7 @@ public class BandcampChannelExtractorTest implements BaseChannelExtractorTest {
     @Test
     @Override
     public void testTabs() throws Exception {
-        assertTabsContain(extractor.getTabs(), ChannelTabs.ALBUMS);
+        assertTabsContain(extractor.tabs, ChannelTabs.ALBUMS);
     }
 
     @Test

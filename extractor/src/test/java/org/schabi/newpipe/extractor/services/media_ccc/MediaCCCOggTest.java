@@ -28,12 +28,12 @@ public class MediaCCCOggTest {
 
     @Test
     public void getAudioStreamsCount() throws Exception {
-        assertEquals(1, extractor.getAudioStreams().size());
+        assertEquals(1, extractor.audioStreams.size());
     }
 
     @Test
     public void getAudioStreamsContainOgg() throws Exception {
-        for (AudioStream stream : extractor.getAudioStreams()) {
+        for (AudioStream stream : extractor.audioStreams) {
             assertEquals("OGG", stream.getFormat().toString());
         }
     }

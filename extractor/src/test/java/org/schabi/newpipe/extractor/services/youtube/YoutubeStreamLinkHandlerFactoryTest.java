@@ -48,7 +48,7 @@ public class YoutubeStreamLinkHandlerFactoryTest {
             "https://invidious.fdn.fr/channel/UCBR8-60-B28hp2BmDPdntcQ"
     })
     void getIdForInvalidUrls(final String invalidUrl) {
-        assertThrows(ParsingException.class, () -> linkHandler.fromUrl(invalidUrl).getId());
+        assertThrows(ParsingException.class, () -> linkHandler.fromUrl(invalidUrl).id);
     }
 
     @ParameterizedTest
@@ -71,7 +71,7 @@ public class YoutubeStreamLinkHandlerFactoryTest {
             "vnd.youtube:9Dpqou5cI08"
     })
     void getId_9Dpqou5cI08_fromYt(final String url) throws Exception {
-        assertEquals("9Dpqou5cI08", linkHandler.fromUrl(url).getId());
+        assertEquals("9Dpqou5cI08", linkHandler.fromUrl(url).id);
     }
 
     @ParameterizedTest
@@ -83,7 +83,7 @@ public class YoutubeStreamLinkHandlerFactoryTest {
             "https://www.youtube.com/watch/IOS2fqxwYbA"
     })
     void getId_IOS2fqxwYbA_fromYt(final String url) throws Exception {
-        assertEquals("IOS2fqxwYbA", linkHandler.fromUrl(url).getId());
+        assertEquals("IOS2fqxwYbA", linkHandler.fromUrl(url).id);
     }
 
     @ParameterizedTest
@@ -95,7 +95,7 @@ public class YoutubeStreamLinkHandlerFactoryTest {
             "HTTPS://youtu.be/-cdveCh1kQk)"
     })
     void getId_cdveCh1kQk_fromYt(final String url) throws Exception {
-        assertEquals("-cdveCh1kQk", linkHandler.fromUrl(url).getId());
+        assertEquals("-cdveCh1kQk", linkHandler.fromUrl(url).id);
     }
 
     @ParameterizedTest
@@ -112,7 +112,7 @@ public class YoutubeStreamLinkHandlerFactoryTest {
             "OGS7c0-CmRs,https://YouTu.be/OGS7c0-CmRswhatever)"
     })
     void getId_diverse_fromYt(final String expectedId, final String url) throws Exception {
-        assertEquals(expectedId, linkHandler.fromUrl(url).getId());
+        assertEquals(expectedId, linkHandler.fromUrl(url).id);
     }
 
     @ParameterizedTest
@@ -170,7 +170,7 @@ public class YoutubeStreamLinkHandlerFactoryTest {
             "3msbfr6pBNE,hooktube.com/embed/3msbfr6pBNE"
     })
     void getHookIdfromUrl(final String expectedId, final String url) throws Exception {
-        assertEquals(expectedId, linkHandler.fromUrl(url).getId());
+        assertEquals(expectedId, linkHandler.fromUrl(url).id);
     }
 
     @ParameterizedTest
@@ -202,6 +202,6 @@ public class YoutubeStreamLinkHandlerFactoryTest {
             "3msbfr6pBNE,invidious.fdn.fr/watch/3msbfr6pBNE"
     })
     void getInvidiousIdfromUrl(final String expectedId, final String url) throws Exception {
-        assertEquals(expectedId, linkHandler.fromUrl(url).getId());
+        assertEquals(expectedId, linkHandler.fromUrl(url).id);
     }
 }

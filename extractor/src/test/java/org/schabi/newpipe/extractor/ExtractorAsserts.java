@@ -171,7 +171,7 @@ public class ExtractorAsserts {
     public static void assertTabsContain(@Nonnull final List<ListLinkHandler> tabs,
                                          @Nonnull final String... expectedTabs) {
         final Set<String> tabSet = tabs.stream()
-                .map(linkHandler -> linkHandler.getContentFilters().get(0))
+                .map(linkHandler -> linkHandler.contentFilters.get(0))
                 .collect(Collectors.toUnmodifiableSet());
         Arrays.stream(expectedTabs)
                 .forEach(expectedTab -> assertTrue(tabSet.contains(expectedTab),
@@ -184,7 +184,7 @@ public class ExtractorAsserts {
         assertNotNull(exceptedImageUrlContained, "exceptedImageUrlContained is null");
         assertNotNull(imageCollection, "imageCollection is null");
         assertTrue(imageCollection.stream().anyMatch(image ->
-                image.getUrl().equals(exceptedImageUrlContained)));
+                image.url.equals(exceptedImageUrlContained)));
     }
 
     public static void assertContainsOnlyEquivalentImages(
@@ -196,9 +196,9 @@ public class ExtractorAsserts {
 
         firstImageCollection.forEach(exceptedImage ->
                 assertTrue(secondImageCollection.stream().anyMatch(image ->
-                        exceptedImage.getUrl().equals(image.getUrl())
-                                && exceptedImage.getHeight() == image.getHeight()
-                                && exceptedImage.getWidth() == image.getWidth())));
+                        exceptedImage.url.equals(image.url)
+                                && exceptedImage.height == image.height
+                                && exceptedImage.width == image.width)));
     }
 
     public static void assertNotOnlyContainsEquivalentImages(
@@ -213,9 +213,9 @@ public class ExtractorAsserts {
 
         for (final Image unexpectedImage : firstImageCollection) {
             for (final Image image : secondImageCollection) {
-                if (!image.getUrl().equals(unexpectedImage.getUrl())
-                        || image.getHeight() != unexpectedImage.getHeight()
-                        || image.getWidth() != unexpectedImage.getWidth()) {
+                if (!image.url.equals(unexpectedImage.url)
+                        || image.height != unexpectedImage.height
+                        || image.width != unexpectedImage.width) {
                     return;
                 }
             }

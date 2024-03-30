@@ -47,10 +47,10 @@ public class YoutubeSubscriptionExtractorTest {
         assertEquals(7, subscriptionItems.size());
 
         for (final SubscriptionItem item : subscriptionItems) {
-            assertNotNull(item.getName());
-            assertNotNull(item.getUrl());
-            assertTrue(urlHandler.acceptUrl(item.getUrl()));
-            assertEquals(ServiceList.YouTube.getServiceId(), item.getServiceId());
+            assertNotNull(item.name);
+            assertNotNull(item.url);
+            assertTrue(urlHandler.acceptUrl(item.url));
+            assertEquals(ServiceList.YouTube.serviceId, item.serviceId);
         }
     }
 
@@ -68,9 +68,9 @@ public class YoutubeSubscriptionExtractorTest {
                 new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8)));
 
         assertEquals(1, items.size());
-        assertEquals(ServiceList.YouTube.getServiceId(), items.get(0).getServiceId());
-        assertEquals("https://www.youtube.com/channel/UCEOXxzW2vU0P-0THehuIIeg", items.get(0).getUrl());
-        assertEquals("", items.get(0).getName());
+        assertEquals(ServiceList.YouTube.serviceId, items.get(0).serviceId);
+        assertEquals("https://www.youtube.com/channel/UCEOXxzW2vU0P-0THehuIIeg", items.get(0).url);
+        assertEquals("", items.get(0).name);
     }
 
     @Test
@@ -81,9 +81,9 @@ public class YoutubeSubscriptionExtractorTest {
                 new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8)));
 
         assertEquals(1, items.size());
-        assertEquals(ServiceList.YouTube.getServiceId(), items.get(0).getServiceId());
-        assertEquals("https://www.youtube.com/channel/UCEOXxzW2vU0P-0THehuIIeg", items.get(0).getUrl());
-        assertEquals("name2", items.get(0).getName());
+        assertEquals(ServiceList.YouTube.serviceId, items.get(0).serviceId);
+        assertEquals("https://www.youtube.com/channel/UCEOXxzW2vU0P-0THehuIIeg", items.get(0).url);
+        assertEquals("name2", items.get(0).name);
     }
 
     @Test
@@ -120,10 +120,10 @@ public class YoutubeSubscriptionExtractorTest {
         assertTrue(subscriptionItems.size() > 0);
 
         for (final SubscriptionItem item : subscriptionItems) {
-            assertNotNull(item.getName());
-            assertNotNull(item.getUrl());
-            assertTrue(urlHandler.acceptUrl(item.getUrl()));
-            assertEquals(ServiceList.YouTube.getServiceId(), item.getServiceId());
+            assertNotNull(item.name);
+            assertNotNull(item.url);
+            assertTrue(urlHandler.acceptUrl(item.url));
+            assertEquals(ServiceList.YouTube.serviceId, item.serviceId);
         }
     }
 

@@ -48,13 +48,13 @@ public class YoutubeTrendingLinkHandlerFactoryTest {
     @Test
     public void getUrl()
             throws Exception {
-        assertEquals(LinkHandlerFactory.fromId("").getUrl(), "https://www.youtube.com/feed/trending");
+        assertEquals(LinkHandlerFactory.fromId("").url, "https://www.youtube.com/feed/trending");
     }
 
     @Test
     public void getId()
             throws Exception {
-        assertEquals(LinkHandlerFactory.fromUrl("https://www.youtube.com/feed/trending").getId(), "Trending");
+        assertEquals(LinkHandlerFactory.fromUrl("https://www.youtube.com/feed/trending").id, "Trending");
     }
 
     @Test

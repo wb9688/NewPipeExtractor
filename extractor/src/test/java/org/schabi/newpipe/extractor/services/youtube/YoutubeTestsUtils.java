@@ -44,6 +44,6 @@ public final class YoutubeTestsUtils {
         // by DefaultTests.defaultTestImageCollection
         //noinspection DataFlowIssue
         images.forEach(image ->
-            ExtractorAsserts.assertContains("yt", image.getUrl()));
+            ExtractorAsserts.assertContains("yt", image.url));
     }
 }

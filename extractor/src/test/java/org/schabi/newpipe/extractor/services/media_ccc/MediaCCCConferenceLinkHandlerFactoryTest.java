@@ -21,22 +21,22 @@ public class MediaCCCConferenceLinkHandlerFactoryTest {
     @Test
     public void getId() throws ParsingException {
         assertEquals("jh20",
-                linkHandler.fromUrl("https://media.ccc.de/c/jh20#278").getId());
+                linkHandler.fromUrl("https://media.ccc.de/c/jh20#278").id);
         assertEquals("jh20",
-                linkHandler.fromUrl("https://media.ccc.de/b/jh20?a=b").getId());
+                linkHandler.fromUrl("https://media.ccc.de/b/jh20?a=b").id);
         assertEquals("jh20",
-                linkHandler.fromUrl("https://api.media.ccc.de/public/conferences/jh20&a=b&b=c").getId());
+                linkHandler.fromUrl("https://api.media.ccc.de/public/conferences/jh20&a=b&b=c").id);
     }
 
     @Test
     public void getUrl() throws ParsingException {
         assertEquals("https://media.ccc.de/c/jh20",
-                linkHandler.fromUrl("https://media.ccc.de/c/jh20#278").getUrl());
+                linkHandler.fromUrl("https://media.ccc.de/c/jh20#278").url);
         assertEquals("https://media.ccc.de/c/jh20",
-                linkHandler.fromUrl("https://media.ccc.de/b/jh20?a=b").getUrl());
+                linkHandler.fromUrl("https://media.ccc.de/b/jh20?a=b").url);
         assertEquals("https://media.ccc.de/c/jh20",
-                linkHandler.fromUrl("https://api.media.ccc.de/public/conferences/jh20&a=b&b=c").getUrl());
+                linkHandler.fromUrl("https://api.media.ccc.de/public/conferences/jh20&a=b&b=c").url);
         assertEquals("https://media.ccc.de/c/jh20",
-                linkHandler.fromId("jh20").getUrl());
+                linkHandler.fromId("jh20").url);
     }
 }

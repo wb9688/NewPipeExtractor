@@ -39,7 +39,7 @@ public abstract class PeertubeStreamExtractorTest extends DefaultStreamExtractor
         public static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
             // setting instance might break test when running in parallel (!)
-            PeerTube.setInstance(new PeertubeInstance(INSTANCE, "FramaTube"));
+            PeerTube.instance = new PeertubeInstance(INSTANCE, "FramaTube");
             extractor = PeerTube.getStreamExtractor(URL);
             extractor.fetchPage();
         }
@@ -105,7 +105,7 @@ public abstract class PeertubeStreamExtractorTest extends DefaultStreamExtractor
         public static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
             // setting instance might break test when running in parallel (!)
-            PeerTube.setInstance(new PeertubeInstance(INSTANCE, "TILvids"));
+            PeerTube.instance = new PeertubeInstance(INSTANCE, "TILvids");
             extractor = PeerTube.getStreamExtractor(URL);
             extractor.fetchPage();
         }
@@ -151,7 +151,7 @@ public abstract class PeertubeStreamExtractorTest extends DefaultStreamExtractor
         public static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());;
             // setting instance might break test when running in parallel (!)
-            PeerTube.setInstance(new PeertubeInstance(INSTANCE));
+            PeerTube.instance = new PeertubeInstance(INSTANCE);
             extractor = PeerTube.getStreamExtractor(URL);
             extractor.fetchPage();
         }
@@ -196,7 +196,7 @@ public abstract class PeertubeStreamExtractorTest extends DefaultStreamExtractor
         public static void setUp() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
             // setting instance might break test when running in parallel (!)
-            PeerTube.setInstance(new PeertubeInstance(INSTANCE, "tchncs.de"));
+            PeerTube.instance = new PeertubeInstance(INSTANCE, "tchncs.de");
             extractor = PeerTube.getStreamExtractor(URL);
             extractor.fetchPage();
         }
@@ -233,21 +233,21 @@ public abstract class PeertubeStreamExtractorTest extends DefaultStreamExtractor
     @BeforeAll
     public static void setUp() throws Exception {
         NewPipe.init(DownloaderTestImpl.getInstance());
-        PeerTube.setInstance(new PeertubeInstance("https://peertube.cpy.re", "PeerTube test server"));
+        PeerTube.instance = new PeertubeInstance("https://peertube.cpy.re", "PeerTube test server");
     }
 
     @Test
     public void testGetEmptyDescription() throws Exception {
         StreamExtractor extractorEmpty = PeerTube.getStreamExtractor("https://framatube.org/api/v1/videos/d5907aad-2252-4207-89ec-a4b687b9337d");
         extractorEmpty.fetchPage();
-        assertEquals("", extractorEmpty.getDescription().getContent());
+        assertEquals("", extractorEmpty.getDescription().content);
     }
 
     @Test
     public void testGetSmallDescription() throws Exception {
         StreamExtractor extractorSmall = PeerTube.getStreamExtractor("https://peertube.cpy.re/videos/watch/d2a5ec78-5f85-4090-8ec5-dc1102e022ea");
         extractorSmall.fetchPage();
-        assertEquals("https://www.kickstarter.com/projects/1587081065/nothing-to-hide-the-documentary", extractorSmall.getDescription().getContent());
+        assertEquals("https://www.kickstarter.com/projects/1587081065/nothing-to-hide-the-documentary", extractorSmall.getDescription().content);
     }
 
     @Test

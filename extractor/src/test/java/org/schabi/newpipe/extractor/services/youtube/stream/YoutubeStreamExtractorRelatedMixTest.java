@@ -92,20 +92,20 @@ public class YoutubeStreamExtractorRelatedMixTest extends DefaultStreamExtractor
                 .filter(PlaylistInfoItem.class::isInstance)
                 .map(PlaylistInfoItem.class::cast)
                 .collect(Collectors.toList());
-        playlists.forEach(item -> assertNotEquals(PlaylistType.NORMAL, item.getPlaylistType(),
+        playlists.forEach(item -> assertNotEquals(PlaylistType.NORMAL, item.playlistType,
                 "Unexpected normal playlist in related items"));
 
         final List<PlaylistInfoItem> streamMixes = playlists.stream()
-                .filter(item -> item.getPlaylistType().equals(PlaylistType.MIX_STREAM))
+                .filter(item -> item.playlistType.equals(PlaylistType.MIX_STREAM))
                 .collect(Collectors.toList());
         assertGreaterOrEqual(1, streamMixes.size(), "Not found one or more stream mix in related items");
 
         final PlaylistInfoItem streamMix = streamMixes.get(0);
-        assertSame(InfoItem.InfoType.PLAYLIST, streamMix.getInfoType());
-        assertEquals(YouTube.getServiceId(), streamMix.getServiceId());
-        assertContains(URL, streamMix.getUrl());
-        assertContains("list=RD" + ID, streamMix.getUrl());
-        assertEquals("Mix – " + TITLE, streamMix.getName());
-        YoutubeTestsUtils.testImages(streamMix.getThumbnails());
+        assertSame(InfoItem.InfoType.PLAYLIST, streamMix.infoType);
+        assertEquals(YouTube.serviceId, streamMix.serviceId);
+        assertContains(URL, streamMix.url);
+        assertContains("list=RD" + ID, streamMix.url);
+        assertEquals("Mix – " + TITLE, streamMix.name);
+        YoutubeTestsUtils.testImages(streamMix.thumbnails);
     }
 }

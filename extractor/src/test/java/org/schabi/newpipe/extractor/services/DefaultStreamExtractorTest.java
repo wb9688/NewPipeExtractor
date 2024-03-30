@@ -48,7 +48,7 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
     public abstract String expectedUploaderName();
     public abstract String expectedUploaderUrl();
     public boolean expectedUploaderVerified() { return false; }
-    public long expectedUploaderSubscriberCountAtLeast() { return UNKNOWN_SUBSCRIBER_COUNT; }
+    public long expectedUploaderSubscriberCountAtLeast() { return uploaderSubscriberCount; }
     public String expectedSubChannelName() { return ""; } // default: there is no subchannel
     public String expectedSubChannelUrl() { return ""; } // default: there is no subchannel
     public boolean expectedDescriptionIsEmpty() { return false; } // default: description is not empty
@@ -61,7 +61,7 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
     public abstract long expectedLikeCountAtLeast(); // return -1 if ratings are disabled
     public abstract long expectedDislikeCountAtLeast(); // return -1 if ratings are disabled
     public boolean expectedHasRelatedItems() { return true; } // default: there are related videos
-    public int expectedAgeLimit() { return StreamExtractor.NO_AGE_LIMIT; } // default: no limit
+    public int expectedAgeLimit() { return StreamExtractor.ageLimit; } // default: no limit
     @Nullable public String expectedErrorMessage() { return null; } // default: no error message
     public boolean expectedHasVideoStreams() { return true; } // default: there are video streams
     public boolean expectedHasAudioStreams() { return true; } // default: there are audio streams
@@ -81,19 +81,19 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
     @Test
     @Override
     public void testStreamType() throws Exception {
-        assertEquals(expectedStreamType(), extractor().getStreamType());
+        assertEquals(expectedStreamType(), extractor().streamType);
     }
 
     @Test
     @Override
     public void testUploaderName() throws Exception {
-        assertEquals(expectedUploaderName(), extractor().getUploaderName());
+        assertEquals(expectedUploaderName(), extractor().uploaderName);
     }
 
     @Test
     @Override
     public void testUploaderUrl() throws Exception {
-        final String uploaderUrl = extractor().getUploaderUrl();
+        final String uploaderUrl = extractor().uploaderUrl;
         assertIsSecureUrl(uploaderUrl);
         assertEquals(expectedUploaderUrl(), uploaderUrl);
     }
@@ -112,8 +112,8 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
     @Test
     @Override
     public void testSubscriberCount() throws Exception {
-        if (expectedUploaderSubscriberCountAtLeast() == UNKNOWN_SUBSCRIBER_COUNT) {
-            assertEquals(UNKNOWN_SUBSCRIBER_COUNT, extractor().getUploaderSubscriberCount());
+        if (expectedUploaderSubscriberCountAtLeast() == uploaderSubscriberCount) {
+            assertEquals(uploaderSubscriberCount, extractor().getUploaderSubscriberCount());
         } else {
             assertGreaterOrEqual(expectedUploaderSubscriberCountAtLeast(), extractor().getUploaderSubscriberCount());
         }
@@ -152,7 +152,7 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
     @Test
     @Override
     public void testThumbnails() throws Exception {
-        defaultTestImageCollection(extractor().getThumbnails());
+        defaultTestImageCollection(extractor().thumbnails);
     }
 
     @Test
@@ -162,13 +162,13 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
         assertNotNull(description);
 
         if (expectedDescriptionIsEmpty()) {
-            assertTrue(description.getContent().isEmpty(), "description is not empty");
+            assertTrue(description.content.isEmpty(), "description is not empty");
         } else {
-            assertFalse(description.getContent().isEmpty(), "description is empty");
+            assertFalse(description.content.isEmpty(), "description is empty");
         }
 
         for (final String s : expectedDescriptionContains()) {
-            ExtractorAsserts.assertContains(s, description.getContent());
+            ExtractorAsserts.assertContains(s, description.content);
         }
     }
 
@@ -241,7 +241,7 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
 
         if (expectedHasRelatedItems()) {
             assertNotNull(relatedStreams);
-            defaultTestListOfItems(extractor().getService(), relatedStreams.getItems(),
+            defaultTestListOfItems(extractor().service, relatedStreams.getItems(),
                     relatedStreams.getErrors());
         } else {
             assertTrue(relatedStreams == null || relatedStreams.getItems().isEmpty());
@@ -263,8 +263,8 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
     @Test
     @Override
     public void testVideoStreams() throws Exception {
-        final List<VideoStream> videoStreams = extractor().getVideoStreams();
-        final List<VideoStream> videoOnlyStreams = extractor().getVideoOnlyStreams();
+        final List<VideoStream> videoStreams = extractor().videoStreams;
+        final List<VideoStream> videoOnlyStreams = extractor().videoOnlyStreams;
         assertNotNull(videoStreams);
         assertNotNull(videoOnlyStreams);
         videoStreams.addAll(videoOnlyStreams);
@@ -274,14 +274,14 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
 
             for (final VideoStream stream : videoStreams) {
                 if (stream.isUrl()) {
-                    assertIsSecureUrl(stream.getContent());
+                    assertIsSecureUrl(stream.content);
                 }
-                final StreamType streamType = extractor().getStreamType();
+                final StreamType streamType = extractor().streamType;
                 // On some video streams, the resolution can be empty and the format be unknown,
                 // especially on livestreams (like streams with HLS master playlists)
                 if (streamType != StreamType.LIVE_STREAM
                         && streamType != StreamType.AUDIO_LIVE_STREAM) {
-                    assertFalse(stream.getResolution().isEmpty());
+                    assertFalse(stream.resolution.isEmpty());
                     final int formatId = stream.getFormatId();
                     // see MediaFormat: video stream formats range from 0 to 0x100
                     assertTrue(0 <= formatId && formatId < 0x100,
@@ -296,7 +296,7 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
     @Test
     @Override
     public void testAudioStreams() throws Exception {
-        final List<AudioStream> audioStreams = extractor().getAudioStreams();
+        final List<AudioStream> audioStreams = extractor().audioStreams;
         assertNotNull(audioStreams);
 
         if (expectedHasAudioStreams()) {
@@ -304,7 +304,7 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
 
             for (final AudioStream stream : audioStreams) {
                 if (stream.isUrl()) {
-                    assertIsSecureUrl(stream.getContent());
+                    assertIsSecureUrl(stream.content);
                 }
 
                 // The media format can be unknown on some audio streams
@@ -331,7 +331,7 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
 
             for (final SubtitlesStream stream : subtitles) {
                 if (stream.isUrl()) {
-                    assertIsSecureUrl(stream.getContent());
+                    assertIsSecureUrl(stream.content);
                 }
 
                 final int formatId = stream.getFormatId();
@@ -374,12 +374,12 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
         if (expectedHasFrames()) {
             assertFalse(frames.isEmpty());
             for (final Frameset f : frames) {
-                for (final String url : f.getUrls()) {
+                for (final String url : f.urls) {
                     assertIsValidUrl(url);
                     assertIsSecureUrl(url);
                 }
-                assertTrue(f.getDurationPerFrame() > 0);
-                assertEquals(f.getFrameBoundsAt(0)[3], f.getFrameWidth());
+                assertTrue(f.durationPerFrame > 0);
+                assertEquals(f.getFrameBoundsAt(0)[3], f.frameWidth);
             }
         } else {
             assertTrue(frames.isEmpty());
@@ -445,7 +445,7 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
 
         for (final MetaInfo expectedMetaInfo : expectedMetaInfoList) {
             final List<String> texts = metaInfoList.stream()
-                    .map((metaInfo) -> metaInfo.getContent().getContent())
+                    .map((metaInfo) -> metaInfo.content.content)
                     .collect(Collectors.toList());
             final List<String> titles = metaInfoList.stream().map(MetaInfo::getTitle).collect(Collectors.toList());
             final List<URL> urls = metaInfoList.stream().flatMap(info -> info.getUrls().stream())
@@ -453,8 +453,8 @@ public abstract class DefaultStreamExtractorTest extends DefaultExtractorTest<St
             final List<String> urlTexts = metaInfoList.stream().flatMap(info -> info.getUrlTexts().stream())
                     .collect(Collectors.toList());
 
-            assertTrue(texts.contains(expectedMetaInfo.getContent().getContent()));
-            assertTrue(titles.contains(expectedMetaInfo.getTitle()));
+            assertTrue(texts.contains(expectedMetaInfo.content.content));
+            assertTrue(titles.contains(expectedMetaInfo.title));
 
             for (final String expectedUrlText : expectedMetaInfo.getUrlTexts()) {
                 assertTrue(urlTexts.contains(expectedUrlText));

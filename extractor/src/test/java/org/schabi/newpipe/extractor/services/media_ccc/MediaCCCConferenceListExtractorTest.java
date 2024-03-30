@@ -36,7 +36,7 @@ public class MediaCCCConferenceListExtractorTest {
 
     @Test
     void getConferencesListTest() throws Exception {
-        ExtractorAsserts.assertGreaterOrEqual(174, extractor.getInitialPage().getItems().size());
+        ExtractorAsserts.assertGreaterOrEqual(174, extractor.initialPage.getItems().size());
     }
 
     @ParameterizedTest
@@ -53,7 +53,7 @@ public class MediaCCCConferenceListExtractorTest {
             "Blinkenlights"
     })
     void conferenceTypeTest(final String name) throws Exception {
-        final List<InfoItem> itemList = extractor.getInitialPage().getItems();
-        assertTrue(itemList.stream().anyMatch(item -> name.equals(item.getName())));
+        final List<InfoItem> itemList = extractor.initialPage.getItems();
+        assertTrue(itemList.stream().anyMatch(item -> name.equals(item.name)));
     }
 }

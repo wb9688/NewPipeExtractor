@@ -47,7 +47,7 @@ public class SoundcloudPlaylistExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(SoundCloud.getServiceId(), extractor.getServiceId());
+            assertEquals(SoundCloud.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -144,7 +144,7 @@ public class SoundcloudPlaylistExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(SoundCloud.getServiceId(), extractor.getServiceId());
+            assertEquals(SoundCloud.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -251,7 +251,7 @@ public class SoundcloudPlaylistExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(SoundCloud.getServiceId(), extractor.getServiceId());
+            assertEquals(SoundCloud.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -288,8 +288,8 @@ public class SoundcloudPlaylistExtractorTest {
             ListExtractor.InfoItemsPage<StreamInfoItem> currentPage = defaultTestMoreItems(extractor);
             // Test for 2 more levels
             for (int i = 0; i < 2; i++) {
-                currentPage = extractor.getPage(currentPage.getNextPage());
-                defaultTestListOfItems(SoundCloud, currentPage.getItems(), currentPage.getErrors());
+                currentPage = extractor.getPage(currentPage.nextPage);
+                defaultTestListOfItems(SoundCloud, currentPage.getItems(), currentPage.errors);
             }
         }
 
@@ -353,7 +353,7 @@ public class SoundcloudPlaylistExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(SoundCloud.getServiceId(), extractor.getServiceId());
+            assertEquals(SoundCloud.serviceId, extractor.getServiceId());
         }
 
         @Test

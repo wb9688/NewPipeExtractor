@@ -20,7 +20,7 @@ public class PeertubeStreamLinkHandlerFactoryTest {
 
     @BeforeAll
     public static void setUp() {
-        PeerTube.setInstance(new PeertubeInstance("https://framatube.org", "Framatube"));
+        PeerTube.instance = new PeertubeInstance("https://framatube.org", "Framatube");
         linkHandler = PeertubeStreamLinkHandlerFactory.getInstance();
         NewPipe.init(DownloaderTestImpl.getInstance());
     }
@@ -28,34 +28,34 @@ public class PeertubeStreamLinkHandlerFactoryTest {
     @Test
     public void getId() throws Exception {
         assertEquals("986aac60-1263-4f73-9ce5-36b18225cb60",
-                linkHandler.fromUrl("https://peertube.mastodon.host/videos/watch/986aac60-1263-4f73-9ce5-36b18225cb60").getId());
+                linkHandler.fromUrl("https://peertube.mastodon.host/videos/watch/986aac60-1263-4f73-9ce5-36b18225cb60").id);
         assertEquals("986aac60-1263-4f73-9ce5-36b18225cb60",
-                linkHandler.fromUrl("https://peertube.mastodon.host/videos/watch/986aac60-1263-4f73-9ce5-36b18225cb60?fsdafs=fsafa").getId());
+                linkHandler.fromUrl("https://peertube.mastodon.host/videos/watch/986aac60-1263-4f73-9ce5-36b18225cb60?fsdafs=fsafa").id);
         assertEquals("986aac60-1263-4f73-9ce5-36b18225cb60",
-                linkHandler.fromUrl("https://peertube.mastodon.host/api/v1/videos/watch/986aac60-1263-4f73-9ce5-36b18225cb60").getId());
+                linkHandler.fromUrl("https://peertube.mastodon.host/api/v1/videos/watch/986aac60-1263-4f73-9ce5-36b18225cb60").id);
         assertEquals("986aac60-1263-4f73-9ce5-36b18225cb60",
-                linkHandler.fromUrl("https://peertube.mastodon.host/api/v1/videos/watch/986aac60-1263-4f73-9ce5-36b18225cb60?fsdafs=fsafa").getId());
+                linkHandler.fromUrl("https://peertube.mastodon.host/api/v1/videos/watch/986aac60-1263-4f73-9ce5-36b18225cb60?fsdafs=fsafa").id);
 
         assertEquals("9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromUrl("https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d").getId());
+                linkHandler.fromUrl("https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d").id);
         assertEquals("9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromUrl("https://framatube.org/videos/embed/9c9de5e8-0a1e-484a-b099-e80766180a6d").getId());
+                linkHandler.fromUrl("https://framatube.org/videos/embed/9c9de5e8-0a1e-484a-b099-e80766180a6d").id);
         assertEquals("9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromUrl("https://framatube.org/w/9c9de5e8-0a1e-484a-b099-e80766180a6d").getId());
+                linkHandler.fromUrl("https://framatube.org/w/9c9de5e8-0a1e-484a-b099-e80766180a6d").id);
     }
 
     @Test
     public void getUrl() throws Exception {
         assertEquals("https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromId("9c9de5e8-0a1e-484a-b099-e80766180a6d").getUrl());
+                linkHandler.fromId("9c9de5e8-0a1e-484a-b099-e80766180a6d").url);
         assertEquals("https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromUrl("https://framatube.org/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180a6d").getUrl());
+                linkHandler.fromUrl("https://framatube.org/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180a6d").url);
         assertEquals("https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromUrl("https://framatube.org/videos/embed/9c9de5e8-0a1e-484a-b099-e80766180a6d").getUrl());
+                linkHandler.fromUrl("https://framatube.org/videos/embed/9c9de5e8-0a1e-484a-b099-e80766180a6d").url);
         assertEquals("https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromUrl("https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d").getUrl());
+                linkHandler.fromUrl("https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d").url);
         assertEquals("https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromUrl("https://framatube.org/w/9c9de5e8-0a1e-484a-b099-e80766180a6d").getUrl());
+                linkHandler.fromUrl("https://framatube.org/w/9c9de5e8-0a1e-484a-b099-e80766180a6d").url);
     }
 
 

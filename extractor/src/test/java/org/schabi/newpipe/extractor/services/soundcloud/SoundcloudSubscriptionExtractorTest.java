@@ -44,10 +44,10 @@ public class SoundcloudSubscriptionExtractorTest {
     })
     void testFromChannelUrl(final String channelUrl) throws Exception {
         for (SubscriptionItem item : subscriptionExtractor.fromChannelUrl(channelUrl)) {
-            assertNotNull(item.getName());
-            assertNotNull(item.getUrl());
-            assertTrue(urlHandler.acceptUrl(item.getUrl()));
-            assertNotEquals(-1, item.getServiceId());
+            assertNotNull(item.name);
+            assertNotNull(item.url);
+            assertTrue(urlHandler.acceptUrl(item.url));
+            assertNotEquals(-1, item.serviceId);
         }
     }
 

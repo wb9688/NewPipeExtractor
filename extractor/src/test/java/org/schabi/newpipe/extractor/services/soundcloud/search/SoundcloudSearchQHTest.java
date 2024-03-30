@@ -25,35 +25,35 @@ public class SoundcloudSearchQHTest {
     @Test
     public void testRegularValues() throws Exception {
         assertEquals("https://api-v2.soundcloud.com/search?q=asdf&limit=10&offset=0",
-                removeClientId(SoundCloud.getSearchQHFactory().fromQuery("asdf").getUrl()));
+                removeClientId(SoundCloud.getSearchQHFactory().fromQuery("asdf").url));
         assertEquals("https://api-v2.soundcloud.com/search?q=hans&limit=10&offset=0",
-                removeClientId(SoundCloud.getSearchQHFactory().fromQuery("hans").getUrl()));
+                removeClientId(SoundCloud.getSearchQHFactory().fromQuery("hans").url));
         assertEquals("https://api-v2.soundcloud.com/search?q=Poifj%26jaijf&limit=10&offset=0",
-                removeClientId(SoundCloud.getSearchQHFactory().fromQuery("Poifj&jaijf").getUrl()));
+                removeClientId(SoundCloud.getSearchQHFactory().fromQuery("Poifj&jaijf").url));
         assertEquals("https://api-v2.soundcloud.com/search?q=G%C3%BCl%C3%BCm&limit=10&offset=0",
-                removeClientId(SoundCloud.getSearchQHFactory().fromQuery("Gülüm").getUrl()));
+                removeClientId(SoundCloud.getSearchQHFactory().fromQuery("Gülüm").url));
         assertEquals("https://api-v2.soundcloud.com/search?q=%3Fj%24%29H%C2%A7B&limit=10&offset=0",
-                removeClientId(SoundCloud.getSearchQHFactory().fromQuery("?j$)H§B").getUrl()));
+                removeClientId(SoundCloud.getSearchQHFactory().fromQuery("?j$)H§B").url));
     }
 
     @Test
     public void testGetContentFilter() throws Exception {
         assertEquals("tracks", SoundCloud.getSearchQHFactory()
-                .fromQuery("", asList(new String[]{"tracks"}), "").getContentFilters().get(0));
+                .fromQuery("", asList(new String[]{"tracks"}), "").contentFilters.get(0));
         assertEquals("users", SoundCloud.getSearchQHFactory()
-                .fromQuery("asdf", asList(new String[]{"users"}), "").getContentFilters().get(0));
+                .fromQuery("asdf", asList(new String[]{"users"}), "").contentFilters.get(0));
     }
 
     @Test
     public void testWithContentfilter() throws Exception {
         assertEquals("https://api-v2.soundcloud.com/search/tracks?q=asdf&limit=10&offset=0", removeClientId(SoundCloud.getSearchQHFactory()
-                .fromQuery("asdf", asList(new String[]{TRACKS}), "").getUrl()));
+                .fromQuery("asdf", asList(new String[]{TRACKS}), "").url));
         assertEquals("https://api-v2.soundcloud.com/search/users?q=asdf&limit=10&offset=0", removeClientId(SoundCloud.getSearchQHFactory()
-                .fromQuery("asdf", asList(new String[]{USERS}), "").getUrl()));
+                .fromQuery("asdf", asList(new String[]{USERS}), "").url));
         assertEquals("https://api-v2.soundcloud.com/search/playlists?q=asdf&limit=10&offset=0", removeClientId(SoundCloud.getSearchQHFactory()
-                .fromQuery("asdf", asList(new String[]{PLAYLISTS}), "").getUrl()));
+                .fromQuery("asdf", asList(new String[]{PLAYLISTS}), "").url));
         assertEquals("https://api-v2.soundcloud.com/search?q=asdf&limit=10&offset=0", removeClientId(SoundCloud.getSearchQHFactory()
-                .fromQuery("asdf", asList(new String[]{"fjiijie"}), "").getUrl()));
+                .fromQuery("asdf", asList(new String[]{"fjiijie"}), "").url));
     }
 
     @Test

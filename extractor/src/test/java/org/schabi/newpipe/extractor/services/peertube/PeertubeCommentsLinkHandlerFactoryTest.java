@@ -39,21 +39,21 @@ public class PeertubeCommentsLinkHandlerFactoryTest {
     @Test
     public void getIdFromUrl() throws ParsingException {
         assertEquals("kkGMgK9ZtnKfYAgnEtQxbv",
-                linkHandler.fromUrl("https://framatube.org/w/kkGMgK9ZtnKfYAgnEtQxbv").getId());
+                linkHandler.fromUrl("https://framatube.org/w/kkGMgK9ZtnKfYAgnEtQxbv").id);
         assertEquals("kkGMgK9ZtnKfYAgnEtQxbv",
-                linkHandler.fromUrl("https://framatube.org/videos/watch/kkGMgK9ZtnKfYAgnEtQxbv").getId());
+                linkHandler.fromUrl("https://framatube.org/videos/watch/kkGMgK9ZtnKfYAgnEtQxbv").id);
         assertEquals("kkGMgK9ZtnKfYAgnEtQxbv",
-                linkHandler.fromUrl("https://framatube.org/api/v1/videos/kkGMgK9ZtnKfYAgnEtQxbv/comment-threads").getId());
+                linkHandler.fromUrl("https://framatube.org/api/v1/videos/kkGMgK9ZtnKfYAgnEtQxbv/comment-threads").id);
         assertEquals("kkGMgK9ZtnKfYAgnEtQxbv",
-                linkHandler.fromUrl("https://framatube.org/api/v1/videos/kkGMgK9ZtnKfYAgnEtQxbv/comment-threads?start=0&count=10&sort=-createdAt").getId());
+                linkHandler.fromUrl("https://framatube.org/api/v1/videos/kkGMgK9ZtnKfYAgnEtQxbv/comment-threads?start=0&count=10&sort=-createdAt").id);
 
         assertEquals("9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromUrl("https://framatube.org/w/9c9de5e8-0a1e-484a-b099-e80766180a6d").getId());
+                linkHandler.fromUrl("https://framatube.org/w/9c9de5e8-0a1e-484a-b099-e80766180a6d").id);
         assertEquals("9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromUrl("https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d").getId());
+                linkHandler.fromUrl("https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d").id);
         assertEquals("9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromUrl("https://framatube.org/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180a6d/comment-threads").getId());
+                linkHandler.fromUrl("https://framatube.org/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180a6d/comment-threads").id);
         assertEquals("9c9de5e8-0a1e-484a-b099-e80766180a6d",
-                linkHandler.fromUrl("https://framatube.org/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180a6d/comment-threads?start=0&count=10&sort=-createdAt").getId());
+                linkHandler.fromUrl("https://framatube.org/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180a6d/comment-threads?start=0&count=10&sort=-createdAt").id);
     }
 }

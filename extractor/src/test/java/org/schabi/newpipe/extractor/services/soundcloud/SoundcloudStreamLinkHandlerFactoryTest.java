@@ -39,7 +39,7 @@ public class SoundcloudStreamLinkHandlerFactoryTest {
             "https://soundcloud.com/"
     })
     void getIdForInvalidUrls(final String invalidUrl) {
-        assertThrows(ParsingException.class, () -> linkHandler.fromUrl(invalidUrl).getId());
+        assertThrows(ParsingException.class, () -> linkHandler.fromUrl(invalidUrl).id);
     }
 
     @ParameterizedTest
@@ -58,7 +58,7 @@ public class SoundcloudStreamLinkHandlerFactoryTest {
             "44556776,https://soundcloud.com/kechuspider-sets-1/last-days"
     })
     void getId(final String expectedId, final String url) throws ParsingException {
-        assertEquals(expectedId, linkHandler.fromUrl(url).getId());
+        assertEquals(expectedId, linkHandler.fromUrl(url).id);
     }
 
 

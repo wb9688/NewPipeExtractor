@@ -22,7 +22,7 @@ public class PeertubeTrendingLinkHandlerFactoryTest {
     @BeforeAll
     public static void setUp() throws Exception {
         // setting instance might break test when running in parallel
-        PeerTube.setInstance(new PeertubeInstance("https://peertube.mastodon.host", "PeerTube on Mastodon.host"));
+        PeerTube.instance = new PeertubeInstance("https://peertube.mastodon.host", "PeerTube on Mastodon.host");
         LinkHandlerFactory = PeertubeTrendingLinkHandlerFactory.getInstance();
         NewPipe.init(DownloaderTestImpl.getInstance());
     }
@@ -30,19 +30,19 @@ public class PeertubeTrendingLinkHandlerFactoryTest {
     @Test
     public void getUrl()
             throws Exception {
-        assertEquals(LinkHandlerFactory.fromId("Trending").getUrl(), "https://peertube.mastodon.host/api/v1/videos?sort=-trending");
-        assertEquals(LinkHandlerFactory.fromId("Most liked").getUrl(), "https://peertube.mastodon.host/api/v1/videos?sort=-likes");
-        assertEquals(LinkHandlerFactory.fromId("Recently added").getUrl(), "https://peertube.mastodon.host/api/v1/videos?sort=-publishedAt");
-        assertEquals(LinkHandlerFactory.fromId("Local").getUrl(), "https://peertube.mastodon.host/api/v1/videos?sort=-publishedAt&isLocal=true");
+        assertEquals(LinkHandlerFactory.fromId("Trending").url, "https://peertube.mastodon.host/api/v1/videos?sort=-trending");
+        assertEquals(LinkHandlerFactory.fromId("Most liked").url, "https://peertube.mastodon.host/api/v1/videos?sort=-likes");
+        assertEquals(LinkHandlerFactory.fromId("Recently added").url, "https://peertube.mastodon.host/api/v1/videos?sort=-publishedAt");
+        assertEquals(LinkHandlerFactory.fromId("Local").url, "https://peertube.mastodon.host/api/v1/videos?sort=-publishedAt&isLocal=true");
     }
 
     @Test
     public void getId()
             throws Exception {
-        assertEquals(LinkHandlerFactory.fromUrl("https://peertube.mastodon.host/videos/trending").getId(), "Trending");
-        assertEquals(LinkHandlerFactory.fromUrl("https://peertube.mastodon.host/videos/most-liked").getId(), "Most liked");
-        assertEquals(LinkHandlerFactory.fromUrl("https://peertube.mastodon.host/videos/recently-added").getId(), "Recently added");
-        assertEquals(LinkHandlerFactory.fromUrl("https://peertube.mastodon.host/videos/local").getId(), "Local");
+        assertEquals(LinkHandlerFactory.fromUrl("https://peertube.mastodon.host/videos/trending").id, "Trending");
+        assertEquals(LinkHandlerFactory.fromUrl("https://peertube.mastodon.host/videos/most-liked").id, "Most liked");
+        assertEquals(LinkHandlerFactory.fromUrl("https://peertube.mastodon.host/videos/recently-added").id, "Recently added");
+        assertEquals(LinkHandlerFactory.fromUrl("https://peertube.mastodon.host/videos/local").id, "Local");
     }
 
     @Test

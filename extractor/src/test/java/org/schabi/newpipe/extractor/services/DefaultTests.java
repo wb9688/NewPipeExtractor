@@ -37,43 +37,43 @@ public final class DefaultTests {
         assertEmptyErrors("Errors during extraction", errors);
 
         for (InfoItem item : itemsList) {
-            assertIsSecureUrl(item.getUrl());
+            assertIsSecureUrl(item.url);
 
-            final List<Image> thumbnails = item.getThumbnails();
+            final List<Image> thumbnails = item.thumbnails;
             if (!isNullOrEmpty(thumbnails)) {
                 defaultTestImageCollection(thumbnails);
             }
-            assertNotNull(item.getInfoType(), "InfoItem type not set: " + item);
-            assertEquals(expectedService.getServiceId(), item.getServiceId(), "Unexpected item service id");
-            assertNotEmpty("Item name not set: " + item, item.getName());
+            assertNotNull(item.infoType, "InfoItem type not set: " + item);
+            assertEquals(expectedService.serviceId, item.serviceId, "Unexpected item service id");
+            assertNotEmpty("Item name not set: " + item, item.name);
 
             if (item instanceof StreamInfoItem) {
                 StreamInfoItem streamInfoItem = (StreamInfoItem) item;
-                final String uploaderUrl = streamInfoItem.getUploaderUrl();
+                final String uploaderUrl = streamInfoItem.uploaderUrl;
                 if (!isNullOrEmpty(uploaderUrl)) {
                     assertIsSecureUrl(uploaderUrl);
                     assertExpectedLinkType(expectedService, uploaderUrl, LinkType.CHANNEL);
                 }
 
-                final List<Image> uploaderAvatars = streamInfoItem.getUploaderAvatars();
+                final List<Image> uploaderAvatars = streamInfoItem.uploaderAvatars;
                 if (!isNullOrEmpty(uploaderAvatars)) {
                     defaultTestImageCollection(uploaderAvatars);
                 }
 
-                assertExpectedLinkType(expectedService, streamInfoItem.getUrl(), LinkType.STREAM);
+                assertExpectedLinkType(expectedService, streamInfoItem.url, LinkType.STREAM);
 
-                if (!isNullOrEmpty(streamInfoItem.getTextualUploadDate())) {
-                    final DateWrapper uploadDate = streamInfoItem.getUploadDate();
+                if (!isNullOrEmpty(streamInfoItem.textualUploadDate)) {
+                    final DateWrapper uploadDate = streamInfoItem.uploadDate;
                     assertNotNull(uploadDate,"No parsed upload date");
                 }
 
             } else if (item instanceof ChannelInfoItem) {
                 final ChannelInfoItem channelInfoItem = (ChannelInfoItem) item;
-                assertExpectedLinkType(expectedService, channelInfoItem.getUrl(), LinkType.CHANNEL);
+                assertExpectedLinkType(expectedService, channelInfoItem.url, LinkType.CHANNEL);
 
             } else if (item instanceof PlaylistInfoItem) {
                 final PlaylistInfoItem playlistInfoItem = (PlaylistInfoItem) item;
-                assertExpectedLinkType(expectedService, playlistInfoItem.getUrl(), LinkType.PLAYLIST);
+                assertExpectedLinkType(expectedService, playlistInfoItem.url, LinkType.PLAYLIST);
             }
         }
     }
@@ -89,29 +89,29 @@ public final class DefaultTests {
 
     public static void assertOnlyContainsType(ListExtractor.InfoItemsPage<? extends InfoItem> items, InfoItem.InfoType expectedType) {
         for (InfoItem item : items.getItems()) {
-            assertEquals(expectedType, item.getInfoType(),
+            assertEquals(expectedType, item.infoType,
                     "Item list contains unexpected info types");
         }
     }
 
     public static <T extends InfoItem> void assertNoMoreItems(ListExtractor<T> extractor) throws Exception {
-        final ListExtractor.InfoItemsPage<T> initialPage = extractor.getInitialPage();
+        final ListExtractor.InfoItemsPage<T> initialPage = extractor.initialPage;
         assertFalse(initialPage.hasNextPage(), "More items available when it shouldn't");
     }
 
     public static void assertNoDuplicatedItems(StreamingService expectedService,
                                                ListExtractor.InfoItemsPage<InfoItem> page1,
                                                ListExtractor.InfoItemsPage<InfoItem> page2) throws Exception {
-        defaultTestListOfItems(expectedService, page1.getItems(), page1.getErrors());
-        defaultTestListOfItems(expectedService, page2.getItems(), page2.getErrors());
+        defaultTestListOfItems(expectedService, page1.getItems(), page1.errors);
+        defaultTestListOfItems(expectedService, page2.getItems(), page2.errors);
 
         final Set<String> urlsSet = new HashSet<>();
         for (InfoItem item : page1.getItems()) {
-            urlsSet.add(item.getUrl());
+            urlsSet.add(item.url);
         }
 
         for (InfoItem item : page2.getItems()) {
-            final boolean wasAdded = urlsSet.add(item.getUrl());
+            final boolean wasAdded = urlsSet.add(item.url);
             if (!wasAdded) {
                 fail("Same item was on the first and second page item list");
             }
@@ -119,42 +119,42 @@ public final class DefaultTests {
     }
 
     public static <T extends InfoItem> ListExtractor.InfoItemsPage<T> defaultTestRelatedItems(ListExtractor<T> extractor) throws Exception {
-        final ListExtractor.InfoItemsPage<T> page = extractor.getInitialPage();
+        final ListExtractor.InfoItemsPage<T> page = extractor.initialPage;
         final List<T> itemsList = page.getItems();
-        List<Throwable> errors = page.getErrors();
+        List<Throwable> errors = page.errors;
 
-        defaultTestListOfItems(extractor.getService(), itemsList, errors);
+        defaultTestListOfItems(extractor.service, itemsList, errors);
         return page;
     }
 
     public static <T extends InfoItem> ListExtractor.InfoItemsPage<T> defaultTestMoreItems(ListExtractor<T> extractor) throws Exception {
-        final ListExtractor.InfoItemsPage<T> initialPage = extractor.getInitialPage();
+        final ListExtractor.InfoItemsPage<T> initialPage = extractor.initialPage;
         assertTrue(initialPage.hasNextPage(), "Doesn't have more items");
-        ListExtractor.InfoItemsPage<T> nextPage = extractor.getPage(initialPage.getNextPage());
+        ListExtractor.InfoItemsPage<T> nextPage = extractor.getPage(initialPage.nextPage);
         final List<T> items = nextPage.getItems();
         assertFalse(items.isEmpty(), "Next page is empty");
-        assertEmptyErrors("Next page have errors", nextPage.getErrors());
+        assertEmptyErrors("Next page have errors", nextPage.errors);
 
-        defaultTestListOfItems(extractor.getService(), nextPage.getItems(), nextPage.getErrors());
+        defaultTestListOfItems(extractor.service, nextPage.getItems(), nextPage.errors);
         return nextPage;
     }
 
     public static void defaultTestGetPageInNewExtractor(ListExtractor<? extends InfoItem> extractor, ListExtractor<? extends InfoItem> newExtractor) throws Exception {
-        final Page nextPage = extractor.getInitialPage().getNextPage();
+        final Page nextPage = extractor.initialPage.nextPage;
 
         final ListExtractor.InfoItemsPage<? extends InfoItem> page = newExtractor.getPage(nextPage);
-        defaultTestListOfItems(extractor.getService(), page.getItems(), page.getErrors());
+        defaultTestListOfItems(extractor.service, page.getItems(), page.errors);
     }
 
     public static void defaultTestImageCollection(
             @Nullable final Collection<Image> imageCollection) {
         assertNotNull(imageCollection);
         imageCollection.forEach(image -> {
-            assertIsSecureUrl(image.getUrl());
-            assertGreaterOrEqual(Image.HEIGHT_UNKNOWN, image.getHeight(),
-                    "Unexpected image height: " + image.getHeight());
-            assertGreaterOrEqual(Image.WIDTH_UNKNOWN, image.getWidth(),
-                    "Unexpected image width: " + image.getWidth());
+            assertIsSecureUrl(image.url);
+            assertGreaterOrEqual(Image.HEIGHT_UNKNOWN, image.height,
+                    "Unexpected image height: " + image.height);
+            assertGreaterOrEqual(Image.WIDTH_UNKNOWN, image.width,
+                    "Unexpected image width: " + image.width);
         });
     }
 }

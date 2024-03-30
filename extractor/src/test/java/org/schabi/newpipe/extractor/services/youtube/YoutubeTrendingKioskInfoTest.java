@@ -46,24 +46,24 @@ public class YoutubeTrendingKioskInfoTest {
             throws Exception {
         YoutubeTestsUtils.ensureStateless();
         NewPipe.init(DownloaderFactory.getDownloader(RESOURCE_PATH));
-        LinkHandlerFactory LinkHandlerFactory = ((StreamingService) YouTube).getKioskList().getListLinkHandlerFactoryByType("Trending");
+        LinkHandlerFactory LinkHandlerFactory = ((StreamingService) YouTube).kioskList.getListLinkHandlerFactoryByType("Trending");
 
-        kioskInfo = KioskInfo.getInfo(YouTube, LinkHandlerFactory.fromId("Trending").getUrl());
+        kioskInfo = KioskInfo.getInfo(YouTube, LinkHandlerFactory.fromId("Trending").url);
     }
 
     @Test
     public void getStreams() {
-        assertFalse(kioskInfo.getRelatedItems().isEmpty());
+        assertFalse(kioskInfo.relatedItems.isEmpty());
     }
 
     @Test
     public void getId() {
-        assertTrue(kioskInfo.getId().equals("Trending")
-                || kioskInfo.getId().equals("Trends"));
+        assertTrue(kioskInfo.id.equals("Trending")
+                || kioskInfo.id.equals("Trends"));
     }
 
     @Test
     public void getName() {
-        assertFalse(kioskInfo.getName().isEmpty());
+        assertFalse(kioskInfo.name.isEmpty());
     }
 }

@@ -20,13 +20,13 @@ public abstract class DefaultExtractorTest<T extends Extractor> implements BaseE
     @Test
     @Override
     public void testServiceId() throws Exception {
-        assertEquals(expectedService().getServiceId(), extractor().getServiceId());
+        assertEquals(expectedService().serviceId, extractor().getServiceId());
     }
 
     @Test
     @Override
     public void testName() throws Exception {
-        assertEquals(expectedName(), extractor().getName());
+        assertEquals(expectedName(), extractor().name);
     }
 
     @Test

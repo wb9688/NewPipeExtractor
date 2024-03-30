@@ -78,7 +78,7 @@ public class YoutubePlaylistExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -164,7 +164,7 @@ public class YoutubePlaylistExtractorTest {
         @Test
         public void testDescription() throws ParsingException {
             final Description description = extractor.getDescription();
-            assertContains("pop songs list", description.getContent());
+            assertContains("pop songs list", description.content);
         }
     }
 
@@ -196,7 +196,7 @@ public class YoutubePlaylistExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -235,8 +235,8 @@ public class YoutubePlaylistExtractorTest {
 
             // test for 2 more levels
             for (int i = 0; i < 2; i++) {
-                currentPage = extractor.getPage(currentPage.getNextPage());
-                defaultTestListOfItems(YouTube, currentPage.getItems(), currentPage.getErrors());
+                currentPage = extractor.getPage(currentPage.nextPage);
+                defaultTestListOfItems(YouTube, currentPage.getItems(), currentPage.errors);
             }
         }
 
@@ -288,7 +288,7 @@ public class YoutubePlaylistExtractorTest {
         @Test
         public void testDescription() throws ParsingException {
             final Description description = extractor.getDescription();
-            assertContains("I Wanna Rock Super Gigantic Playlist", description.getContent());
+            assertContains("I Wanna Rock Super Gigantic Playlist", description.content);
         }
     }
 
@@ -310,7 +310,7 @@ public class YoutubePlaylistExtractorTest {
 
         @Test
         public void testServiceId() {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
@@ -396,7 +396,7 @@ public class YoutubePlaylistExtractorTest {
         @Test
         public void testDescription() throws ParsingException {
             final Description description = extractor.getDescription();
-            assertContains("47 episodes", description.getContent());
+            assertContains("47 episodes", description.content);
         }
     }
 
@@ -416,13 +416,13 @@ public class YoutubePlaylistExtractorTest {
         @Test
         @Override
         public void testServiceId() throws Exception {
-            assertEquals(YouTube.getServiceId(), extractor.getServiceId());
+            assertEquals(YouTube.serviceId, extractor.getServiceId());
         }
 
         @Test
         @Override
         public void testName() throws Exception {
-            assertEquals("Short videos", extractor.getName());
+            assertEquals("Short videos", extractor.name);
         }
 
         @Test
@@ -476,25 +476,25 @@ public class YoutubePlaylistExtractorTest {
         @Test
         @Override
         public void testUploaderName() throws Exception {
-            assertEquals("YouTube", extractor.getUploaderName());
+            assertEquals("YouTube", extractor.uploaderName);
         }
 
         @Test
         public void testUploaderAvatars() throws Exception {
-            YoutubeTestsUtils.testImages(extractor.getUploaderAvatars());
+            YoutubeTestsUtils.testImages(extractor.uploaderAvatars);
         }
 
         @Test
         @Override
         public void testStreamCount() throws Exception {
-            ExtractorAsserts.assertGreater(250, extractor.getStreamCount());
+            ExtractorAsserts.assertGreater(250, extractor.streamCount);
         }
 
         @Test
         @Override
         public void testUploaderVerified() throws Exception {
             // YouTube doesn't provide this information for playlists
-            assertFalse(extractor.isUploaderVerified());
+            assertFalse(extractor.isUploaderVerified);
         }
 
         @Test
@@ -504,7 +504,7 @@ public class YoutubePlaylistExtractorTest {
 
         @Test
         void testDescription() throws ParsingException {
-            assertTrue(Utils.isNullOrEmpty(extractor.getDescription().getContent()));
+            assertTrue(Utils.isNullOrEmpty(extractor.description.content));
         }
     }
 

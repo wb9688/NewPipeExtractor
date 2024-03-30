@@ -97,18 +97,18 @@ public class BandcampRadioStreamExtractorTest extends DefaultStreamExtractorTest
 
     @Test
     void testGetThumbnails() throws ParsingException {
-        BandcampTestUtils.testImages(extractor.getThumbnails());
+        BandcampTestUtils.testImages(extractor.thumbnails);
     }
 
     @Test
     void testGetUploaderAvatars() throws ParsingException {
         DefaultTests.defaultTestImageCollection(extractor.getUploaderAvatars());
         extractor.getUploaderAvatars().forEach(image ->
-                ExtractorAsserts.assertContains("bandcamp-button", image.getUrl()));
+                ExtractorAsserts.assertContains("bandcamp-button", image.url));
     }
 
     @Test
     void testGetAudioStreams() throws ExtractionException, IOException {
-        assertEquals(1, extractor.getAudioStreams().size());
+        assertEquals(1, extractor.audioStreams.size());
     }
 }

@@ -45,7 +45,7 @@ public class YoutubePlaylistLinkHandlerFactoryTest {
             "OLAK5uy_lEBUW9iTwqf0IlYPxZ8LrzpgqjAHZgZpM,https://music.youtube.com/playlist?list=OLAK5uy_lEBUW9iTwqf0IlYPxZ8LrzpgqjAHZgZpM"
     })
     void getIdfromYt(final String expectedId, final String url) throws ParsingException {
-        assertEquals(expectedId, linkHandler.fromUrl(url).getId());
+        assertEquals(expectedId, linkHandler.fromUrl(url).id);
     }
 
     @ParameterizedTest
@@ -124,18 +124,18 @@ public class YoutubePlaylistLinkHandlerFactoryTest {
             "PLz8YL4HVC87WJQDzVoY943URKQCsHS9XV,www.invidio.us/playlist?list=PLz8YL4HVC87WJQDzVoY943URKQCsHS9XV"
     })
     void getInvidioIdfromUrl(final String expectedId, final String url) throws ParsingException {
-        assertEquals(expectedId, linkHandler.fromUrl(url).getId());
+        assertEquals(expectedId, linkHandler.fromUrl(url).id);
     }
 
     @Test
     void fromUrlIsMixVideo() throws Exception {
         final String videoId = "_AzeUSL9lZc";
         String url = "https://www.youtube.com/watch?v=" + videoId + "&list=RD" + videoId;
-        assertEquals(url, linkHandler.fromUrl(url).getUrl());
+        assertEquals(url, linkHandler.fromUrl(url).url);
 
         final String mixVideoId = "qHtzO49SDmk";
         url = "https://www.youtube.com/watch?v=" + mixVideoId + "&list=RD" + videoId;
-        assertEquals(url, linkHandler.fromUrl(url).getUrl());
+        assertEquals(url, linkHandler.fromUrl(url).url);
     }
 
     @Test
@@ -143,6 +143,6 @@ public class YoutubePlaylistLinkHandlerFactoryTest {
         final String videoId = "_AzeUSL9lZc";
         final String url = "https://www.youtube.com/watch?v=" + videoId + "&list=RD" + videoId;
         assertEquals(url,
-            linkHandler.fromUrl("https://www.youtube.com/watch?list=RD" + videoId).getUrl());
+                linkHandler.fromUrl("https://www.youtube.com/watch?list=RD" + videoId).url);
     }
 }

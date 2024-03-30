@@ -50,7 +50,7 @@ public class BandcampPlaylistExtractorTest {
         final PlaylistExtractor extractor = Bandcamp.getPlaylistExtractor("https://macbenson.bandcamp.com/album/coming-of-age");
         extractor.fetchPage();
 
-        assertEquals(5, extractor.getStreamCount());
+        assertEquals(5, extractor.streamCount);
     }
 
     /**
@@ -61,9 +61,9 @@ public class BandcampPlaylistExtractorTest {
         final PlaylistExtractor extractor = Bandcamp.getPlaylistExtractor("https://zachbensonarchive.bandcamp.com/album/results-of-boredom");
         extractor.fetchPage();
 
-        final List<StreamInfoItem> l = extractor.getInitialPage().getItems();
-        assertContainsOnlyEquivalentImages(extractor.getThumbnails(), l.get(0).getThumbnails());
-        assertNotOnlyContainsEquivalentImages(extractor.getThumbnails(), l.get(5).getThumbnails());
+        final List<StreamInfoItem> l = extractor.initialPage.getItems();
+        assertContainsOnlyEquivalentImages(extractor.getThumbnails(), l.get(0).thumbnails);
+        assertNotOnlyContainsEquivalentImages(extractor.getThumbnails(), l.get(5).thumbnails);
     }
 
     /**
@@ -78,9 +78,9 @@ public class BandcampPlaylistExtractorTest {
         /* All tracks on this album have the same cover art, but I don't know any albums with more
          * than 10 tracks that has at least one track with a cover art different from the rest.
          */
-        final List<StreamInfoItem> l = extractor.getInitialPage().getItems();
-        assertContainsOnlyEquivalentImages(extractor.getThumbnails(), l.get(0).getThumbnails());
-        assertContainsOnlyEquivalentImages(extractor.getThumbnails(), l.get(5).getThumbnails());
+        final List<StreamInfoItem> l = extractor.initialPage.getItems();
+        assertContainsOnlyEquivalentImages(extractor.getThumbnails(), l.get(0).thumbnails);
+        assertContainsOnlyEquivalentImages(extractor.getThumbnails(), l.get(5).thumbnails);
     }
 
     /**
@@ -101,7 +101,7 @@ public class BandcampPlaylistExtractorTest {
         final PlaylistExtractor extractor = Bandcamp.getPlaylistExtractor("https://zachjohnson1.bandcamp.com/album/endless");
         extractor.fetchPage();
 
-        assertEquals(1, extractor.getStreamCount());
+        assertEquals(1, extractor.streamCount);
     }
 
     public static class ComingOfAge implements BasePlaylistExtractorTest {
@@ -127,53 +127,53 @@ public class BandcampPlaylistExtractorTest {
 
         @Test
         void testUploaderUrl() throws ParsingException {
-            assertTrue(extractor.getUploaderUrl().contains("macbenson.bandcamp.com"));
+            assertTrue(extractor.uploaderUrl.contains("macbenson.bandcamp.com"));
         }
 
         @Test
         public void testUploaderName() throws ParsingException {
-            assertEquals("mac benson", extractor.getUploaderName());
+            assertEquals("mac benson", extractor.uploaderName);
         }
 
         @Test
         public void testUploaderAvatars() throws ParsingException {
-            BandcampTestUtils.testImages(extractor.getUploaderAvatars());
+            BandcampTestUtils.testImages(extractor.uploaderAvatars);
         }
 
         @Test
         public void testStreamCount() throws ParsingException {
-            assertEquals(5, extractor.getStreamCount());
+            assertEquals(5, extractor.streamCount);
         }
 
         @Test
         public void testDescription() throws ParsingException {
-            final Description description = extractor.getDescription();
+            final Description description = extractor.description;
             assertNotEquals(Description.EMPTY_DESCRIPTION, description);
-            assertContains("Artwork by Shona Radcliffe", description.getContent()); // about
+            assertContains("Artwork by Shona Radcliffe", description.content); // about
             assertContains("All tracks written, produced and recorded by Mac Benson",
-                    description.getContent()); // credits
-            assertContains("all rights reserved", description.getContent()); // license
+                    description.content); // credits
+            assertContains("all rights reserved", description.content); // license
         }
 
         @Test
         @Override
         public void testUploaderVerified() throws Exception {
-            assertFalse(extractor.isUploaderVerified());
+            assertFalse(extractor.isUploaderVerified);
         }
 
         @Test
         void testInitialPage() throws IOException, ExtractionException {
-            assertNotNull(extractor.getInitialPage().getItems().get(0));
+            assertNotNull(extractor.initialPage.getItems().get(0));
         }
 
         @Test
         public void testServiceId() {
-            assertEquals(Bandcamp.getServiceId(), extractor.getServiceId());
+            assertEquals(Bandcamp.serviceId, extractor.getServiceId());
         }
 
         @Test
         public void testName() throws ParsingException {
-            assertEquals("Coming of Age", extractor.getName());
+            assertEquals("Coming of Age", extractor.name);
         }
 
         @Test
@@ -193,7 +193,7 @@ public class BandcampPlaylistExtractorTest {
 
         @Test
         void testNextPageUrl() throws IOException, ExtractionException {
-            assertNull(extractor.getPage(extractor.getInitialPage().getNextPage()));
+            assertNull(extractor.getPage(extractor.initialPage.nextPage));
         }
 
         @Test

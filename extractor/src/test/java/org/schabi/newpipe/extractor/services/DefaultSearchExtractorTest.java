@@ -43,15 +43,15 @@ public abstract class DefaultSearchExtractorTest extends DefaultListExtractorTes
     public void testSearchSuggestion() throws Exception {
         final String expectedSearchSuggestion = expectedSearchSuggestion();
         if (isNullOrEmpty(expectedSearchSuggestion)) {
-            assertEmpty("Suggestion was expected to be empty", extractor().getSearchSuggestion());
+            assertEmpty("Suggestion was expected to be empty", extractor().searchSuggestion);
         } else {
-            assertEquals(expectedSearchSuggestion, extractor().getSearchSuggestion());
+            assertEquals(expectedSearchSuggestion, extractor().searchSuggestion);
         }
     }
 
     @Test
     public void testSearchCorrected() throws Exception {
-        assertEquals(isCorrectedSearch(), extractor().isCorrectedSearch());
+        assertEquals(isCorrectedSearch(), extractor().isCorrectedSearch);
     }
 
     /**
@@ -59,12 +59,12 @@ public abstract class DefaultSearchExtractorTest extends DefaultListExtractorTes
      */
     @Test
     public void testMetaInfo() throws Exception {
-        final List<MetaInfo> metaInfoList = extractor().getMetaInfo();
+        final List<MetaInfo> metaInfoList = extractor().metaInfo;
         final List<MetaInfo> expectedMetaInfoList = expectedMetaInfo();
 
         for (final MetaInfo expectedMetaInfo : expectedMetaInfoList) {
             final List<String> texts = metaInfoList.stream()
-                    .map(metaInfo -> metaInfo.getContent().getContent())
+                    .map(metaInfo -> metaInfo.content.content)
                     .collect(Collectors.toList());
             final List<String> titles = metaInfoList.stream().map(MetaInfo::getTitle).collect(Collectors.toList());
             final List<URL> urls = metaInfoList.stream().flatMap(info -> info.getUrls().stream())
@@ -72,8 +72,8 @@ public abstract class DefaultSearchExtractorTest extends DefaultListExtractorTes
             final List<String> urlTexts = metaInfoList.stream().flatMap(info -> info.getUrlTexts().stream())
                     .collect(Collectors.toList());
 
-            assertTrue(texts.contains(expectedMetaInfo.getContent().getContent()));
-            assertTrue(titles.contains(expectedMetaInfo.getTitle()));
+            assertTrue(texts.contains(expectedMetaInfo.content.content));
+            assertTrue(titles.contains(expectedMetaInfo.title));
 
             for (final String expectedUrlText : expectedMetaInfo.getUrlTexts()) {
                 assertTrue(urlTexts.contains(expectedUrlText));
