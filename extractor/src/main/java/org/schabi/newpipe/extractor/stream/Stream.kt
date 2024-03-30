@@ -53,7 +53,7 @@ abstract class Stream
          *
          * @return the delivery method
          */
-        @JvmField @get:Nonnull val deliveryMethod: DeliveryMethod,
+        @JvmField val deliveryMethod: DeliveryMethod,
         /**
          * Gets the URL of the manifest this stream comes from (if applicable, otherwise null).
          *

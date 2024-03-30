@@ -30,20 +30,19 @@ import java.util.stream.Collectors
  */
 // we want the media format table below to be aligned
 enum class MediaFormat(// @formatter:on
-        @JvmField val id: Int, @field:Nonnull
+        @JvmField val id: Int,
         /**
          * Get the name of the format
          *
          * @return the name of the format
          */
         override val name: String,
-        @field:Nonnull
         /**
          * Get the filename extension
          *
          * @return the filename extension
          */
-        val suffix: String, @JvmField @field:Nonnull
+        val suffix: String, @JvmField
         /**
          * Get the mime type
          *

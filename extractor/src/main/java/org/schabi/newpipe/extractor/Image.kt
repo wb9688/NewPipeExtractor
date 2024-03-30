@@ -25,7 +25,7 @@ import java.util.Objects
  * possible, to ensure consistency to extractor clients.
  *
  */
-class Image(@JvmField @field:Nonnull
+class Image(@JvmField
             /**
              * Get the URL of this [Image].
              *

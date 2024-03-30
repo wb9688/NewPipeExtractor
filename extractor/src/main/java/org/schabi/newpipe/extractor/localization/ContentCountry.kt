@@ -11,8 +11,7 @@ import java.util.Collections
  * selected.
  *
  */
-class ContentCountry(@get:Nonnull
-                     val countryCode: String) : Serializable {
+class ContentCountry(val countryCode: String) : Serializable {
 
     public override fun toString(): String {
         return countryCode

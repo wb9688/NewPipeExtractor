@@ -23,7 +23,7 @@ internal class ItagInfo
  *
  * @param content  the content of the stream, which must be not null
  * @param itagItem the [ItagItem] associated with the stream, which must be not null
- */(@field:Nonnull
+ */(
     /**
      * Gets the content stored in this `ItagInfo` instance, which is either the URL to the
      * content itself or the base URL.
@@ -31,7 +31,6 @@ internal class ItagInfo
      * @return the content stored in this `ItagInfo` instance
      */
     val content: String?,
-    @field:Nonnull
     /**
      * Gets the [ItagItem] associated with this `ItagInfo` instance.
      *

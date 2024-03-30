@@ -23,7 +23,7 @@ import java.util.Objects
  * interfacing with the extractor.
  *
  */
-class ImageSuffix(@field:Nonnull
+class ImageSuffix(
                   /**
                    * @return the suffix which needs to be appended to get the full image URL
                    */
