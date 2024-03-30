@@ -17,10 +17,10 @@ import org.schabi.newpipe.extractor.utils.JsonUtils
 import java.nio.charset.StandardCharsets
 import java.util.Objects
 
-class PeertubeCommentsInfoItemExtractor(@param:Nonnull private val item: JsonObject,
+class PeertubeCommentsInfoItemExtractor(private val item: JsonObject,
                                         private val children: JsonArray?,
-                                        @param:Nonnull private override val url: String?,
-                                        @param:Nonnull private val baseUrl: String?,
+                                        private override val url: String?,
+                                        private val baseUrl: String?,
                                         private val isReply: Boolean) : CommentsInfoItemExtractor {
     @get:Throws(ParsingException::class)
     override var replyCount: Int? = null

@@ -36,20 +36,20 @@ enum class MediaFormat(// @formatter:on
          *
          * @return the name of the format
          */
-        @param:Nonnull override val name: String,
+        override val name: String,
         @field:Nonnull
         /**
          * Get the filename extension
          *
          * @return the filename extension
          */
-        @param:Nonnull val suffix: String, @JvmField @field:Nonnull
+        val suffix: String, @JvmField @field:Nonnull
         /**
          * Get the mime type
          *
          * @return the mime type
          */
-        @param:Nonnull val mimeType: String) {
+        val mimeType: String) {
     // @formatter:off
  //video and audio combined formats
  //         id     name         suffix  mimeType

@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets
  * Mocks requests by using json files created by [RecordingDownloader]
  *
  */
-internal class MockDownloader(@param:Nonnull private val path: String) : Downloader() {
+internal class MockDownloader(private val path: String) : Downloader() {
     private val mocks: MutableMap<Request?, Response?>
 
     init {

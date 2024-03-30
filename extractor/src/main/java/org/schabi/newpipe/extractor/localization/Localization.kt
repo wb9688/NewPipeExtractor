@@ -11,7 +11,7 @@ import java.util.function.Function
 import java.util.function.Supplier
 
 class Localization @JvmOverloads constructor(@get:Nonnull
-                                             @param:Nonnull val languageCode: String?, private val countryCode: String? = null) : Serializable {
+                                             val languageCode: String?, private val countryCode: String? = null) : Serializable {
     fun getCountryCode(): String {
         return if (countryCode == null) "" else countryCode
     }

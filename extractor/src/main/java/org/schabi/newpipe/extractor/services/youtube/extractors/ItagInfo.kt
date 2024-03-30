@@ -30,7 +30,7 @@ internal class ItagInfo
      *
      * @return the content stored in this `ItagInfo` instance
      */
-    @param:Nonnull val content: String?,
+    val content: String?,
     @field:Nonnull
     /**
      * Gets the [ItagItem] associated with this `ItagInfo` instance.
@@ -38,7 +38,7 @@ internal class ItagInfo
      * @return the [ItagItem] associated with this `ItagInfo` instance, which is not
      * null
      */
-    @param:Nonnull val itagItem: ItagItem) : Serializable {
+    val itagItem: ItagItem) : Serializable {
 
     /**
      * Gets whether the content stored is the URL to the content itself or the base URL of it.

@@ -12,7 +12,7 @@ import java.util.Collections
  *
  */
 class ContentCountry(@get:Nonnull
-                     @param:Nonnull val countryCode: String) : Serializable {
+                     val countryCode: String) : Serializable {
 
     public override fun toString(): String {
         return countryCode

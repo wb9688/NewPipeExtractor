@@ -31,7 +31,7 @@ class Image(@JvmField @field:Nonnull
              *
              * @return the [Image]'s URL.
              */
-            @param:Nonnull val url: String?,
+            val url: String?,
             /**
              * Get the height of this [Image].
              *

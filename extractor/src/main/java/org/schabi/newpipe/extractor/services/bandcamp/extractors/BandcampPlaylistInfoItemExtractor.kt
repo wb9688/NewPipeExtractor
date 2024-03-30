@@ -4,7 +4,7 @@ import org.jsoup.nodes.Element
 import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItemExtractor
 
-class BandcampPlaylistInfoItemExtractor(@param:Nonnull private val searchResult: Element) : PlaylistInfoItemExtractor {
+class BandcampPlaylistInfoItemExtractor(private val searchResult: Element) : PlaylistInfoItemExtractor {
     private val resultInfo: Element?
 
     init {

@@ -18,7 +18,7 @@ class SubtitlesStream private constructor(id: String,
                                            *
                                            * @return the language tag of the subtitles
                                            */
-                                          @param:Nonnull val languageTag: String,
+                                          val languageTag: String,
                                           /**
                                            * Return whether if the subtitles are auto-generated.
                                            *

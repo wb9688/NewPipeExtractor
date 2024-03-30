@@ -7,8 +7,8 @@ import org.schabi.newpipe.extractor.channel.ChannelInfoItemExtractor
 import org.schabi.newpipe.extractor.exceptions.ParsingException
 import org.schabi.newpipe.extractor.services.peertube.PeertubeParsingHelper
 
-class PeertubeChannelInfoItemExtractor(@param:Nonnull private val item: JsonObject,
-                                       @param:Nonnull private val baseUrl: String?) : ChannelInfoItemExtractor {
+class PeertubeChannelInfoItemExtractor(private val item: JsonObject,
+                                       private val baseUrl: String?) : ChannelInfoItemExtractor {
     @get:Throws(ParsingException::class)
     override val name: String?
         get() {

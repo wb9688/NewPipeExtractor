@@ -27,7 +27,7 @@ class ImageSuffix(@field:Nonnull
                   /**
                    * @return the suffix which needs to be appended to get the full image URL
                    */
-                  @param:Nonnull val suffix: String,
+                  val suffix: String,
                   /**
                    * @return the height corresponding to the image suffix, which may be unknown
                    */

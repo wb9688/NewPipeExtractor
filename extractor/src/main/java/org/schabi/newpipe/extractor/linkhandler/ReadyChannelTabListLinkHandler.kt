@@ -31,7 +31,7 @@ class ReadyChannelTabListLinkHandler(
         url: String?,
         channelId: String?,
         channelTab: String?,
-        @param:Nonnull private val extractorBuilder: ChannelTabExtractorBuilder) : ListLinkHandler(url, url, channelId, List.of<String?>(channelTab), "") {
+        private val extractorBuilder: ChannelTabExtractorBuilder) : ListLinkHandler(url, url, channelId, List.of<String?>(channelTab), "") {
     open interface ChannelTabExtractorBuilder : Serializable {
         fun build(service: StreamingService,
                   linkHandler: ListLinkHandler?): ChannelTabExtractor

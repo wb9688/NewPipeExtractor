@@ -8,8 +8,8 @@ import org.schabi.newpipe.extractor.services.peertube.PeertubeParsingHelper
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.extractor.utils.Utils
 
-class PeertubePlaylistInfoItemExtractor(@param:Nonnull private val item: JsonObject,
-                                        @param:Nonnull private val baseUrl: String?) : PlaylistInfoItemExtractor {
+class PeertubePlaylistInfoItemExtractor(private val item: JsonObject,
+                                        private val baseUrl: String?) : PlaylistInfoItemExtractor {
     private val uploader: JsonObject
 
     init {

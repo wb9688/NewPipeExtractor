@@ -9,7 +9,7 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfoItemExtractor
 /**
  * Extracts recommended albums from tracks' website
  */
-class BandcampRelatedPlaylistInfoItemExtractor(@param:Nonnull private val relatedAlbum: Element) : PlaylistInfoItemExtractor {
+class BandcampRelatedPlaylistInfoItemExtractor(private val relatedAlbum: Element) : PlaylistInfoItemExtractor {
     @get:Throws(ParsingException::class)
     override val name: String?
         get() {
