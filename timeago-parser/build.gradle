@@ -1,4 +1,21 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+}
 dependencies {
     implementation "com.github.TeamNewPipe:nanojson:$nanojsonVersion"
     implementation "com.github.spotbugs:spotbugs-annotations:$spotbugsVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+repositories {
+    mavenCentral()
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }

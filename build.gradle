@@ -37,6 +37,7 @@ allprojects {
 dependencies {
     api project(':extractor')
     implementation project(':timeago-parser')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 
 subprojects {
@@ -79,5 +80,28 @@ task aggregatedJavadocs(type: Javadoc, group: 'Documentation') {
             excludes += javadocTask.excludes
             includes += javadocTask.includes
         }
+    }
+}
+buildscript {
+    ext.kotlin_version = '2.0.0-Beta5'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+apply plugin: 'kotlin'
+repositories {
+    mavenCentral()
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "11"
     }
 }
