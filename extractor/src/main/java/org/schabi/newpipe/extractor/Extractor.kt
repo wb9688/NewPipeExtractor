@@ -23,7 +23,7 @@ abstract class Extractor protected constructor(service: StreamingService, linkHa
      * @return The [LinkHandler] of the current extractor object (e.g. a ChannelExtractor
      * should return a channel url handler).
      */
-    open val linkHandler: LinkHandler?
+    open val linkHandler: LinkHandler
     private var forcedLocalization: Localization? = null
     private var forcedContentCountry: ContentCountry? = null
     protected var isPageFetched: Boolean = false
@@ -34,8 +34,8 @@ abstract class Extractor protected constructor(service: StreamingService, linkHa
 
     init {
         this.service = Objects.requireNonNull(service, "service is null")
-        this.linkHandler = Objects.requireNonNull(linkHandler, "LinkHandler is null")
-        downloader = Objects.requireNonNull(NewPipe.getDownloader(), "downloader is null")
+        this.linkHandler = Objects.requireNonNull(linkHandler, "LinkHandler is null")!!
+        downloader = Objects.requireNonNull(NewPipe.downloader, "downloader is null")
     }
 
     /**
@@ -72,7 +72,7 @@ abstract class Extractor protected constructor(service: StreamingService, linkHa
     @get:Throws(ParsingException::class)
     open val id: String?
         get() {
-            return linkHandler.getId()
+            return linkHandler.id
         }
 
     @JvmField
@@ -82,23 +82,23 @@ abstract class Extractor protected constructor(service: StreamingService, linkHa
     @get:Throws(ParsingException::class)
     open val originalUrl: String?
         get() {
-            return linkHandler.getOriginalUrl()
+            return linkHandler.originalUrl
         }
 
     @get:Throws(ParsingException::class)
     open val url: String?
         get() {
-            return linkHandler.getUrl()
+            return linkHandler.url
         }
 
     @get:Throws(ParsingException::class)
     val baseUrl: String?
         get() {
-            return linkHandler.getBaseUrl()
+            return linkHandler.baseUrl
         }
     val serviceId: Int
         get() {
-            return service.getServiceId()
+            return service.serviceId
         }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -114,12 +114,12 @@ abstract class Extractor protected constructor(service: StreamingService, linkHa
 
     val extractorLocalization: Localization?
         get() {
-            return if (forcedLocalization == null) service.getLocalization() else forcedLocalization
+            return if (forcedLocalization == null) service.localization else forcedLocalization
         }
 
     val extractorContentCountry: ContentCountry?
         get() {
-            return if (forcedContentCountry == null) service.getContentCountry() else forcedContentCountry
+            return if (forcedContentCountry == null) service.contentCountry else forcedContentCountry
         }
 
     val timeAgoParser: TimeAgoParser?

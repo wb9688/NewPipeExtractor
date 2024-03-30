@@ -10,5 +10,5 @@ open interface InfoItemExtractor {
     val url: String?
 
     @get:Throws(ParsingException::class)
-    val thumbnails: List<Image?>?
+    val thumbnails: List<Image>
 }

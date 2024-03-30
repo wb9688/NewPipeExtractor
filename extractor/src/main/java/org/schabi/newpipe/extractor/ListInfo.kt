@@ -22,10 +22,10 @@ abstract class ListInfo<T : InfoItem?> : Info {
     }
 
     constructor(serviceId: Int,
-                listUrlIdHandler: ListLinkHandler?,
+                listUrlIdHandler: ListLinkHandler,
                 name: String?) : super(serviceId, listUrlIdHandler, name) {
-        contentFilters = listUrlIdHandler.getContentFilters()
-        sortFilter = listUrlIdHandler.getSortFilter()
+        contentFilters = listUrlIdHandler.contentFilters
+        sortFilter = listUrlIdHandler.sortFilter
     }
 
     fun hasNextPage(): Boolean {

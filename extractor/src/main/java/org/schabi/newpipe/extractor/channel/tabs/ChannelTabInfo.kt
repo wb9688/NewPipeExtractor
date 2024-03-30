@@ -12,7 +12,7 @@ import org.schabi.newpipe.extractor.utils.ExtractorHelper
 import java.io.IOException
 
 class ChannelTabInfo(serviceId: Int,
-                     linkHandler: ListLinkHandler?) : ListInfo<InfoItem?>(serviceId, linkHandler, linkHandler.getContentFilters().get(0)) {
+                     linkHandler: ListLinkHandler) : ListInfo<InfoItem?>(serviceId, linkHandler, linkHandler.contentFilters[0]) {
     companion object {
         /**
          * Get a [ChannelTabInfo] instance from the given service and tab handler.
@@ -35,16 +35,16 @@ class ChannelTabInfo(serviceId: Int,
          * @param extractor an extractor where `fetchPage()` was already got called on
          * @return the extracted [ChannelTabInfo]
          */
-        fun getInfo(extractor: ChannelTabExtractor?): ChannelTabInfo {
-            val info: ChannelTabInfo = ChannelTabInfo(extractor.getServiceId(), extractor.getLinkHandler())
+        fun getInfo(extractor: ChannelTabExtractor): ChannelTabInfo {
+            val info = ChannelTabInfo(extractor.serviceId, extractor.linkHandler as ListLinkHandler)
             try {
-                info.setOriginalUrl(extractor.getOriginalUrl())
+                info.originalUrl = extractor.originalUrl
             } catch (e: Exception) {
                 info.addError(e)
             }
-            val page: InfoItemsPage<InfoItem?>? = ExtractorHelper.getItemsPageOrLogError(info, (extractor)!!)
-            info.setRelatedItems(page.getItems())
-            info.setNextPage(page.getNextPage())
+            val page: InfoItemsPage<InfoItem> = ExtractorHelper.getItemsPageOrLogError(info, (extractor))
+            info.relatedItems = page.items
+            info.nextPage = page.nextPage
             return info
         }
 

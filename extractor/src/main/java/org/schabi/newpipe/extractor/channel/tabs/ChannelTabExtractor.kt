@@ -9,9 +9,9 @@ import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler
  * A [ListExtractor] of [InfoItem]s for tabs of channels.
  */
 abstract class ChannelTabExtractor protected constructor(service: StreamingService,
-                                                         linkHandler: ListLinkHandler?) : ListExtractor<InfoItem?>(service, linkHandler) {
+                                                         linkHandler: ListLinkHandler) : ListExtractor<InfoItem?>(service, linkHandler) {
     override val name: String?
         get() {
-            return getLinkHandler().getContentFilters().get(0)
+            return (linkHandler as ListLinkHandler).contentFilters[0]
         }
 }

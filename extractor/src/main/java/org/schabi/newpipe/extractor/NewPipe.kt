@@ -54,7 +54,7 @@ object NewPipe {
     @Throws(ExtractionException::class)
     fun getService(serviceId: Int): StreamingService? {
         return ServiceList.all().stream()
-                .filter(Predicate({ service: StreamingService? -> service.getServiceId() == serviceId }))
+                .filter(Predicate({ service: StreamingService? -> service?.serviceId == serviceId }))
                 .findFirst()
                 .orElseThrow(Supplier({
                     ExtractionException(
@@ -65,7 +65,7 @@ object NewPipe {
     @Throws(ExtractionException::class)
     fun getService(serviceName: String): StreamingService? {
         return ServiceList.all().stream()
-                .filter(Predicate({ service: StreamingService? -> (service.getServiceInfo().getName() == serviceName) }))
+                .filter(Predicate({ service: StreamingService? -> (service?.serviceInfo?.name ?: null == serviceName) }))
                 .findFirst()
                 .orElseThrow(Supplier({
                     ExtractionException(

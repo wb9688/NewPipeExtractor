@@ -12,7 +12,7 @@ import java.io.IOException
 abstract class ListExtractor<R : InfoItem?>(service: StreamingService, linkHandler: ListLinkHandler?) : Extractor(service, linkHandler) {
     @JvmField
     @get:Throws(IOException::class, ExtractionException::class)
-    abstract val initialPage: InfoItemsPage<R?>?
+    abstract val initialPage: InfoItemsPage<R>
 
     /**
      * Get a list of items corresponding to the specific requested page.
@@ -24,9 +24,9 @@ abstract class ListExtractor<R : InfoItem?>(service: StreamingService, linkHandl
     @Throws(IOException::class, ExtractionException::class)
     abstract fun getPage(page: Page?): InfoItemsPage<R?>?
 
-    override val linkHandler: LinkHandler?
+    override val linkHandler: LinkHandler
         get() {
-            return super.getLinkHandler() as ListLinkHandler?
+            return super.linkHandler as ListLinkHandler
         }
     /*//////////////////////////////////////////////////////////////////////////
     // Inner
@@ -59,7 +59,7 @@ abstract class ListExtractor<R : InfoItem?>(service: StreamingService, linkHandl
         @JvmField
         val errors: List<Throwable?>?
 
-        constructor(collector: InfoItemsCollector<T, *>, nextPage: Page?) : this(collector.getItems(), nextPage, collector.getErrors())
+        constructor(collector: InfoItemsCollector<T, *>, nextPage: Page?) : this(collector.items, nextPage, collector.getErrors())
 
         init {
             items = itemsList

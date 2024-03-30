@@ -24,33 +24,32 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException
 
 class ChannelInfoItemsCollector(serviceId: Int) : InfoItemsCollector<ChannelInfoItem?, ChannelInfoItemExtractor?>(serviceId) {
     @Throws(ParsingException::class)
-    public override fun extract(extractor: ChannelInfoItemExtractor): ChannelInfoItem? {
-        val resultItem: ChannelInfoItem = ChannelInfoItem(
-                getServiceId(), extractor.getUrl(), extractor.getName())
+    public override fun extract(extractor: ChannelInfoItemExtractor): ChannelInfoItem {
+        val resultItem: ChannelInfoItem = ChannelInfoItem(serviceId, extractor.url, extractor.name)
 
         // optional information
         try {
-            resultItem.setSubscriberCount(extractor.getSubscriberCount())
+            resultItem.subscriberCount = extractor.subscriberCount
         } catch (e: Exception) {
             addError(e)
         }
         try {
-            resultItem.setStreamCount(extractor.getStreamCount())
+            resultItem.streamCount = extractor.streamCount
         } catch (e: Exception) {
             addError(e)
         }
         try {
-            resultItem.setThumbnails(extractor.getThumbnails())
+            resultItem.thumbnails = extractor.thumbnails
         } catch (e: Exception) {
             addError(e)
         }
         try {
-            resultItem.setDescription(extractor.getDescription())
+            resultItem.description = extractor.description
         } catch (e: Exception) {
             addError(e)
         }
         try {
-            resultItem.setVerified(extractor.isVerified())
+            resultItem.isVerified = extractor.isVerified
         } catch (e: Exception) {
             addError(e)
         }

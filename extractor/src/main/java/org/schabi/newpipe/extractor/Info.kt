@@ -37,10 +37,10 @@ abstract class Info(val serviceId: Int,
         errors.addAll((throwables)!!)
     }
 
-    constructor(serviceId: Int, linkHandler: LinkHandler?, name: String?) : this(serviceId,
-            linkHandler.getId(),
-            linkHandler.getUrl(),
-            linkHandler.getOriginalUrl(),
+    constructor(serviceId: Int, linkHandler: LinkHandler, name: String?) : this(serviceId,
+            linkHandler.id,
+            linkHandler.url,
+            linkHandler.originalUrl,
             name)
 
     public override fun toString(): String {

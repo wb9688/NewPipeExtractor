@@ -313,7 +313,7 @@ abstract class StreamingService(@JvmField val serviceId: Int,
     /*//////////////////////////////////////////////////////////////////////////
     // Localization
     ////////////////////////////////////////////////////////////////////////// */
-    open val supportedLocalizations: List<Localization?>
+    open val supportedLocalizations: List<Localization>
         /**
          * Returns a list of localizations that this service supports.
          */
@@ -339,7 +339,7 @@ abstract class StreamingService(@JvmField val serviceId: Int,
          *
          */
         get() {
-            val preferredLocalization: Localization? = NewPipe.getPreferredLocalization()
+            val preferredLocalization: Localization = NewPipe.getPreferredLocalization()
 
             // Check the localization's language and country
             if (supportedLocalizations.contains(preferredLocalization)) {
@@ -347,9 +347,9 @@ abstract class StreamingService(@JvmField val serviceId: Int,
             }
 
             // Fallback to the first supported language that matches the preferred language
-            for (supportedLanguage: Localization? in supportedLocalizations) {
-                if ((supportedLanguage.getLanguageCode()
-                                == preferredLocalization.getLanguageCode())) {
+            for (supportedLanguage: Localization in supportedLocalizations) {
+                if ((supportedLanguage.languageCode
+                                == preferredLocalization.languageCode)) {
                     return supportedLanguage
                 }
             }
@@ -387,7 +387,7 @@ abstract class StreamingService(@JvmField val serviceId: Int,
             return targetParser
         }
         if (!localization!!.getCountryCode().isEmpty()) {
-            val lessSpecificLocalization: Localization = Localization(localization.getLanguageCode())
+            val lessSpecificLocalization: Localization = Localization(localization.languageCode)
             val lessSpecificParser: TimeAgoParser? = TimeAgoPatternsManager.getTimeAgoParserFor(lessSpecificLocalization)
             if (lessSpecificParser != null) {
                 return lessSpecificParser
