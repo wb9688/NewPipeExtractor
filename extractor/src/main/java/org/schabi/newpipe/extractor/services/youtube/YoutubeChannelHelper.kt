@@ -200,11 +200,11 @@ object YoutubeChannelHelper {
             /**
              * The channel response as a JSON object, after all redirects.
              */
-            @field:Nonnull @param:Nonnull val jsonResponse: JsonObject,
+            @param:Nonnull val jsonResponse: JsonObject,
             /**
              * The channel ID after all redirects.
              */
-            @field:Nonnull @param:Nonnull val channelId: String?)
+            @param:Nonnull val channelId: String?)
 
     /**
      * A channel header response.
@@ -221,7 +221,7 @@ object YoutubeChannelHelper {
             /**
              * The channel header JSON response.
              */
-            @field:Nonnull @param:Nonnull val json: JsonObject,
+            @param:Nonnull val json: JsonObject,
             /**
              * The type of the channel header.
              *

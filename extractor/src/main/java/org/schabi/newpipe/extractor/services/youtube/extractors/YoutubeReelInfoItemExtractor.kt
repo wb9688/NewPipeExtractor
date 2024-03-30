@@ -21,7 +21,7 @@ import java.util.Locale
  * the exact view count, any uploader info (name, URL, avatar, verified status) and the upload date.
  *
  */
-open class YoutubeReelInfoItemExtractor(@field:Nonnull @param:Nonnull private val reelInfo: JsonObject) : StreamInfoItemExtractor {
+open class YoutubeReelInfoItemExtractor(@param:Nonnull private val reelInfo: JsonObject) : StreamInfoItemExtractor {
     @get:Throws(ParsingException::class)
     override val name: String?
         get() {
